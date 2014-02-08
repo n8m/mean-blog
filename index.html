@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html ng-app="blog">
+<head>
+    <title>Angu</title>
+    <link href="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+    <meta charset="UTF-8">
+
+</head>
+<body ng-controller="MainCtrl">
+
+
+<div class="navbar navbar-default">
+    <div class="container">
+        <a class="navbar-brand" href="{{config.root}}">{{config.title}}</a>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row">
+
+        <ng-view></ng-view>
+
+
+        <div class="col-md-4">
+            <div class="well well-lg">
+                <div class="media">
+                    <img ng-src="{{config.avatarLink}}" class="media-object pull-left img-thumbnail">
+
+                    <div class="media-body">
+                        <p class="lead">{{config.description}}</p>
+                    </div>
+                </div>
+
+                <form action="/search" method="get" class="form-horizontal sidebar-item">
+                    <div class="input-group">
+                                        <span class="input-group-addon">
+                                            <span class="glyphicon glyphicon-search"></span>
+                                        </span>
+                        <input ng-model="search" type="text" name="q" value="{SearchQuery}" class="form-control"
+                               placeholder="Search">
+                    </div>
+                </form>
+
+                <ul>
+                    <li ng-repeat="tag in tags">{{tag.title}}</li>
+                </ul>
+
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<footer>
+    My own (c) 2014
+</footer>
+
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.10/angular.min.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.10/angular-route.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.10/angular-resource.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.10/angular-animate.js"></script>
+
+
+<script src="js/index.js"></script>
+</body>
+</html>
