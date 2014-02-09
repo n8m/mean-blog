@@ -4,30 +4,32 @@ blg.config(function ($routeProvider, $locationProvider) {
 
     $locationProvider.html5Mode(false);
 
-    $routeProvider.when('/post/:urlTitle', {
-        templateUrl: 'partials/post.html',
+    $routeProvider.when('/posts', {
+        templateUrl: 'partials/posts.html',
+        controller: 'PostsCtrl'
     });
+
+    $routeProvider.when('/post/:urlTitle', {
+        templateUrl: 'partials/single_post.html',
+        controller: 'SinglePostCtrl'
+    });
+
     $routeProvider.when('/', {
-        templateUrl: 'partials/main.html',
+        redirectTo: '/posts'
     });
 });
 
 blg.service("PostResource", function ($resource, Config) {
     return $resource(
-        Config.apiRoot + "/posts/:urlTitle",{},{
+        Config.apiRoot + "/posts/:urlTitle", {}, {
             get: {
                 method: 'GET',
-                params:{
+                params: {
                     urlTitle: '@urlTitle'
                 }
             }
         }
     );
-})
-
-blg.service("Posts", function(){
-    var posts = [];
-    return posts;
 })
 
 blg.factory("TagResource", function ($resource, Config) {
@@ -51,36 +53,49 @@ blg.constant('Lang', {
     readMore: "Читать далее",
 });
 
-blg.controller('MainCtrl', function ($scope, Config, Lang, TagResource, Posts, PostResource) {
-    $scope.posts = Posts;
-    var limit = Config.postsOnPageByDefault;
+blg.controller('ConfigCtrl', function ($scope, Lang, Config) {
+    $scope.config = Config;
+    $scope.lang = Lang;
+})
+
+blg.controller("PostsCtrl", function($scope, Config, TagResource, PostResource, $routeParams){
+    $scope.posts = [];
+    $scope.tags = TagResource.query();
+
+    var postsQueryParams = {limit: Config.postsOnPageByDefault};
+
+    if ($routeParams.tags && $routeParams.tags.length) {
+        postsQueryParams.tags = $routeParams.tags;
+    }
+
+    $scope.$watch($routeParams.tags, function(){
+        $scope.posts = [];
+        $scope.loadPosts();
+    })
 
     $scope.loadPosts = function () {
-        PostResource.query({offset: $scope.posts.length, limit: Config.postsOnPageByDefault}, function (posts) {
-            for(var i = 0,len=posts.length;i<len;i++){
+        postsQueryParams.offset = $scope.posts.length;
+
+        PostResource.query(postsQueryParams, function (posts) {
+            for (var i = 0, len = posts.length; i < len; i++) {
                 $scope.posts.push(posts[i]);
             }
         });
     };
 
-    $scope.config = Config;
-    $scope.lang = Lang;
-    $scope.tags = TagResource.query();
-
-    (function init(){
+    (function init() {
         $scope.loadPosts();
     })();
-
-
 })
 
-blg.controller('postCtrl', function ($scope, $routeParams, Posts, PostResource) {
-    var urlTitle = $routeParams.urlTitle;
+blg.controller('SinglePostCtrl', function ($scope, $routeParams, PostResource, Config) {
 
-    var alreadyLoadedPost = Posts.filter(function (element) {
-        return element.urlTitle === $routeParams.urlTitle;
-    })[0];
-
-    $scope.post = alreadyLoadedPost || PostResource.get({urlTitle: urlTitle});
+    if ($routeParams.urlTitle) {
+        var urlTitle = $routeParams.urlTitle;
+        $scope.post = PostResource.get({urlTitle: urlTitle});
+    }
+    else {
+        $scope.is404 = true;
+    }
 
 })

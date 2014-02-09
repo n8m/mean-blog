@@ -369,7 +369,18 @@ app.get('/api/posts', function (req, res) {
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Headers", "X-Requested-With");
 
-    Post.find({}).skip(req.query.offset).limit(req.query.limit).exec(function(e, posts){
+    var postsQueryParams = {};
+
+    if(req.query.tags){
+        if(typeof req.query.tags === 'string'){
+            postsQueryParams = {tags: req.query.tags};
+        }
+        else{
+            postsQueryParams = {tags: { $in: req.query.tags}};
+        }
+    }
+
+    Post.find(postsQueryParams).skip(req.query.offset).limit(req.query.limit).exec(function(e, posts){
         res.send(posts);
     });
 
