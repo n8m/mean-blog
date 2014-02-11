@@ -31,13 +31,12 @@
                         <p class="lead">{{config.description}}</p>
                     </div>
                 </div>
-
-                <form action="/search" method="get" class="form-horizontal sidebar-item">
+                <form action="{{config.root + '/#/posts?search=' + search}}" class="form-horizontal sidebar-item">
                     <div class="input-group">
                                         <span class="input-group-addon">
                                             <span class="glyphicon glyphicon-search"></span>
                                         </span>
-                        <input ng-model="search" type="text" name="q" value="{SearchQuery}" class="form-control"
+                        <input ng-model="search" type="text" class="form-control"
                                placeholder="Search">
                     </div>
                 </form>

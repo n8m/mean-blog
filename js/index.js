@@ -64,11 +64,15 @@ blg.controller("PostsCtrl", function($scope, Config, TagResource, PostResource, 
 
     var postsQueryParams = {limit: Config.postsOnPageByDefault};
 
-    if ($routeParams.tags && $routeParams.tags.length) {
+    if ($routeParams.tags) {
         postsQueryParams.tags = $routeParams.tags;
     }
 
-    $scope.$watch($routeParams.tags, function(){
+    if($routeParams.search)  {
+        postsQueryParams.search = $routeParams.search;
+    }
+
+    $scope.$watch($routeParams, function(){
         $scope.posts = [];
         $scope.loadPosts();
     })
@@ -83,9 +87,9 @@ blg.controller("PostsCtrl", function($scope, Config, TagResource, PostResource, 
         });
     };
 
-    (function init() {
-        $scope.loadPosts();
-    })();
+//    (function init() {
+//        $scope.loadPosts();
+//    })();
 })
 
 blg.controller('SinglePostCtrl', function ($scope, $routeParams, PostResource, Config) {

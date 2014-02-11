@@ -1,9 +1,29 @@
 var express = require('express');
-var path = require('path'); // модуль для парсинга пути
+var mongoose = require('mongoose');
+var textSearch = require('mongoose-text-search');
+
+
 var app = express();
 
-var mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/angudb');
+// create our schema
+var postSchema = mongoose.Schema({
+    title: String,
+    urlTitle: String,
+    shortContent: String,
+    content: String,
+    tags: [String],
+    date: String,
+    author: String
+})
+
+// give our schema text search capabilities
+postSchema.plugin(textSearch);
+
+// add a text index to the tags array
+postSchema.index({ title: 'text', content: 'text', author: 'text', tags: "text" });
+
+// test it out
+var Post = mongoose.model('Post', postSchema);
 
 //var db = mongoose.connection;
 //db.on('error', console.error.bind(console, 'connection error:'));
@@ -11,23 +31,16 @@ mongoose.connect('mongodb://localhost/angudb');
 //    console.log('connected');
 //});
 
-var postSchema = mongoose.Schema({
-    title: String,
-    urlTitle: String,
-    shortContent: String,
-    content: String,
-    tags: Array,
-    date: String,
-    author: String
-})
-
 var tagSchema = mongoose.Schema({
     title: String,
     urlTitle: String
 })
 
-var Post = mongoose.model('Post', postSchema);
 var Tag = mongoose.model('Tag', postSchema);
+
+mongoose.connect('mongodb://localhost/angudb', function () {
+
+});
 
 //var posts = [
 //    {
@@ -362,7 +375,6 @@ app.use(express.logger('dev')); // выводим все запросы со с�
 app.use(express.bodyParser()); // стандартный модуль, для парсинга JSON в запросах
 app.use(express.methodOverride()); // поддержка put и delete
 app.use(app.router); // модуль для простого задания обработчиков путей
-//app.use(express.static(path.join(__dirname, "public"))); // запуск статического файлового сервера, который смотрит на папку public/ (в нашем случае отдает index.html)
 
 
 app.get('/api/posts', function (req, res) {
@@ -371,28 +383,53 @@ app.get('/api/posts', function (req, res) {
 
     var postsQueryParams = {};
 
-    if(req.query.tags){
-        if(typeof req.query.tags === 'string'){
+
+    if (req.query.tags) {
+        if (typeof req.query.tags === 'string') {
             postsQueryParams = {tags: req.query.tags};
         }
-        else{
+        else {
             postsQueryParams = {tags: { $in: req.query.tags}};
         }
     }
 
-    Post.find(postsQueryParams).skip(req.query.offset).limit(req.query.limit).exec(function(e, posts){
+    if (req.query.search) {
+
+        var result = [];
+
+        postSchema.index({ title: 'text', content: 'text', author: 'text', tags: "text" });
+
+
+        Post.textSearch(req.query.search,{limit: req.query.limit}, function (err, output) {
+            if (err) console.log(err);
+
+            for(var i = req.query.offset,len = output.results.length;i<len && i<req.query.offset + req.query.limit;i++) {
+                result.push(output.results[i].obj);
+            }
+               console.log(output.results.length);
+
+            res.send(result);
+
+
+
+        });
+
+
+    }
+
+    Post.find(postsQueryParams).skip(req.query.offset).limit(req.query.limit).exec(function (e, posts) {
         res.send(posts);
     });
 
 });
 
-app.get('/api/posts/:urlTitle*', function(req, res){
+app.get('/api/posts/:urlTitle*', function (req, res) {
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Headers", "X-Requested-With");
 
     var urlTitle = req.param('urlTitle');
 
-    Post.findOne({urlTitle: urlTitle}).exec(function(e, post){
+    Post.findOne({urlTitle: urlTitle}).exec(function (e, post) {
         res.send(post);
     });
 })
@@ -400,9 +437,16 @@ app.get('/api/posts/:urlTitle*', function(req, res){
 app.get('/api/tags', function (req, res) {
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Headers", "X-Requested-With");
-    Tag.find({}).exec(function(e, tags){
-        res.send(tags);
-    });
+
+    var tagsQuery = [];
+
+//    Tag.find({},{tags:1, _id:0}).exec(function(e, tags){
+////        for(var i = 0,len = tags.length;i<len;i++){
+////            tags
+////        }
+//        console.log(tags);
+//        res.send(tags);
+//    });
 })
 
 app.listen(1337, function () {

@@ -100,11 +100,11 @@ footer {
 /*Ng-Animate Classes*/
 
 .post {
-    -webkit-transition: 200ms linear all;
-    -moz-transition: 200ms linear all;
-    -ms-transition: 200ms linear all;
-    -o-transition: 200ms linear all;
-    transition: 200ms linear all;
+    -webkit-transition: 200ms ease-in all;
+    -moz-transition: 200ms ease-in all;
+    -ms-transition: 200ms ease-in all;
+    -o-transition: 200ms ease-in all;
+    transition: 200ms ease-in all;
 
 }
 
