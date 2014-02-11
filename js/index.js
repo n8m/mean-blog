@@ -19,6 +19,20 @@ blg.config(function ($routeProvider, $locationProvider) {
     });
 });
 
+blg.directive('whenScrolled', function ($window, $document) {
+    return function (scope, elm, attr) {
+        angular.element($window).bind('scroll', function () {
+            var totalHeight = $document[0].body.clientHeight;
+            var visibleHeight = $window.innerHeight;
+            var scroll = angular.element($window)[0].scrollY;
+            if (totalHeight - visibleHeight - scroll === 0) {
+                scope.$apply(attr.whenScrolled);
+            }
+        });
+    };
+});
+
+
 blg.service("PostResource", function ($resource, Config) {
     return $resource(
         Config.apiRoot + "/posts/:urlTitle", {}, {
@@ -58,7 +72,7 @@ blg.controller('ConfigCtrl', function ($scope, Lang, Config) {
     $scope.lang = Lang;
 })
 
-blg.controller("PostsCtrl", function($scope, Config, TagResource, PostResource, $routeParams){
+blg.controller("PostsCtrl", function ($scope, Config, TagResource, PostResource, $routeParams) {
     $scope.posts = [];
     $scope.tags = TagResource.query();
 
@@ -68,11 +82,11 @@ blg.controller("PostsCtrl", function($scope, Config, TagResource, PostResource, 
         postsQueryParams.tags = $routeParams.tags;
     }
 
-    if($routeParams.search)  {
+    if ($routeParams.search) {
         postsQueryParams.search = $routeParams.search;
     }
 
-    $scope.$watch($routeParams, function(){
+    $scope.$watch($routeParams, function () {
         $scope.posts = [];
         $scope.loadPosts();
     })

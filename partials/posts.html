@@ -1,4 +1,4 @@
-        <div class="col-md-8">
+        <div class="col-md-8" when-scrolled="loadPosts()">
             <div ng-repeat="post in posts | filter:search track by $index" class="post panel panel-default">
                 <div class="panel-heading">
                     <h3 class="panel-title"><a ng-href="{{config.root}}/#/post/{{post.urlTitle}}">{{post.title}}</a>
@@ -31,14 +31,11 @@
                     </a>
                 </div>
             </div>
-            {{smth}}
-            {{posts.length}}
-            <h1 ng-click="loadPosts()">LoadMore</h1>
 
-            <ul class="pager">
-                <li class="previous"><a href="{PreviousPage}">&larr; {{lang.paginationBefore}}</a></li>
+            <!--<ul class="pager">-->
+                <!--<li class="previous"><a href="{PreviousPage}">&larr; {{lang.paginationBefore}}</a></li>-->
 
-                <li class="next"><a href="{NextPage}">{{lang.paginationAfter}} &rarr;</a></li>
-            </ul>
+                <!--<li class="next"><a href="{NextPage}">{{lang.paginationAfter}} &rarr;</a></li>-->
+            <!--</ul>-->
 
         </div>
