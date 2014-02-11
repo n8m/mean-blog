@@ -22,7 +22,7 @@
 
         <ng-view></ng-view>
 
-        <div class="col-md-4">
+        <div class="col-md-4" ng-controller="SideCtrl">
             <div class="well well-lg">
                 <div class="media">
                     <a href="{{config.root}}">
@@ -43,8 +43,11 @@
                     </div>
                 </form>
 
+                <h2>Тэги</h2>
                 <ul>
-                    <li ng-repeat="tag in tags">{{tag.title}}</li>
+                    <li ng-repeat="tag in tags">
+                        <a href="{{config.root}}/#/posts?tags={{tag.title}}">{{tag.title}}</a>
+                    </li>
                 </ul>
 
             </div>

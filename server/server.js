@@ -40,6 +40,7 @@ var Tag = mongoose.model('Tag', postSchema);
 
 mongoose.connect('mongodb://localhost/angudb', function () {
 
+
 });
 
 //var posts = [
@@ -400,16 +401,15 @@ app.get('/api/posts', function (req, res) {
         postSchema.index({ title: 'text', content: 'text', author: 'text', tags: "text" });
 
 
-        Post.textSearch(req.query.search,{limit: req.query.limit}, function (err, output) {
+        Post.textSearch(req.query.search, {limit: req.query.limit}, function (err, output) {
             if (err) console.log(err);
 
-            for(var i = req.query.offset,len = output.results.length;i<len && i<req.query.offset + req.query.limit;i++) {
+            for (var i = req.query.offset, len = output.results.length; i < len && i < req.query.offset + req.query.limit; i++) {
                 result.push(output.results[i].obj);
             }
-               console.log(output.results.length);
+            console.log(output.results.length);
 
             res.send(result);
-
 
 
         });
@@ -429,7 +429,7 @@ app.get('/api/posts/:urlTitle*', function (req, res) {
 
     var urlTitle = req.param('urlTitle');
 
-    Post.findOne({urlTitle: urlTitle}).exec(function (e, post) {
+    Post.findOne({urlTitle: urlTitle}).exec(function (err, post) {
         res.send(post);
     });
 })
@@ -438,15 +438,31 @@ app.get('/api/tags', function (req, res) {
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Headers", "X-Requested-With");
 
-    var tagsQuery = [];
+    //where to put this function?
+    function removeDuplicates(arr) {
+        arr.sort();
+        var i = arr.length - 1;
+        while (i > 0) {
+            if (arr[i] === arr[i - 1]) arr.splice(i, 1);
+            i--;
+        }
+    }
 
-//    Tag.find({},{tags:1, _id:0}).exec(function(e, tags){
-////        for(var i = 0,len = tags.length;i<len;i++){
-////            tags
-////        }
-//        console.log(tags);
-//        res.send(tags);
-//    });
+    Post.find({}, {tags: 1, _id: 0}).exec(function (err, tags) {
+        var allTags = [];
+        for(var i = 0,len = tags.length;i<len;i++){
+            for(var j = 0, length = tags[i].tags.length;j<length;j++){
+                allTags.push(tags[i].tags[j]);
+            }
+        }
+        removeDuplicates(allTags);
+
+        for(var i = 0,len = allTags.length;i<len;i++){
+            allTags[i] = {title: allTags[i]};
+        }
+
+        res.send(allTags);
+    })
 })
 
 app.listen(1337, function () {

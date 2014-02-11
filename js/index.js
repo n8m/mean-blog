@@ -72,9 +72,12 @@ blg.controller('ConfigCtrl', function ($scope, Lang, Config) {
     $scope.lang = Lang;
 })
 
-blg.controller("PostsCtrl", function ($scope, Config, TagResource, PostResource, $routeParams) {
-    $scope.posts = [];
+blg.controller("SideCtrl", function($scope, TagResource){
     $scope.tags = TagResource.query();
+})
+
+blg.controller("PostsCtrl", function ($scope, Config, PostResource, $routeParams) {
+    $scope.posts = [];
 
     var postsQueryParams = {limit: Config.postsOnPageByDefault};
 
