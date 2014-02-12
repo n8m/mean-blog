@@ -24,16 +24,15 @@
                         </div>
                         <div class="footer for_permalink">
                             <div class="date">
-                                {{post.date}}
+                                {{post.date | date}}
                             </div>
                         </div>
                 </div>
             </div>
 
-            <!--<ul class="pager">-->
-                <!--<li class="previous"><a href="{PreviousPage}">&larr; {{lang.paginationBefore}}</a></li>-->
-
-                <!--<li class="next"><a href="{NextPage}">{{lang.paginationAfter}} &rarr;</a></li>-->
-            <!--</ul>-->
+            <div ng-show="postsLoading" class="text-center">
+                <img src="{{config.root}}/img/spinner.gif">
+            </div>
 
         </div>
+

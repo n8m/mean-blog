@@ -1,5 +1,12 @@
 var blg = angular.module('blog', ['ngRoute', 'ngResource', 'ngAnimate']);
 
+blg.filter('date', function(){
+    return function(input){
+        return input.split(' ')[0].split('T').join(' ');
+
+    }
+})
+
 blg.config(function ($routeProvider, $locationProvider) {
 
     $locationProvider.html5Mode(false);
@@ -7,6 +14,11 @@ blg.config(function ($routeProvider, $locationProvider) {
     $routeProvider.when('/posts', {
         templateUrl: 'partials/posts.html',
         controller: 'PostsCtrl'
+    });
+
+    $routeProvider.when('/posts/new', {
+        templateUrl: 'partials/add_post.html',
+        controller: 'AddPostCtrl'
     });
 
     $routeProvider.when('/post/:urlTitle', {
@@ -32,7 +44,6 @@ blg.directive('whenScrolled', function ($window, $document) {
     };
 });
 
-
 blg.service("PostResource", function ($resource, Config) {
     return $resource(
         Config.apiRoot + "/posts/:urlTitle", {}, {
@@ -41,6 +52,9 @@ blg.service("PostResource", function ($resource, Config) {
                 params: {
                     urlTitle: '@urlTitle'
                 }
+            },
+            save: {
+                method: 'POST'
             }
         }
     );
@@ -65,15 +79,24 @@ blg.constant('Lang', {
     paginationBefore: "Раньше",
     paginationAfter: "Позже",
     readMore: "Читать далее",
+    title: "Заголовок",
+    urlTitle: "URL",
+    tags: "Тэги",
+    author: "Автор",
+    content: "Текст поста",
+    shortContent: "Краткое описание",
+    add: "Добавить",
+    savePost: "Сохранить пост"
 });
 
-blg.controller('ConfigCtrl', function ($scope, Lang, Config) {
+blg.controller('ConfigCtrl', function ($scope, Lang, Config, TagResource) {
     $scope.config = Config;
     $scope.lang = Lang;
+    $scope.tags = TagResource.query();
+
 })
 
-blg.controller("SideCtrl", function($scope, TagResource){
-    $scope.tags = TagResource.query();
+blg.controller("SideCtrl", function ($scope) {
 })
 
 blg.controller("PostsCtrl", function ($scope, Config, PostResource, $routeParams) {
@@ -117,6 +140,40 @@ blg.controller('SinglePostCtrl', function ($scope, $routeParams, PostResource, C
     }
     else {
         $scope.is404 = true;
+    }
+
+})
+
+blg.controller('AddPostCtrl', function ($scope, PostResource) {
+    $scope.newPost = {
+        tags: [
+            {
+                title: 'Первый тэг'
+            },
+            {
+                title: 'Второй тэг'
+            }
+        ]
+    }
+
+    $scope.addTag = function (tag) {
+        //Tag added from list of existed tags
+        if (tag) {
+            $scope.newPost.tags.push(tag);
+        }
+        //Tag added from input
+        else {
+            $scope.newPost.tags.push($scope.tag);
+            $scope.tag = '';
+        }
+    }
+
+    $scope.deleteTag = function (index) {
+        $scope.newPost.tags.splice(index, 1);
+    }
+
+    $scope.savePost = function () {
+        PostResource.save($scope.newPost);
     }
 
 })

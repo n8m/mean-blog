@@ -102,6 +102,10 @@ footer {
 .label{
     margin: 1px;
 }
+
+.pointer{
+    cursor: pointer;
+}
 /*Ng-Animate Classes*/
 
 .post {
