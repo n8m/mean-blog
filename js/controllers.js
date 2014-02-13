@@ -1,9 +1,10 @@
-blg.controller('ConfigCtrl', function ($scope, Lang, Config, TagResource) {
+blg.controller('ConfigCtrl', function ($scope, $http, Lang, Config, Tags) {
     $scope.config = Config;
     $scope.lang = Lang;
-    $scope.tags = TagResource.query(function (data) {
-        console.log(JSON.parse(data));
-    });
+
+    Tags.get(function (data) {
+        $scope.tags = data;
+    })
 
 })
 

@@ -122,11 +122,8 @@ app.get('/api/tags', function (req, res) {
                 allTags.push(tags[i].tags[j]);
             }
         }
-        res.send(JSON.stringify(["item1", "item2", "item3"]));
-
-//        removeDuplicates(allTags);
-
-//        res.send(allTags);
+        removeDuplicates(allTags);
+        res.send(allTags);
     })
 })
 

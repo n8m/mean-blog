@@ -1,13 +1,16 @@
-var blg = angular.module('blog', ['ngRoute', 'ngResource', 'ngAnimate']);
+var blg = angular.module('blog', ['ngRoute', 'ngResource', 'ngAnimate', 'ngDisqus']);
 
-blg.filter('date', function(){
-    return function(input){
+blg.filter('date', function () {
+    return function (input) {
         return input.split(' ')[0].split('T').join(' ');
 
     }
 })
 
 blg.config(function ($routeProvider, $locationProvider) {
+
+    //For disqus module
+    $locationProvider.hashPrefix('!');
 
     $locationProvider.html5Mode(false);
 
@@ -60,11 +63,18 @@ blg.service("PostResource", function ($resource, Config) {
     );
 })
 
-blg.factory("TagResource", function ($resource, Config) {
-    return $resource(
-        Config.apiRoot + "/tags"
-    );
-});
+blg.factory('Tags', ['$http', 'Config', function ($http, Config) {
+    return{
+        get: function (callback) {
+            $http({
+                method: 'GET',
+                url: Config.apiRoot + "/tags/",
+            })
+                .success(callback);
+        }
+    }
+}])
+
 
 blg.constant('Config', {
     title: "NAME - как охуенно символично",
