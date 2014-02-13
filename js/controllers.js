@@ -2,7 +2,9 @@ blg.controller('ConfigCtrl', function ($scope, Lang, Config, TagResource) {
     $scope.config = Config;
     $scope.lang = Lang;
     $scope.tags = TagResource.query(function (data) {
-        console.log(data);
+        var json = JSON.stringify(data);
+        console.log(JSON.parse(json));
+        ;
     });
 
 })
