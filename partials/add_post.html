@@ -50,7 +50,7 @@
                     <label class="col-sm-2 control-label">{{lang.tags}}</label>
 
                     <div class="col-sm-10">
-                        <input type="text" ng-model="tag.title" placeholder="{{lang.tags}}">
+                        <input type="text" ng-model="tag" placeholder="{{lang.tags}}">
                         <button type="button" ng-click="addTag()" class="btn btn-sm">{{lang.add}}</button>
                     </div>
                 </div>
@@ -59,19 +59,19 @@
                     <ul>
                         <li ng-repeat="tag in newPost.tags track by $index" class="label label-default">
                             <small class="pointer" ng-click="deleteTag($index)">X</small>
-                            {{tag.title}}
+                            {{tag}}
                         </li>
                     </ul>
 
                     <ul class="list-inline well">
                         <li ng-click="addTag(tag);" ng-repeat="tag in tags">
-                            <small>{{tag.title}}</small>
+                            <small>{{tag}}</small>
                         </li>
                     </ul>
+
                 </div>
 
                 <input type="submit" class="btn" value="{{lang.savePost}}">
-
 
             </form>
 

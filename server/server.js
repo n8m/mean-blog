@@ -4,11 +4,6 @@ var textSearch = require('mongoose-text-search');
 
 var app = express();
 
-var tagSchema = mongoose.Schema({
-    title: String,
-    urlTitle: String
-})
-
 var postSchema = mongoose.Schema({
     title: String,
     urlTitle: String,
@@ -121,18 +116,17 @@ app.get('/api/tags', function (req, res) {
 
     Post.find({}, {tags: 1, _id: 0}).exec(function (err, tags) {
         var allTags = [];
+
         for (var i = 0, len = tags.length; i < len; i++) {
-            for (var j = 0, length = tags[i].tags.length; j < length; j++) {
+            for (var j = 0, leng = tags[i].tags.length; j < leng; j++) {
                 allTags.push(tags[i].tags[j]);
             }
         }
-        removeDuplicates(allTags);
+        res.send(["item1", "item2", "item3"]);
 
-        for (var i = 0, len = allTags.length; i < len; i++) {
-            allTags[i] = {title: allTags[i]};
-        }
+//        removeDuplicates(allTags);
 
-        res.send(allTags);
+//        res.send(allTags);
     })
 })
 

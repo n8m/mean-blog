@@ -1,7 +1,9 @@
 blg.controller('ConfigCtrl', function ($scope, Lang, Config, TagResource) {
     $scope.config = Config;
     $scope.lang = Lang;
-    $scope.tags = TagResource.query();
+    $scope.tags = TagResource.query(function (data) {
+        console.log(data);
+    });
 
 })
 
@@ -58,14 +60,7 @@ blg.controller('SinglePostCtrl', function ($scope, $routeParams, PostResource, C
 
 blg.controller('AddPostCtrl', function ($scope, PostResource) {
     $scope.newPost = {
-        tags: [
-            {
-                title: 'Первый тэг'
-            },
-            {
-                title: 'Второй тэг'
-            }
-        ]
+        tags: ['Первый тэг', 'Второй тэг']
     }
 
     $scope.addTag = function (tag) {
