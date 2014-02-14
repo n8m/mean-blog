@@ -3,7 +3,6 @@ var blg = angular.module('blog', ['ngRoute', 'ngResource', 'ngAnimate', 'ngDisqu
 blg.filter('date', function () {
     return function (input) {
         return input.split(' ')[0].split('T').join(' ');
-
     }
 })
 
@@ -46,6 +45,14 @@ blg.directive('whenScrolled', function ($window, $document) {
         });
     };
 });
+
+blg.directive('spinner', function(Config){
+    return {
+        restrict: 'E',
+        template: "<img src=" + Config.root + "/img/spinner.gif>",
+        replace: true
+    }
+})
 
 blg.service("PostResource", function ($resource, Config) {
     return $resource(

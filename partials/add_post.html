@@ -10,28 +10,28 @@
                     <label class="col-sm-2 control-label">{{lang.title}}</label>
 
                     <div class="col-sm-10">
-                        <input ng-model="newPost.title" type="text" class="form-control" placeholder="{{lang.title}}">
+                        <input required ng-model="newPost.title" type="text" class="form-control" placeholder="{{lang.title}}">
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-sm-2 control-label">{{lang.urlTitle}}</label>
 
                     <div class="col-sm-10">
-                        <input ng-model="newPost.urlTitle" type="text" class="form-control" placeholder="{{lang.urlTitle}}">
+                        <input required ng-model="newPost.urlTitle" type="text" class="form-control" placeholder="{{lang.urlTitle}}">
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-sm-2 control-label">{{lang.author}}</label>
 
                     <div class="col-sm-10">
-                        <input ng-model="newPost.author" type="text" class="form-control" placeholder="{{lang.author}}">
+                        <input required ng-model="newPost.author" type="text" class="form-control" placeholder="{{lang.author}}">
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-sm-2 control-label">{{lang.content}}</label>
 
                     <div class="col-sm-10">
-                        <textarea ng-model="newPost.content" class="form-control" rows="15">
+                        <textarea required ng-model="newPost.content" class="form-control" rows="15">
 
                         </textarea>
                     </div>
@@ -40,7 +40,7 @@
                     <label class="col-sm-2 control-label">{{lang.shortContent}}</label>
 
                     <div class="col-sm-10">
-                        <textarea ng-model="newPost.shortContent" class="form-control">
+                        <textarea required ng-model="newPost.shortContent" class="form-control">
 
                         </textarea>
                     </div>
@@ -73,6 +73,9 @@
 
                 <input type="submit" class="btn" value="{{lang.savePost}}">
 
+                <spinner ng-show="postAdding"></spinner>
+
+                <span ng-show="postAdded" class="glyphicon glyphicon-ok"></span>
             </form>
 
 

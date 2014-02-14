@@ -1,4 +1,4 @@
-blg.controller('ConfigCtrl', function ($scope, $http, Lang, Config, Tags) {
+blg.controller('ConfigCtrl', function ($scope, Lang, Config, Tags) {
     $scope.config = Config;
     $scope.lang = Lang;
 
@@ -59,10 +59,8 @@ blg.controller('SinglePostCtrl', function ($scope, $routeParams, PostResource, C
 
 })
 
-blg.controller('AddPostCtrl', function ($scope, PostResource) {
-    $scope.newPost = {
-        tags: ['Первый тэг', 'Второй тэг']
-    }
+blg.controller('AddPostCtrl', function ($scope, PostResource, $timeout) {
+    $scope.newPost = {tags: []};
 
     $scope.addTag = function (tag) {
         //Tag added from list of existed tags
@@ -81,7 +79,18 @@ blg.controller('AddPostCtrl', function ($scope, PostResource) {
     }
 
     $scope.savePost = function () {
-        PostResource.save($scope.newPost);
+        $scope.postAdding = true;
+        PostResource.save($scope.newPost, function () {
+            $scope.postAdding = false;
+            $scope.postAdded = true;
+
+            $timeout(function(){
+                $scope.postAdded = false;
+            }, 3000);
+
+            //clear form
+            $scope.newPost = {tags: []}
+        });
     }
 
 })
