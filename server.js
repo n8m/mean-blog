@@ -24,7 +24,12 @@ var Post = mongoose.model('Post', postSchema);
 var uristring =process.env.MONGOLAB_URI || 'mongodb://localhost/angudb';
 
 
-mongoose.connect(uristring, function () {
+mongoose.connect(uristring, function (err) {
+    if (err) {
+        console.log ('ERROR connecting to: ' + uristring + '. ' + err);
+    } else {
+        console.log ('Succeeded connected to: ' + uristring);
+    }
 });
 
 app.use(express.favicon()); // отдаем стандартную фавиконку, можем здесь же свою задать
