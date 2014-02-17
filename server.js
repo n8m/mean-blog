@@ -2,37 +2,33 @@ var express = require('express');
 var mongoose = require('mongoose');
 var textSearch = require('mongoose-text-search');
 
-var static = express();
-static.use(express.static(__dirname + '/app'));
-static.listen(8080, "127.0.0.1");
-
-
 var app = express();
 
+//
+//var postSchema = mongoose.Schema({
+//    title: String,
+//    urlTitle: String,
+//    shortContent: String,
+//    content: String,
+//    tags: [String],
+//    date: String,
+//    author: String
+//})
+//
+//postSchema.plugin(textSearch);
+//postSchema.index({ title: 'text', content: 'text', author: 'text', tags: "text" });
+//
+//var Post = mongoose.model('Post', postSchema);
 
-var postSchema = mongoose.Schema({
-    title: String,
-    urlTitle: String,
-    shortContent: String,
-    content: String,
-    tags: [String],
-    date: String,
-    author: String
-})
-
-postSchema.plugin(textSearch);
-postSchema.index({ title: 'text', content: 'text', author: 'text', tags: "text" });
-
-var Post = mongoose.model('Post', postSchema);
-
-mongoose.connect('mongodb://localhost/angudb', function () {
-});
+//mongoose.connect('mongodb://localhost/angudb', function () {
+//});
 
 app.use(express.favicon()); // отдаем стандартную фавиконку, можем здесь же свою задать
 app.use(express.logger('dev')); // выводим все запросы со статусами в консоль
 app.use(express.bodyParser()); // стандартный модуль, для парсинга JSON в запросах
 app.use(express.methodOverride()); // поддержка put и delete
 app.use(app.router); // модуль для простого задания обработчиков путей
+app.use(express.static(__dirname + '/app'));
 
 
 app.all('*', function (req, res, next) {
