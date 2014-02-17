@@ -86,7 +86,7 @@ blg.factory('Tags', ['$http', 'Config', function ($http, Config) {
 blg.constant('Config', {
     title: "NAME - как охуенно символично",
     root: "http://localhost/blog",
-    apiRoot: "http://localhost:1337/api",
+    apiRoot: "/api",
     description: "Блог об NodeJS, AngularJS, ExpressJS, Mongoose, MongoDB",
     avatarLink: "img/avatar.png",
     postsOnPageByDefault: 5,
