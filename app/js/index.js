@@ -8,9 +8,6 @@ blg.filter('date', function () {
 
 blg.config(function ($routeProvider, $locationProvider) {
 
-    //For disqus module
-    $locationProvider.hashPrefix('!');
-
     $locationProvider.html5Mode(false);
 
     $routeProvider.when('/posts', {
