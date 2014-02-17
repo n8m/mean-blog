@@ -130,7 +130,8 @@ app.get('/api/tags', function (req, res) {
     })
 })
 
-app.listen(1337, function () {
+app.listen(process.env.PORT || 1337, function () {
     console.log('Express server listening on port 1337');
 });
+
 
