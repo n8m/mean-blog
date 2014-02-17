@@ -2,7 +2,13 @@ var express = require('express');
 var mongoose = require('mongoose');
 var textSearch = require('mongoose-text-search');
 
+var static = express();
+static.use(express.static(__dirname + '/app'));
+static.listen(8080, "127.0.0.1");
+
+
 var app = express();
+
 
 var postSchema = mongoose.Schema({
     title: String,
@@ -130,3 +136,4 @@ app.get('/api/tags', function (req, res) {
 app.listen(1337, function () {
     console.log('Express server listening on port 1337');
 });
+
