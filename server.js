@@ -21,7 +21,10 @@ postSchema.index({ title: 'text', content: 'text', author: 'text', tags: "text" 
 
 var Post = mongoose.model('Post', postSchema);
 
-mongoose.connect('mongodb://localhost/angudb', function () {
+var uristring =process.env.MONGOLAB_URI || 'mongodb://localhost/angudb';
+
+
+mongoose.connect(uristring, function () {
 });
 
 app.use(express.favicon()); // отдаем стандартную фавиконку, можем здесь же свою задать
