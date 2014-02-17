@@ -56,12 +56,15 @@
                 </div>
 
                 <div>
-                    <ul>
-                        <li ng-repeat="tag in newPost.tags track by $index" class="label label-default">
-                            <small class="pointer" ng-click="deleteTag($index)">X</small>
-                            {{tag}}
-                        </li>
-                    </ul>
+                    <div>
+                        <ul>
+                            <li ng-repeat="tag in newPost.tags track by $index" class="label label-default">
+                                <small class="pointer" ng-click="deleteTag($index)">X</small>
+                                {{tag}}
+                            </li>
+                        </ul>
+                    </div>
+
 
                     <ul class="list-inline well">
                         <li ng-click="addTag(tag);" ng-repeat="tag in tags">

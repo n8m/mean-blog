@@ -101,6 +101,7 @@ footer {
 
 .label{
     margin: 1px;
+    display: inline-block;
 }
 
 .pointer{

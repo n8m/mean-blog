@@ -65,7 +65,9 @@ blg.controller('AddPostCtrl', function ($scope, PostResource, $timeout) {
     $scope.addTag = function (tag) {
         //Tag added from list of existed tags
         if (tag) {
+
             $scope.newPost.tags.push(tag);
+
         }
         //Tag added from input
         else {
@@ -84,7 +86,7 @@ blg.controller('AddPostCtrl', function ($scope, PostResource, $timeout) {
             $scope.postAdding = false;
             $scope.postAdded = true;
 
-            $timeout(function(){
+            $timeout(function () {
                 $scope.postAdded = false;
             }, 3000);
 
