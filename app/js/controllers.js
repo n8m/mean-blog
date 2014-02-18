@@ -9,6 +9,9 @@ blg.controller('ConfigCtrl', function ($scope, Lang, Config, Tags) {
 })
 
 blg.controller("SideCtrl", function ($scope) {
+    $scope.htmltext = "<b>Something bold</b>";
+
+
 })
 
 blg.controller("PostsCtrl", function ($scope, Config, PostResource, $routeParams) {

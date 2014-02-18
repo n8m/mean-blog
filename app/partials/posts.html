@@ -10,11 +10,10 @@
                 </div>
                 <div class="panel-body">
                     <div ng-show="post.shortContent">
-                        {{post.shortContent}}
+                        <p ng-bind-html="post.shortContent"></p>
                         <p><a ng-href="{{config.root}}/#/post/{{post.urlTitle}}">{{lang.readMore}}</a></p>
                     </div>
-                    <div ng-hide="post.shortContent">
-                        {{post.content}}
+                    <div ng-hide="post.shortContent" ng-bind-html="post.content">
                     </div>
                     <div class="tumblr-tags">
                         <span class="glyphicon glyphicon-tags"></span>
@@ -24,7 +23,7 @@
 
                 <div class="panel-footer">
                         <div class="notes">
-                            <span class="badge">{{post.author}}</span>
+                            <span>{{post.author}}</span>
                         </div>
                 </div>
             </div>
