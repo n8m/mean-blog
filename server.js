@@ -64,7 +64,7 @@ app.get('/api/posts', function (req, res) {
         var result = [];
 //        postSchema.index({ title: 'text', content: 'text', author: 'text', tags: "text" });
 
-        Post.textSearch(req.query.search, {limit: req.query.limit}, function (err, output) {
+        Post.textSearch(req.query.search, {limit: req.query.limit, language: "russian"}, function (err, output) {
             if (err) {
                 res.send(500, {error: err});
             }
