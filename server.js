@@ -21,8 +21,7 @@ postSchema.index({ title: 'text', content: 'text', author: 'text', tags: "text" 
 
 var Post = mongoose.model('Post', postSchema);
 
-var uristring = 'mongodb://meangu:K0llider@ds027829.mongolab.com:27829/angudb' || 'mongodb://localhost/angudb';
-
+var uristring = 'mongodb://name:K0llider@ds063218.mongolab.com:63218/angudb' || 'mongodb://localhost/angudb';
 
 mongoose.connect(uristring, function (err) {
     if (err) {
