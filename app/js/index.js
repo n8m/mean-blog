@@ -86,10 +86,10 @@ blg.factory('Tags', ['$http', 'Config', function ($http, Config) {
 
 
 blg.constant('Config', {
-    title: "NAME - как охуенно символично",
+    title: "MeAngu",
     root: "http://ruangular.herokuapp.com/",
     apiRoot: "/api",
-    description: "Блог об NodeJS, AngularJS, ExpressJS, Mongoose, MongoDB",
+    description: "Full Stack Javascript на русском",
     avatarLink: "img/avatar.png",
     postsOnPageByDefault: 5,
 });
