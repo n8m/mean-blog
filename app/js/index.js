@@ -2,7 +2,12 @@ var blg = angular.module('blog', ['ngRoute', 'ngResource', 'ngAnimate', 'ngDisqu
 
 blg.filter('date', function () {
     return function (input) {
-        return input.split(' ')[0].split('T').join(' ');
+        var dateArr = input.split(" ");
+        var day = dateArr[2];
+        var year = dateArr[3];
+        var index = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'].indexOf(dateArr[1]);
+        var month = ['января', 'февраля', 'марта', 'апреля', 'мая', 'июня', 'июля', 'августа', 'сентября', 'октября', 'ноября', 'декабря'][index];
+        return day + ' ' + month + ' ' + year;
     }
 })
 
@@ -43,7 +48,7 @@ blg.directive('whenScrolled', function ($window, $document) {
     };
 });
 
-blg.directive('spinner', function(Config){
+blg.directive('spinner', function (Config) {
     return {
         restrict: 'E',
         template: "<img src=" + Config.root + "/img/spinner.gif>",
