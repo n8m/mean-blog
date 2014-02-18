@@ -20,7 +20,7 @@ blg.config(function ($routeProvider, $locationProvider) {
         controller: 'PostsCtrl'
     });
 
-    $routeProvider.when('/posts/new', {
+    $routeProvider.when('/admin/newpost', {
         templateUrl: 'partials/add_post.html',
         controller: 'AddPostCtrl'
     });
@@ -28,6 +28,11 @@ blg.config(function ($routeProvider, $locationProvider) {
     $routeProvider.when('/post/:urlTitle', {
         templateUrl: 'partials/single_post.html',
         controller: 'SinglePostCtrl'
+    });
+
+    $routeProvider.when('/admin', {
+        templateUrl: 'partials/admin.html',
+        controller: 'AdminCtrl'
     });
 
     $routeProvider.when('/', {
@@ -87,7 +92,7 @@ blg.factory('Tags', ['$http', 'Config', function ($http, Config) {
 
 blg.constant('Config', {
     title: "MeAngu",
-    root: "http://ruangular.herokuapp.com/",
+    root: "http://ruangular.herokuapp.com",
     apiRoot: "/api",
     description: "Full Stack Javascript на русском",
     avatarLink: "img/avatar.png",
@@ -107,5 +112,6 @@ blg.constant('Lang', {
     add: "Добавить",
     savePost: "Сохранить пост",
     Translation: "Перевод",
-    translation: "перевод"
+    translation: "перевод",
+    addNewPost: "Добавить пост",
 });
