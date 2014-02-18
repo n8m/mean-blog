@@ -1,0 +1,110 @@
+<div class="col-md-8">
+
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <!--<h3 class="panel-title">{{post.title}}</h3>-->
+        </div>
+        <div class="panel-body">
+            <form role="form" class="form-horizontal" ng-submit="savePost()">
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">{{lang.title}}</label>
+
+                    <div class="col-sm-10">
+                        <input required ng-model="post.title" type="text" class="form-control" placeholder="{{lang.title}}">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">{{lang.urlTitle}}</label>
+
+                    <div class="col-sm-10">
+                        <input required ng-model="post.urlTitle" type="text" class="form-control" placeholder="{{lang.urlTitle}}">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">{{lang.author}}</label>
+
+                    <div class="col-sm-10">
+                        <input required ng-model="post.author" type="text" class="form-control" placeholder="{{lang.author}}">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">{{lang.Translation}}</label>
+
+                    <div class="col-sm-10">
+                        <div class="checkbox">
+                            <input type="checkbox" ng-model="post.translation">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">{{lang.content}}</label>
+
+                    <div class="col-sm-10">
+                        <textarea required ng-model="post.content" class="form-control" rows="15">
+
+                        </textarea>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">{{lang.shortContent}}</label>
+
+                    <div class="col-sm-10">
+                        <textarea required ng-model="post.shortContent" class="form-control">
+
+                        </textarea>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">{{lang.tags}}</label>
+
+                    <div class="col-sm-10">
+                        <input type="text" ng-model="tag" placeholder="{{lang.tags}}">
+                        <button type="button" ng-click="addTag()" class="btn btn-sm">{{lang.add}}</button>
+                    </div>
+                </div>
+
+                <div>
+                    <div>
+                        <ul>
+                            <li ng-repeat="tag in post.tags track by $index" class="label label-default">
+                                <small class="pointer" ng-click="deleteTag($index)">X</small>
+                                {{tag}}
+                            </li>
+                        </ul>
+                    </div>
+
+
+                    <ul class="list-inline well">
+                        <li ng-click="addTag(tag);" ng-repeat="tag in tags">
+                            <small class="pointer">{{tag}}</small>
+                        </li>
+                    </ul>
+
+                </div>
+
+                <input type="submit" class="btn" value="{{lang.savePost}}">
+
+                <spinner ng-show="postSaving"></spinner>
+
+            </form>
+
+
+        </div>
+
+        <div class="panel-footer">
+            <!--<div class="notes pull-right">-->
+            <!--<span class="badge" title="{NoteCountWithLabel}">{NoteCount}</span>-->
+            <!--</div>-->
+            <!--<div class="footer for_permalink">-->
+            <!--<div class="date">-->
+            <!--{{post.date}}-->
+            <!--</div>-->
+            <!--</div>-->
+        </div>
+    </div>
+</div>
