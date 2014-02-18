@@ -11,6 +11,10 @@
 
             <h3>Список постов</h3>
 
+            <div ng-show="postsLoading" class="text-center">
+                <spinner></spinner>
+            </div>
+
             <table class="table table-bordered table-striped table-condensed">
                 <tr ng-class="{'semi-transparent danger': post.deleting}" ng-repeat="post in posts">
                     <td>{{post.title}}</td>
@@ -20,7 +24,9 @@
                         </a>
                     </td>
                     <td class="td-small">
-                        <span ng-click="deletePost(post, $index)" class="glyphicon glyphicon-trash pointer"></span>
+                        <a href=#>
+                            <span ng-click="deletePost(post, $index)" class="glyphicon glyphicon-trash pointer"></span>
+                        </a>
                     </td>
                 </tr>
             </table>

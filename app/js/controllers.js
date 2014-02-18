@@ -12,7 +12,12 @@ blg.controller("SideCtrl", function ($scope) {
 })
 
 blg.controller("AdminCtrl", function ($scope, PostResource, Lang) {
-    $scope.posts = PostResource.query();
+
+    $scope.postsLoading = true;
+
+    $scope.posts = PostResource.query(function(){
+        $scope.postsLoading = false;
+    });
 
     $scope.deletePost = function (post, index) {
 

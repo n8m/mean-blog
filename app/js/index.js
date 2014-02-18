@@ -1,4 +1,4 @@
-var blg = angular.module('blog', ['ngRoute', 'ngResource', 'ngAnimate', 'ngSanitize', 'ngDisqus']);
+var blg = angular.module('blog', ['ngRoute', 'ngResource', 'ngAnimate', 'ngSanitize', 'ngDisqus', 'hljs']);
 
 blg.filter('date', function () {
     return function (input) {
