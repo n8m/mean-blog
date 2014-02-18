@@ -20,11 +20,6 @@ blg.config(function ($routeProvider, $locationProvider) {
         controller: 'PostsCtrl'
     });
 
-    $routeProvider.when('/admin/newpost', {
-        templateUrl: 'partials/add_post.html',
-        controller: 'AddPostCtrl'
-    });
-
     $routeProvider.when('/post/:urlTitle', {
         templateUrl: 'partials/single_post.html',
         controller: 'SinglePostCtrl'
@@ -33,6 +28,16 @@ blg.config(function ($routeProvider, $locationProvider) {
     $routeProvider.when('/admin', {
         templateUrl: 'partials/admin.html',
         controller: 'AdminCtrl'
+    });
+
+    $routeProvider.when('/admin/newpost', {
+        templateUrl: 'partials/add_edit_post.html',
+        controller: 'AddEditPostCtrl'
+    });
+
+    $routeProvider.when('/admin/edit/:urlTitle', {
+        templateUrl: 'partials/add_edit_post.html',
+        controller: 'AddEditPostCtrl'
     });
 
     $routeProvider.when('/', {
@@ -63,7 +68,7 @@ blg.directive('spinner', function (Config) {
 
 blg.service("PostResource", function ($resource, Config) {
     return $resource(
-        Config.apiRoot + "/posts/:urlTitle", {}, {
+        Config.apiRoot + "/posts/:id:urlTitle", {}, {
             get: {
                 method: 'GET',
                 params: {
@@ -72,6 +77,15 @@ blg.service("PostResource", function ($resource, Config) {
             },
             save: {
                 method: 'POST'
+            },
+            delete: {
+                method: 'DELETE',
+                params: {
+                    id: '@id'
+                }
+            },
+            update: {
+                method: "PUT"
             }
         }
     );
@@ -92,8 +106,10 @@ blg.factory('Tags', ['$http', 'Config', function ($http, Config) {
 
 blg.constant('Config', {
     title: "MeAngu",
-    root: "http://ruangular.herokuapp.com",
-    apiRoot: "/api",
+//    root: "http://ruangular.herokuapp.com",
+    root: "http://localhost/blog/app",
+//    apiRoot: "/api",
+    apiRoot: "http://localhost:1337/api",
     description: "Full Stack Javascript на русском",
     avatarLink: "img/avatar.png",
     postsOnPageByDefault: 5,
@@ -114,4 +130,5 @@ blg.constant('Lang', {
     Translation: "Перевод",
     translation: "перевод",
     addNewPost: "Добавить пост",
+    sure: "Уверены?"
 });

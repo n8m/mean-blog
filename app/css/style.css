@@ -134,3 +134,11 @@ footer {
 .pointer{
     cursor: pointer;
 }
+
+.td-small{
+    width: 1%;
+}
+
+.semi-transparent{
+    opacity: 0.2;
+}

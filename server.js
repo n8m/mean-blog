@@ -22,13 +22,15 @@ postSchema.index({ title: 'text', content: 'text', author: 'text', tags: "text" 
 
 var Post = mongoose.model('Post', postSchema);
 
-var uristring = 'mongodb://name:K0llider@ds063218.mongolab.com:63218/angudb' || 'mongodb://localhost/angudb';
+//var uristring = 'mongodb://name:K0llider@ds063218.mongolab.com:63218/angudb';
+var uristring = 'mongodb://localhost/angudb';
+
 
 mongoose.connect(uristring, function (err) {
     if (err) {
-        console.log ('ERROR connecting to: ' + uristring + '. ' + err);
+        console.log('ERROR connecting to: ' + uristring + '. ' + err);
     } else {
-        console.log ('Succeeded connected to: ' + uristring);
+        console.log('Succeeded connected to: ' + uristring);
     }
 });
 
@@ -88,11 +90,16 @@ app.get('/api/posts/:urlTitle*', function (req, res) {
     var urlTitle = req.param('urlTitle');
 
     Post.findOne({urlTitle: urlTitle}).exec(function (err, post) {
-        if (err) {
-            res.send(500, {error: err});
+        if (!post) {
+            res.send(404, {error: 'Not found'});
         }
         else {
-            res.send(post);
+            if (err) {
+                res.send(500, {error: err});
+            }
+            else {
+                res.send(post);
+            }
         }
     });
 })
@@ -106,10 +113,45 @@ app.post('/api/posts', function (req, res) {
             res.send(500, {error: err});
         }
         else {
-            res.send(200);
+            res.send(200, {status: 'OK'});
         }
     })
 
+})
+
+app.put('/api/posts', function (req, res) {
+    var id = req.body._id;
+    delete req.body._id;
+
+    Post.findByIdAndUpdate(id, req.body, function (err, post) {
+        console.log(arguments);
+        if (!post)
+            res.send(404, {error: 'Not Found'});
+        else {
+            if (err) {
+                res.send(500, {error: err});
+            }
+            else {
+                res.send(200, {status: 'OK'});
+            }
+        }
+    })
+})
+
+app.delete('/api/posts/:id*', function (req, res) {
+    Post.findByIdAndRemove(req.param('id'), function (err, post) {
+        if (!post) {
+            res.send(404, {error: 'Not found'});
+        }
+        else {
+            if (!err) {
+                res.send(200, {status: 'OK'});
+            }
+            else {
+                res.send(500, {error: err})
+            }
+        }
+    });
 })
 
 app.get('/api/tags', function (req, res) {

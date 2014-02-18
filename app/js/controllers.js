@@ -11,7 +11,22 @@ blg.controller('ConfigCtrl', function ($scope, Lang, Config, Tags) {
 blg.controller("SideCtrl", function ($scope) {
 })
 
-blg.controller("AdminCtrl", function ($scope) {
+blg.controller("AdminCtrl", function ($scope, PostResource, Lang) {
+    $scope.posts = PostResource.query();
+
+    $scope.deletePost = function (post, index) {
+
+        if (confirm(Lang.sure)) {
+            post.deleting = true;
+
+            PostResource.delete({id: post._id}, function (response) {
+                if (response.status == "OK") {
+                    $scope.posts.splice(index, 1);
+                }
+                ;
+            })
+        }
+    }
 })
 
 blg.controller("PostsCtrl", function ($scope, Config, PostResource, $routeParams) {
@@ -62,40 +77,53 @@ blg.controller('SinglePostCtrl', function ($scope, $routeParams, PostResource, C
 
 })
 
-blg.controller('AddPostCtrl', function ($scope, PostResource, $timeout) {
-    $scope.newPost = {tags: []};
+blg.controller('AddEditPostCtrl', function ($scope, PostResource, $timeout, $routeParams, $location) {
+
+    if ($routeParams.urlTitle) {
+        $scope.post = PostResource.get({urlTitle: $routeParams.urlTitle});
+    }
+    else {
+        $scope.post = {tags: []};
+    }
 
     $scope.addTag = function (tag) {
         //Tag added from list of existed tags
         if (tag) {
 
-            $scope.newPost.tags.push(tag);
+            $scope.post.tags.push(tag);
 
         }
         //Tag added from input
         else {
-            $scope.newPost.tags.push($scope.tag);
+            $scope.post.tags.push($scope.tag);
             $scope.tag = '';
         }
     }
 
     $scope.deleteTag = function (index) {
-        $scope.newPost.tags.splice(index, 1);
+        $scope.post.tags.splice(index, 1);
+    }
+
+    var successSavingHandler = function (response) {
+        if (response.status == "OK") {
+            $scope.postSaving = false;
+            $location.path('admin');
+        }
     }
 
     $scope.savePost = function () {
-        $scope.postAdding = true;
-        PostResource.save($scope.newPost, function () {
-            $scope.postAdding = false;
-            $scope.postAdded = true;
+        $scope.postSaving = true;
 
-            $timeout(function () {
-                $scope.postAdded = false;
-            }, 3000);
+        //if post already exist and we have edited it. We use POST
+        if ($routeParams.urlTitle) {
+            PostResource.update($scope.post, successSavingHandler);
+        }
+        //if we saving new post. We use PUT
+        else {
+            PostResource.save($scope.post, successSavingHandler);
+        }
 
-            //clear form
-            $scope.newPost = {tags: []}
-        });
+
     }
 
 })
