@@ -105,5 +105,7 @@ blg.constant('Lang', {
     content: "Текст поста",
     shortContent: "Краткое описание",
     add: "Добавить",
-    savePost: "Сохранить пост"
+    savePost: "Сохранить пост",
+    Translation: "Перевод",
+    translation: "перевод"
 });

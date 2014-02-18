@@ -23,7 +23,9 @@
 
         <div class="panel-footer">
             <div class="notes">
-                <span>{{post.author}}</span>
+                <span>
+                    {{lang.author}}: {{post.author}}<span ng-show="post.translation">({{lang.translation}})</span>
+                </span>
             </div>
             <div disqus="'meangu'"></div>
 

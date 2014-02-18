@@ -104,9 +104,6 @@ footer {
     display: inline-block;
 }
 
-.pointer{
-    cursor: pointer;
-}
 /*Ng-Animate Classes*/
 
 .post {
@@ -125,14 +122,15 @@ footer {
 
 }
 
-
-
 .post.ng-enter,
 .post.ng-leave-active {
     opacity: 0;
 }
 
-
 .center{
     margin: 0 auto;
+}
+
+.pointer{
+    cursor: pointer;
 }
