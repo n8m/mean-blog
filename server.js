@@ -13,7 +13,8 @@ var postSchema = mongoose.Schema({
     content: String,
     tags: [String],
     date: String,
-    author: String
+    author: String,
+    translation: Boolean
 })
 
 postSchema.plugin(textSearch);

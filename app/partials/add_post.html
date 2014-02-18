@@ -20,6 +20,7 @@
                         <input required ng-model="newPost.urlTitle" type="text" class="form-control" placeholder="{{lang.urlTitle}}">
                     </div>
                 </div>
+
                 <div class="form-group">
                     <label class="col-sm-2 control-label">{{lang.author}}</label>
 
@@ -27,6 +28,17 @@
                         <input required ng-model="newPost.author" type="text" class="form-control" placeholder="{{lang.author}}">
                     </div>
                 </div>
+
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">{{lang.Translation}}</label>
+
+                    <div class="col-sm-10">
+                        <div class="checkbox">
+                            <input type="checkbox" ng-model="newPost.translation">
+                        </div>
+                    </div>
+                </div>
+
                 <div class="form-group">
                     <label class="col-sm-2 control-label">{{lang.content}}</label>
 
@@ -36,6 +48,7 @@
                         </textarea>
                     </div>
                 </div>
+
                 <div class="form-group">
                     <label class="col-sm-2 control-label">{{lang.shortContent}}</label>
 
@@ -43,14 +56,6 @@
                         <textarea required ng-model="newPost.shortContent" class="form-control">
 
                         </textarea>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label class="col-sm-2 control-label">{{lang.Translation}}</label>
-
-                    <div class="col-sm-10">
-                        <input type="checkbox" ng-model="newPost.translation">
                     </div>
                 </div>
 
