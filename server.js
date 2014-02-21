@@ -75,7 +75,6 @@ mongoose.connect(config.mongoURL, function (err) {
 
 app.use(express.static(path.join(__dirname, "app"))); // запуск статического файлового сервера, который смотрит на папку public/ (в нашем случае отдает index.html)
 app.use(express.cookieParser());
-app.use(express.cookieDecoder());
 app.use(express.bodyParser()); // стандартный модуль, для парсинга JSON в запросах
 app.use(express.favicon()); // отдаем стандартную фавиконку, можем здесь же свою задать
 app.use(express.methodOverride()); // поддержка put и delete
