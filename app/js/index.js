@@ -2,6 +2,9 @@ var blg = angular.module('blog', ['ngRoute', 'ngResource', 'ngAnimate', 'ngSanit
 
 blg.filter('date', function () {
     return function (input) {
+
+        console.log(input);
+
         var dateArr = input.split(" ");
         var day = dateArr[2];
         var year = dateArr[3];
