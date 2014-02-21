@@ -2,15 +2,14 @@ var blg = angular.module('blog', ['ngRoute', 'ngResource', 'ngAnimate', 'ngSanit
 
 blg.filter('date', function () {
     return function (input) {
-
-        console.log(input);
-
-        var dateArr = input.split(" ");
-        var day = dateArr[2];
-        var year = dateArr[3];
-        var index = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'].indexOf(dateArr[1]);
-        var month = ['января', 'февраля', 'марта', 'апреля', 'мая', 'июня', 'июля', 'августа', 'сентября', 'октября', 'ноября', 'декабря'][index];
-        return day + ' ' + month + ' ' + year;
+        if (input) {
+            var dateArr = input.split(" ");
+            var day = dateArr[2];
+            var year = dateArr[3];
+            var index = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'].indexOf(dateArr[1]);
+            var month = ['января', 'февраля', 'марта', 'апреля', 'мая', 'июня', 'июля', 'августа', 'сентября', 'октября', 'ноября', 'декабря'][index];
+            return day + ' ' + month + ' ' + year;
+        }
     }
 })
 
@@ -44,7 +43,7 @@ blg.config(function ($routeProvider, $locationProvider) {
     });
 
     $routeProvider.when('/admin/auth', {
-        templateUrl:'partials/auth.html',
+        templateUrl: 'partials/auth.html',
         controller: 'AuthCtrl'
     })
 
