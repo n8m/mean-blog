@@ -40,6 +40,11 @@ blg.config(function ($routeProvider, $locationProvider) {
         controller: 'AddEditPostCtrl'
     });
 
+    $routeProvider.when('/admin/auth', {
+        templateUrl:'partials/auth.html',
+        controller: 'AuthCtrl'
+    })
+
     $routeProvider.when('/', {
         redirectTo: '/posts'
     });
@@ -116,8 +121,6 @@ blg.constant('Config', {
 });
 
 blg.constant('Lang', {
-    paginationBefore: "Раньше",
-    paginationAfter: "Позже",
     readMore: "Читать далее",
     title: "Заголовок",
     urlTitle: "URL",
@@ -130,5 +133,9 @@ blg.constant('Lang', {
     Translation: "Перевод",
     translation: "перевод",
     addNewPost: "Добавить пост",
-    sure: "Уверены?"
+    sure: "Уверены?",
+    login: "Логин",
+    password: "Пароль"
+
+
 });

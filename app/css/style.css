@@ -106,25 +106,41 @@ footer {
 
 /*Ng-Animate Classes*/
 
-.post {
-    -webkit-transition: 200ms ease-in all;
-    -moz-transition: 200ms ease-in all;
-    -ms-transition: 200ms ease-in all;
-    -o-transition: 200ms ease-in all;
-    transition: 200ms ease-in all;
 
+.at-repeat-macro-in.ng-enter, .at-repeat-macro-out.ng-leave {
+    -webkit-transition: 400ms cubic-bezier(0.390, 0.575, 0.565, 1.000) all;
+    -moz-transition: 400ms cubic-bezier(0.390, 0.575, 0.565, 1.000) all;
+    -ms-transition: 400ms cubic-bezier(0.390, 0.575, 0.565, 1.000) all;
+    -o-transition: 400ms cubic-bezier(0.390, 0.575, 0.565, 1.000) all;
+    transition: 400ms cubic-bezier(0.390, 0.575, 0.565, 1.000) all;
+    -webkit-transform-origin: 50% 50%;
+    -moz-transform-origin: 50% 50%;
+    -ms-transform-origin: 50% 50%;
+    -o-transform-origin: 50% 50%;
+    transform-origin: 50% 50%;
 }
 
-
- .post.ng-enter-active,
- .post.ng-leave{
-    opacity: 1;
-
-}
-
-.post.ng-enter,
-.post.ng-leave-active {
+.at-repeat-macro-in.ng-enter,
+.at-repeat-macro-out.ng-leave-active{
+    -webkit-transform: scale(2.5, 2.5);
+    -moz-transform: scale(2.5, 2.5);
+    -ms-transform: scale(2.5, 2.5);
+    -o-transform: scale(2.5, 2.5);
+    transform: scale(2.5, 2.5);
     opacity: 0;
+}
+
+.at-repeat-macro-in.ng-enter-active {
+    -webkit-transform: scale(1, 1);
+    -moz-transform: scale(1, 1);
+    -ms-transform: scale(1, 1);
+    -o-transform: scale(1, 1);
+    transform: scale(1, 1);
+    opacity: 1;
+}
+
+.at-repeat-macro-out.ng-leave {
+    opacity: 1;
 }
 
 .center{

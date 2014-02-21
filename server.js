@@ -2,9 +2,44 @@ var express = require('express');
 var path = require('path');
 var mongoose = require('mongoose');
 var textSearch = require('mongoose-text-search');
+var passport = require('passport');
+var LocalStrategy = require('passport-local').Strategy;
+
+passport.use(new LocalStrategy(
+    function (username, password, done) {
+        if (username === 'n8m' && password === "K0llider") {
+            done(null, true);
+        }
+        else {
+            console.log('wrong creds');
+            done(null, false);
+        }
+    }
+));
+
+passport.serializeUser(function (user, done) {
+    done(null, 'admin');
+});
+
+passport.deserializeUser(function (user, done) {
+    console.log('deserialize');
+    console.log(arguments);
+    console.log('end deserialize');
+    done(null, 'admin');
+});
+
+mustAuthenticated = function (req, res, next) {
+    if (req.isAuthenticated()) {
+        next();
+    }
+    else {
+        console.log('not authenticate');
+//        res.redirect('http://localhost/blog/app/#/admin/login');
+    }
+
+};
 
 var app = express();
-
 
 var postSchema = mongoose.Schema({
     title: String,
@@ -22,35 +57,58 @@ postSchema.index({ title: 'text', content: 'text', author: 'text', tags: "text" 
 
 var Post = mongoose.model('Post', postSchema);
 
-var uristring = 'mongodb://name:K0llider@ds063218.mongolab.com:63218/angudb';
-//var uristring = 'mongodb://localhost/angudb';
+var config = {
+    adminLogin: 'n8m',
+    adminPassword: 'K0llider',
+//    mongoURL: 'mongodb://localhost/angudb',
+    mongoURL:'mongodb://name:K0llider@ds063218.mongolab.com:63218/angudb',
+}
 
 
-mongoose.connect(uristring, function (err) {
+mongoose.connect(config.mongoURL, function (err) {
     if (err) {
-        console.log('ERROR connecting to: ' + uristring + '. ' + err);
+        console.log('ERROR connecting to: ' + config.mongoURL + '. ' + err);
     } else {
-        console.log('Succeeded connected to: ' + uristring);
+        console.log('Succeeded connected to: ' + config.mongoURL);
     }
 });
 
-app.use(express.favicon()); // отдаем стандартную фавиконку, можем здесь же свою задать
-app.use(express.logger('dev')); // выводим все запросы со статусами в консоль
-app.use(express.bodyParser()); // стандартный модуль, для парсинга JSON в запросах
-app.use(express.methodOverride()); // поддержка put и delete
-app.use(app.router); // модуль для простого задания обработчиков путей
 app.use(express.static(path.join(__dirname, "app"))); // запуск статического файлового сервера, который смотрит на папку public/ (в нашем случае отдает index.html)
+app.use(express.cookieParser());
+app.use(express.cookieDecoder());
+app.use(express.bodyParser()); // стандартный модуль, для парсинга JSON в запросах
+app.use(express.favicon()); // отдаем стандартную фавиконку, можем здесь же свою задать
+app.use(express.methodOverride()); // поддержка put и delete
+app.use(express.session({ secret: 'keyboard cat' }));
+app.use(passport.initialize());
+app.use(passport.session());
+app.use(app.router); // модуль для простого задания обработчиков путей
 
 
 app.all('*', function (req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Headers", "X-Requested-With");
     res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
-    res.header('Access-Control-Allow-Headers', 'Content-Type');
+    res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+
     next();
 });
 
+//app.all('*', mustAuthenticated);
+
+app.post('/api/login', passport.authenticate('local', {
+    failureRedirect: 'http://localhost/blog/app/#/admin/auth',
+}), function (req, res) {
+    console.log('sucess auth');
+    res.cookie('user', JSON.stringify({'id': 'admin'}), { httpOnly: false });
+    res.redirect('http://localhost/blog/app/#/admin');
+
+});
+
 app.get('/api/posts', function (req, res) {
+
+    console.log(req.cookie);
+
 
     var postsQueryParams = {};
 
@@ -105,6 +163,7 @@ app.get('/api/posts/:urlTitle*', function (req, res) {
 })
 
 app.post('/api/posts', function (req, res) {
+
     var newPost = req.body;
     newPost.date = new Date();
 

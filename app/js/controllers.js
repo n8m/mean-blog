@@ -11,11 +11,27 @@ blg.controller('ConfigCtrl', function ($scope, Lang, Config, Tags) {
 blg.controller("SideCtrl", function ($scope) {
 })
 
+blg.controller("AuthCtrl", function ($scope, $http, Config) {
+    $scope.doAuth = function () {
+        console.log('Авторизируем');
+        console.log($scope.admin);
+
+        $http({
+            method: 'POST',
+            url: Config.apiRoot + "/login/",
+            data: $scope.admin
+        })
+            .success();
+
+
+    }
+})
+
 blg.controller("AdminCtrl", function ($scope, PostResource, Lang) {
 
     $scope.postsLoading = true;
 
-    $scope.posts = PostResource.query(function(){
+    $scope.posts = PostResource.query(function () {
         $scope.postsLoading = false;
     });
 
@@ -34,8 +50,13 @@ blg.controller("AdminCtrl", function ($scope, PostResource, Lang) {
     }
 })
 
-blg.controller("PostsCtrl", function ($scope, Config, PostResource, $routeParams) {
+blg.controller("PostsCtrl", function ($scope, Config, PostResource, $routeParams, $location) {
     $scope.posts = [];
+
+
+    $scope.readMore = function (urlTitle) {
+        $location.path('/post/' + urlTitle);
+    }
 
     var postsQueryParams = {limit: Config.postsOnPageByDefault};
 

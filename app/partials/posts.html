@@ -1,5 +1,6 @@
 <div class="col-md-8" when-scrolled="loadPosts()">
-    <div ng-repeat="post in posts | filter:search track by $index" class="post panel panel-default">
+    <div ng-repeat="post in posts | filter:search track by $index" class="panel panel-default at-repeat-macro-in
+         at-repeat-macro-out">
         <div class="panel-heading">
             <div class="date pull-right">
                 {{post.date | date}}
@@ -12,7 +13,7 @@
             <div ng-show="post.shortContent">
                 <p ng-bind-html="post.shortContent"></p>
 
-                <p><a ng-href="{{config.root}}/#/post/{{post.urlTitle}}">{{lang.readMore}}</a></p>
+                <p><button ng-click="readMore(post.urlTitle)" class="btn btn-default">{{lang.readMore}}</button></p>
             </div>
             <div ng-hide="post.shortContent" ng-bind-html="post.content">
             </div>
