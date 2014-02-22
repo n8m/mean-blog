@@ -59,6 +59,7 @@ blg.directive('whenScrolled', function ($window, $document) {
             var visibleHeight = $window.innerHeight;
             var scroll = angular.element($window)[0].scrollY;
             if (totalHeight - visibleHeight - scroll === 0) {
+                console.log(scope.postsLoading);
                 scope.$apply(attr.whenScrolled);
             }
         });
