@@ -6,6 +6,8 @@ blg.controller('ConfigCtrl', function ($scope, Lang, Config, Tags) {
         $scope.tags = data;
     })
 
+    $scope.xo = "<html><div><br>ff</div></html>"
+
 })
 
 blg.controller("SideCtrl", function ($scope) {

@@ -14,7 +14,7 @@
             <h3 class="panel-title">{{post.title}}</h3>
         </div>
         <div class="panel-body">
-            <div ng-bind-html="post.content"></div>
+            <div dynamic="post.content"></div>
             <div class="tumblr-tags">
                 <span class="glyphicon glyphicon-tags"></span>
                 <a ng-repeat="tag in post.tags" href="{{config.root}}/#/posts?tags={{tag}}" class="label label-default">{{tag}}</a>
@@ -27,7 +27,8 @@
                     {{lang.author}}: {{post.author}}<span ng-show="post.translation"> ({{lang.translation}})</span>
                 </span>
             </div>
-            <div disqus="'meangu'"></div>
+
+            <div disqus="'{{post.urlTitle}}'"></div>
 
         </div>
     </div>
