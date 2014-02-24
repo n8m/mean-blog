@@ -46,7 +46,7 @@ blg.controller("AdminCtrl", function ($scope, PostResource, Lang) {
                 if (response.status == "OK") {
                     $scope.posts.splice(index, 1);
                 }
-                ;
+
             })
         }
     }
@@ -95,9 +95,13 @@ blg.controller("PostsCtrl", function ($scope, Config, PostResource, $routeParams
 
 blg.controller('SinglePostCtrl', function ($scope, $routeParams, PostResource, Config) {
 
+    $scope.contentLoaded = false;
+
     if ($routeParams.urlTitle) {
         var urlTitle = $routeParams.urlTitle;
-        $scope.post = PostResource.get({urlTitle: urlTitle});
+        $scope.post = PostResource.get({urlTitle: urlTitle}, function () {
+            $scope.contentLoaded = true;
+        });
     }
     else {
         $scope.is404 = true;
