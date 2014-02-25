@@ -67,7 +67,7 @@ blg.directive('whenScrolled', function ($window, $document) {
 
 blg.directive('tagAddable', function () {
     return {
-        controller: function ($scope, $element) {
+        controller: function ($scope, $element, $attrs, $parse) {
             $scope.addHtmlTag = function (fieldId, startTag, endTag) {
                 elm = angular.element(document.getElementById(fieldId));
 
@@ -82,10 +82,13 @@ blg.directive('tagAddable', function () {
                 var before = value.slice(0, startSel);
                 var after = value.slice(endSel, value.length);
 
-                elm[0].value = before + startTag + selected + endTag + after;
+                var newValue = before + startTag + selected + endTag + after;
+
+                //to update ng-model binded to textarea value
+                var textAreaModel = $parse($attrs.ngModel);
+                textAreaModel.assign($scope, newValue);
             }
         }
-
     }
 })
 
@@ -203,10 +206,10 @@ blg.factory('Tags', ['$http', 'Config', function ($http, Config) {
 
 blg.constant('Config', {
     title: "MeAngu",
-    root: "http://ruangular.herokuapp.com",
-//    root: "http://localhost/blog/app",
-    apiRoot: "/api",
-//    apiRoot: "http://localhost:1337/api",
+//    root: "http://ruangular.herokuapp.com",
+    root: "http://localhost/blog/app",
+//    apiRoot: "/api",
+    apiRoot: "http://localhost:1337/api",
     description: "Full Stack Javascript на русском",
     avatarLink: "img/avatar.png",
     postsOnPageByDefault: 5,
