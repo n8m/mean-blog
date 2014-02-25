@@ -47,15 +47,17 @@
 
 
                     <div class="col-sm-10">
-                        <button type="button" class="btn btn-sm btn-default"
-                                ng-click="addHtmlTag('content', '<b>','</b>')">b
-                        </button>
-                        <button type="button" class="btn btn-sm btn-default"
-                                ng-click="addHtmlTag('content', '<em>','</em>')">i
-                        </button>
-                        <button type="button" class="btn btn-sm btn-default"
-                                ng-click="addHtmlTag('content', '<span hljs>','</span>')">code
-                        </button>
+                        <div class="well well-sm html-tags-panel">
+                            <button type="button" class="btn btn-sm btn-default"
+                                    ng-click="addHtmlTag('content', '<b>','</b>')">b
+                            </button>
+                            <button type="button" class="btn btn-sm btn-default"
+                                    ng-click="addHtmlTag('content', '<em>','</em>')">i
+                            </button>
+                            <button type="button" class="btn btn-sm btn-default"
+                                    ng-click="addHtmlTag('content', '<span hljs>','</span>')">code
+                            </button>
+                        </div>
 
                         <textarea id="content" tag-addable required ng-model="post.content" class="form-control"
                                   rows="15">

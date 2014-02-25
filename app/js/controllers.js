@@ -112,7 +112,10 @@ blg.controller('SinglePostCtrl', function ($scope, $routeParams, PostResource, C
 blg.controller('AddEditPostCtrl', function ($scope, PostResource, $timeout, $routeParams, $location) {
 
     if ($routeParams.urlTitle) {
-        $scope.post = PostResource.get({urlTitle: $routeParams.urlTitle});
+        $scope.post = PostResource.get({urlTitle: $routeParams.urlTitle}, function () {
+            $scope.post.tags = [];
+        });
+
     }
     else {
         $scope.post = {tags: []};
@@ -121,14 +124,17 @@ blg.controller('AddEditPostCtrl', function ($scope, PostResource, $timeout, $rou
     $scope.addTag = function (tag) {
         //Tag added from list of existed tags
         if (tag) {
-
-            $scope.post.tags.push(tag);
+            if ($scope.post.tags.indexOf(tag) === -1) {
+                $scope.post.tags.push(tag);
+            }
 
         }
         //Tag added from input
         else {
-            $scope.post.tags.push($scope.tag);
-            $scope.tag = '';
+            if ($scope.post.tags.indexOf(tag) === -1) {
+                $scope.post.tags.push($scope.tag);
+                $scope.tag = '';
+            }
         }
     }
 
