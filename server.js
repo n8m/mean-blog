@@ -234,9 +234,11 @@ app.get('/api/tags', function (req, res) {
     })
 })
 
-app.get("/*", function (req, res, next) {
-    res.sendfile(__dirname + 'app/index.html');
+app.get('*', function(request, response, next) {
+    response.sendfile(__dirname + 'app/index.html');
 });
+
+
 
 app.listen(process.env.PORT || 1337, function () {
     console.log('Express server listening on port 1337');
