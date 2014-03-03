@@ -88,7 +88,6 @@ app.all('*', function (req, res, next) {
     res.header("Access-Control-Allow-Headers", "X-Requested-With");
     res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
     res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
-
     next();
 });
 
@@ -235,7 +234,7 @@ app.get('/api/tags', function (req, res) {
 })
 
 app.get('/*', function(req, res, next) {
-    res.sendfile(__dirname + '/../app/index.html');
+    res.sendfile(__dirname + '/app/index.html');
 });
 
 
