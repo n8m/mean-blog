@@ -92,16 +92,6 @@ app.all('*', function (req, res, next) {
     next();
 });
 
-
-app.get("/*", function(req, res, next){
-    console.log('receive');
-    res.sendfile(__dirname + '/app/index.html');
-});
-
-
-
-//app.all('*', mustAuthenticated);
-
 app.post('/api/login', passport.authenticate('local', {
     failureRedirect: 'http://localhost/blog/app/#/admin/auth',
 }), function (req, res) {
@@ -244,8 +234,7 @@ app.get('/api/tags', function (req, res) {
     })
 })
 
-app.use(function(req, res) {
-    // Use res.sendfile, as it streams instead of reading the file into memory.
+app.get("/*", function(req, res, next){
     res.sendfile(__dirname + '/app/index.html');
 });
 
