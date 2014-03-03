@@ -5,7 +5,7 @@
             <!--<h3 class="panel-title">{{post.title}}</h3>-->
         </div>
         <div class="panel-body">
-            <form action="{{config.root + '/#/admin/newpost'}}">
+            <form action="{{config.root + '/admin/newpost'}}">
                 <input type="submit" class="btn btn-primary" value="{{lang.addNewPost}}">
             </form>
 
@@ -19,7 +19,7 @@
                 <tr ng-class="{'semi-transparent danger': post.deleting}" ng-repeat="post in posts">
                     <td>{{post.title}}</td>
                     <td class="td-small">
-                        <a href="{{config.root}}/#/admin/edit/{{post.urlTitle}}">
+                        <a href="{{config.root}}/admin/edit/{{post.urlTitle}}">
                             <span class="glyphicon glyphicon-edit pointer"></span>
                         </a>
                     </td>

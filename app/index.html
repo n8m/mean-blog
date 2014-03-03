@@ -35,7 +35,7 @@
                         <p class="lead text-center">{{config.description}}</p>
                     </div>
                 </div>
-                <form action="{{config.root + '/#/posts?search=' + search}}" class="form-horizontal sidebar-item">
+                <form action="{{config.root + '/posts?search=' + search}}" class="form-horizontal sidebar-item">
                     <div class="input-group">
                                         <span class="input-group-addon">
                                             <span class="glyphicon glyphicon-search"></span>
@@ -48,7 +48,7 @@
                 <h2>Тэги</h2>
                 <ul class="list-inline">
                     <li ng-repeat="tag in tags">
-                        <a href="{{config.root}}/#/posts?tags={{tag}}">{{tag}}</a>
+                        <a href="{{config.root}}/posts?tags={{tag}}">{{tag}}</a>
                     </li>
                 </ul>
 
