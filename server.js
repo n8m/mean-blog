@@ -235,8 +235,7 @@ app.get('/api/tags', function (req, res) {
 })
 
 app.get("*", function (req, res, next) {
-    console.log(__dirname);
-    res.sendfile(__dirname + '/app/index.html');
+    res.sendfile('/app/index.html');
 });
 
 app.listen(process.env.PORT || 1337, function () {
