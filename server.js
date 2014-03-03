@@ -60,8 +60,8 @@ var Post = mongoose.model('Post', postSchema);
 var config = {
     adminLogin: 'n8m',
     adminPassword: 'K0llider',
-//    mongoURL: 'mongodb://localhost/angudb',
-    mongoURL:'mongodb://name:K0llider@ds063218.mongolab.com:63218/angudb',
+    mongoURL: 'mongodb://localhost/angudb',
+//    mongoURL:'mongodb://name:K0llider@ds063218.mongolab.com:63218/angudb',
 }
 
 
@@ -83,7 +83,6 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(app.router); // модуль для простого задания обработчиков путей
 
-
 app.all('*', function (req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Headers", "X-Requested-With");
@@ -92,6 +91,14 @@ app.all('*', function (req, res, next) {
 
     next();
 });
+
+
+app.get("/*", function(req, res, next){
+    console.log('receive');
+    res.sendfile(__dirname + '/app/index.html');
+});
+
+
 
 //app.all('*', mustAuthenticated);
 
@@ -236,6 +243,11 @@ app.get('/api/tags', function (req, res) {
         res.send(allTags);
     })
 })
+
+app.use(function(req, res) {
+    // Use res.sendfile, as it streams instead of reading the file into memory.
+    res.sendfile(__dirname + '/app/index.html');
+});
 
 app.listen(process.env.PORT || 1337, function () {
     console.log('Express server listening on port 1337');
