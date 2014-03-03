@@ -235,7 +235,7 @@ app.get('/api/tags', function (req, res) {
 })
 
 app.get('/*', function(request, response, next) {
-    response.sendfile(__dirname + 'app/index.html');
+    response.sendfile(__dirname + 'app');
 });
 
 
