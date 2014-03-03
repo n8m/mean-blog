@@ -61,7 +61,7 @@ var config = {
     adminLogin: 'n8m',
     adminPassword: 'K0llider',
 //    mongoURL: 'mongodb://localhost/angudb',
-    mongoURL:'mongodb://name:K0llider@ds063218.mongolab.com:63218/angudb',
+    mongoURL: 'mongodb://name:K0llider@ds063218.mongolab.com:63218/angudb',
 }
 
 
@@ -234,11 +234,9 @@ app.get('/api/tags', function (req, res) {
     })
 })
 
-app.get("*", function(req, res, next){
-//    console.log(__dirname + '/app/index.html');
-    res.sendfile('index.html', { root: __dirname+'/app' });
-
-//    res.sendfile(__dirname + '/app/index.html');
+app.get("*", function (req, res, next) {
+    console.log(__dirname);
+    res.sendfile(__dirname + '/app/index.html');
 });
 
 app.listen(process.env.PORT || 1337, function () {
