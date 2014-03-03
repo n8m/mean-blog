@@ -79,7 +79,7 @@ blg.factory('Tags', ['$http', 'Config', function ($http, Config) {
 
 blg.constant('Config', {
     title: "MeAngu",
-    root: "http://ruangular.herokuapp.com",
+    root: "http://meangu.ru",
 //    root: "http://localhost/blog/app",
     apiRoot: "/api",
 //    apiRoot: "http://localhost:1337/api",
