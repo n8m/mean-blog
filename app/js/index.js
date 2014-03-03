@@ -13,6 +13,12 @@ blg.filter('date', function () {
     }
 })
 
+blg.filter('addBreaklinesToHtml', function () {
+    return function (input) {
+        return input.replace(/\n/g, '\n<br />');
+    }
+})
+
 blg.config(function ($routeProvider, $locationProvider) {
 
     $locationProvider.html5Mode(false);
@@ -124,8 +130,6 @@ blg.directive('dirDisqus', function ($window) {
                     $window.disqus_category_id = scope.disqus_category_id;
                     $window.disqus_disable_mobile = scope.disqus_disable_mobile;
 
-                    console.log($window.disqus_identifier);
-
                     // get the remote Disqus script and insert it into the DOM, but only if it not already loaded (as that will cause warnings)
                     if (!$window.DISQUS) {
                         var dsq = document.createElement('script');
@@ -206,10 +210,10 @@ blg.factory('Tags', ['$http', 'Config', function ($http, Config) {
 
 blg.constant('Config', {
     title: "MeAngu",
-//    root: "http://ruangular.herokuapp.com",
-    root: "http://localhost/blog/app",
-//    apiRoot: "/api",
-    apiRoot: "http://localhost:1337/api",
+    root: "http://ruangular.herokuapp.com",
+//    root: "http://localhost/blog/app",
+    apiRoot: "/api",
+//    apiRoot: "http://localhost:1337/api",
     description: "Full Stack Javascript на русском",
     avatarLink: "img/avatar.png",
     postsOnPageByDefault: 5,
