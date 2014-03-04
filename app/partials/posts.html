@@ -7,7 +7,7 @@
             </div>
             <h3 class="panel-title">
                 <a ng-href="{{config.root}}/post/{{post.urlTitle}}">{{post.title}}</a>
-                <a href="admin/edit/{{post.urlTitle}}" class="glyphicon glyphicon-edit"></a>
+                <a href="admin/edit/{{post.urlTitle}}" ng-show="loggedin" class="glyphicon glyphicon-edit"></a>
 
             </h3>
         </div>

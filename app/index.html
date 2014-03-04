@@ -20,7 +20,7 @@
 <div class="navbar navbar-default">
     <div class="container">
         <a class="navbar-brand" href="{{config.root}}">{{config.title}}</a>
-        <a href="#" ng-click="logout()" class="pull-right">LogOut</a>
+        <a href="#" ng-click="logout()" ng-show="loggedin" class="pull-right">LogOut</a>
     </div>
 </div>
 

@@ -1,5 +1,12 @@
 blg.controller('ConfigCtrl', function ($scope, Lang, Config, Tags, $location, $http) {
 
+    $http({
+        method: 'GET',
+        url: "api/session/",
+    })
+        .success(function () {
+            $scope.loggedin = true;
+        });
 
     $scope.config = Config;
     $scope.lang = Lang;
