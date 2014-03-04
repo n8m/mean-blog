@@ -1,4 +1,4 @@
-blg.controller('ConfigCtrl', function ($scope, Lang, Config, Tags, $location) {
+blg.controller('ConfigCtrl', function ($scope, Lang, Config, Tags, $location, $http) {
 
 
     $scope.config = Config;
