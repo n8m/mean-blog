@@ -5,10 +5,6 @@
             <!--<h3 class="panel-title">{{post.title}}</h3>-->
         </div>
         <div class="panel-body">
-            <form action="{{config.root + '/admin/newpost'}}">
-                <input type="submit" class="btn btn-primary" value="{{lang.addNewPost}}">
-            </form>
-
             <h3>Список постов</h3>
 
             <div ng-show="postsLoading" class="text-center">
@@ -31,17 +27,14 @@
                 </tr>
             </table>
 
+            <form action="{{config.root + '/admin/newpost'}}">
+                <input type="submit" class="btn btn-primary" value="{{lang.addNewPost}}">
+            </form>
+
         </div>
 
         <div class="panel-footer">
-            <!--<div class="notes pull-right">-->
-            <!--<span class="badge" title="{NoteCountWithLabel}">{NoteCount}</span>-->
-            <!--</div>-->
-            <!--<div class="footer for_permalink">-->
-            <!--<div class="date">-->
-            <!--{{post.date}}-->
-            <!--</div>-->
-            <!--</div>-->
+
         </div>
     </div>
 </div>

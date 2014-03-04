@@ -69,6 +69,10 @@ mongoose.connect(config.mongoURL, function (err) {
     }
 });
 
+
+app.use('/parent', express.static(__dirname + '/public'));
+
+
 app.use(express.static(path.join(__dirname, "app"))); // запуск статического файлового сервера, который смотрит на папку public/ (в нашем случае отдает index.html)
 app.use(express.cookieParser());
 app.use(express.bodyParser()); // стандартный модуль, для парсинга JSON в запросах
