@@ -94,7 +94,7 @@ app.post('/api/login', passport.authenticate('local', {
 
 });
 
-app.get('/logout', function(req, res){
+app.get('/api/logout', function(req, res){
     req.logout();
     res.redirect('/');
 });
