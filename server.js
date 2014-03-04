@@ -60,8 +60,8 @@ var Post = mongoose.model('Post', postSchema);
 var config = {
     adminLogin: 'n8m',
     adminPassword: 'K0llider',
-//    mongoURL: 'mongodb://localhost/angudb',
-    mongoURL: 'mongodb://name:K0llider@ds063218.mongolab.com:63218/angudb',
+    mongoURL: 'mongodb://localhost/angudb',
+//    mongoURL: 'mongodb://name:K0llider@ds063218.mongolab.com:63218/angudb',
 }
 
 
@@ -233,8 +233,10 @@ app.get('/api/tags', function (req, res) {
     })
 })
 
-app.get('/*', function(req, res, next) {
-    res.sendfile(__dirname + '/app/index.html');
+app.get('/**', function(req, res, next) {
+    res.sendfile(__dirname + '/index.html');
+
+//    res.sendfile(__dirname + '/app/index.html');
 });
 
 
