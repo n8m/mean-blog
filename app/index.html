@@ -9,7 +9,7 @@
     <meta charset="UTF-8">
 
     <!-- otherwise html5mode routing will not work -->
-    <base href="/index.html" />
+    <base href="/index.html"/>
 
 
 </head>
@@ -20,7 +20,10 @@
 <div class="navbar navbar-default">
     <div class="container">
         <a class="navbar-brand" href="{{config.root}}">{{config.title}}</a>
-        <a href="#" ng-click="logout()" ng-show="loggedin" class="pull-right">LogOut</a>
+        <ul class="list-inline navbar-brand pull-right no-margin-bottom">
+            <li><a href="#" ng-click="logout()" ng-show="loggedin">LogOut</a></li>
+            <li><a href="{{config.root}}/admin">Admin</a></li>
+        </ul>
     </div>
 </div>
 
