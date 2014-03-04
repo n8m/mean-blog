@@ -1,4 +1,4 @@
-blg.controller('ConfigCtrl', function ($scope, Lang, Config, Tags) {
+blg.controller('ConfigCtrl', function ($scope, Lang, Config, Tags, $location) {
     $scope.config = Config;
     $scope.lang = Lang;
 
@@ -6,7 +6,17 @@ blg.controller('ConfigCtrl', function ($scope, Lang, Config, Tags) {
         $scope.tags = data;
     })
 
-    $scope.xo = "<html><div><br>ff</div></html>"
+    $scope.logout = function () {
+        $http({
+            method: 'GET',
+            url: Config.apiRoot + "/logout/",
+        })
+            .success(function(){
+                $location.path('/');
+            });
+
+
+    }
 
 })
 
@@ -15,8 +25,7 @@ blg.controller("SideCtrl", function ($scope) {
 
 blg.controller("AuthCtrl", function ($scope, $http, Config) {
     $scope.doAuth = function () {
-        console.log('Авторизируем');
-        console.log($scope.admin);
+
 
         $http({
             method: 'POST',
