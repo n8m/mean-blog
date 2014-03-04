@@ -17,16 +17,12 @@ passport.use(new LocalStrategy(
     }
 ));
 
-passport.serializeUser(function (user, done) {
-    console.log('serialize user');
-    done(null, 'admin');
+passport.serializeUser(function(user, done) {
+    done(null, user);
 });
 
-passport.deserializeUser(function (user, done) {
-    console.log('deserialize');
-    console.log(arguments);
-    console.log('end deserialize');
-    done(null, 'admin');
+passport.deserializeUser(function(obj, done) {
+    done(null, obj);
 });
 
 mustAuthenticated = function (req, res, next) {
@@ -97,14 +93,13 @@ app.post('/api/login', passport.authenticate('local', {
 }), function (req, res) {
     console.log('sucess auth');
 //    res.cookie('user', JSON.stringify({'id': 'admin'}), { httpOnly: false });
-    res.redirect('http://meangu.ru/admin');
+    res.redirect('/admin');
 
 });
 
-app.get('/api/posts', function (req, res) {
+app.get('/api/posts', mustAuthenticated, function (req, res) {
 
     console.log(req.cookie);
-
 
     var postsQueryParams = {};
 
