@@ -92,11 +92,11 @@ app.all('*', function (req, res, next) {
 });
 
 app.post('/api/login', passport.authenticate('local', {
-    failureRedirect: 'http://localhost/blog/app/#/admin/auth',
+    failureRedirect: 'http://meangu.ru/admin/auth',
 }), function (req, res) {
     console.log('sucess auth');
-    res.cookie('user', JSON.stringify({'id': 'admin'}), { httpOnly: false });
-    res.redirect('http://localhost/blog/app/#/admin');
+//    res.cookie('user', JSON.stringify({'id': 'admin'}), { httpOnly: false });
+    res.redirect('http://meangu.ru/admin');
 
 });
 
