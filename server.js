@@ -17,11 +17,11 @@ passport.use(new LocalStrategy(
     }
 ));
 
-passport.serializeUser(function(user, done) {
+passport.serializeUser(function (user, done) {
     done(null, user);
 });
 
-passport.deserializeUser(function(obj, done) {
+passport.deserializeUser(function (obj, done) {
     done(null, obj);
 });
 
@@ -30,8 +30,7 @@ mustAuthenticated = function (req, res, next) {
         next();
     }
     else {
-        console.log('not authenticate');
-//        res.redirect('http://localhost/blog/app/#/admin/login');
+        res.redirect('/admin/auth');
     }
 
 };
@@ -91,15 +90,16 @@ app.all('*', function (req, res, next) {
 app.post('/api/login', passport.authenticate('local', {
     failureRedirect: '/admin/auth',
 }), function (req, res) {
-    console.log('sucess auth');
-//    res.cookie('user', JSON.stringify({'id': 'admin'}), { httpOnly: false });
     res.redirect('/admin');
 
 });
 
-app.get('/api/posts', mustAuthenticated, function (req, res) {
+app.get('/logout', function(req, res){
+    req.logout();
+    res.redirect('/');
+});
 
-    console.log(req.cookie);
+app.get('/api/posts', mustAuthenticated, function (req, res) {
 
     var postsQueryParams = {};
 
@@ -229,7 +229,7 @@ app.get('/api/tags', function (req, res) {
     })
 })
 
-app.get('/**', function(req, res, next) {
+app.get('/**', function (req, res, next) {
     res.sendfile(__dirname + '/app/index.html');
 });
 
