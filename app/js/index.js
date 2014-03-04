@@ -82,7 +82,6 @@ blg.constant('Config', {
     root: "http://meangu.ru",
 //    root: "http://localhost/blog/app",
     apiRoot: "/api",
-//    apiRoot: "http://localhost:1337/api",
     description: "Full Stack Javascript на русском",
     avatarLink: "img/avatar.png",
     postsOnPageByDefault: 5,

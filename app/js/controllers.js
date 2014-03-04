@@ -1,4 +1,4 @@
-blg.controller('ConfigCtrl', function ($scope, Lang, Config, Tags, $location) {
+blg.controller('ConfigCtrl', function ($scope, Lang, Config, Tags, $location, $http) {
     $scope.config = Config;
     $scope.lang = Lang;
 
@@ -7,6 +7,9 @@ blg.controller('ConfigCtrl', function ($scope, Lang, Config, Tags, $location) {
     })
 
     $scope.logout = function () {
+
+        console.log('logging out');
+
         $http({
             method: 'GET',
             url: Config.apiRoot + "/logout/",
