@@ -61,8 +61,8 @@ var Post = mongoose.model('Post', postSchema);
 var config = {
     adminLogin: 'n8m',
     adminPassword: 'K0llider',
-    mongoURL: 'mongodb://localhost/angudb',
-//    mongoURL: 'mongodb://name:K0llider@ds063218.mongolab.com:63218/angudb',
+//    mongoURL: 'mongodb://localhost/angudb',
+    mongoURL: 'mongodb://name:K0llider@ds063218.mongolab.com:63218/angudb',
 }
 
 
@@ -93,7 +93,7 @@ app.all('*', function (req, res, next) {
 });
 
 app.post('/api/login', passport.authenticate('local', {
-    failureRedirect: 'http://meangu.ru/admin/auth',
+    failureRedirect: '/admin/auth',
 }), function (req, res) {
     console.log('sucess auth');
 //    res.cookie('user', JSON.stringify({'id': 'admin'}), { httpOnly: false });
