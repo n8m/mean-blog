@@ -1,4 +1,6 @@
-blg.controller('ConfigCtrl', function ($scope, Lang, Config, Tags, $location, $http) {
+blg.controller('ConfigCtrl', function ($scope, Lang, Config, Tags, $location) {
+
+
     $scope.config = Config;
     $scope.lang = Lang;
 
@@ -8,13 +10,12 @@ blg.controller('ConfigCtrl', function ($scope, Lang, Config, Tags, $location, $h
 
     $scope.logout = function () {
 
-        console.log('logging out');
 
         $http({
             method: 'GET',
             url: Config.apiRoot + "/logout/",
         })
-            .success(function(){
+            .success(function () {
                 $location.path('/');
             });
 
@@ -41,7 +42,16 @@ blg.controller("AuthCtrl", function ($scope, $http, Config) {
     }
 })
 
-blg.controller("AdminCtrl", function ($scope, PostResource, Lang) {
+blg.controller("AdminCtrl", function ($scope, PostResource, Lang, $http, $location) {
+
+    $http({
+        method: 'GET',
+        url: "api/session/",
+    })
+        .error(function () {
+            $location.path('/admin/auth');
+        });
+
 
     $scope.postsLoading = true;
 
@@ -121,7 +131,16 @@ blg.controller('SinglePostCtrl', function ($scope, $routeParams, PostResource, C
 
 })
 
-blg.controller('AddEditPostCtrl', function ($scope, PostResource, $timeout, $routeParams, $location, $filter) {
+blg.controller('AddEditPostCtrl', function ($scope, PostResource, $timeout, $routeParams, $location, $filter, $http) {
+
+    $http({
+        method: 'GET',
+        url: "api/session/",
+    })
+        .error(function () {
+            $location.path('/admin/auth');
+        });
+
 
     if ($routeParams.urlTitle) {
         $scope.post = PostResource.get({urlTitle: $routeParams.urlTitle});

@@ -99,7 +99,12 @@ app.get('/api/logout', function (req, res) {
     res.send(200, {status: 'OK'});
 });
 
-app.get('/api/posts', mustAuthenticated, function (req, res) {
+app.get('/api/session', mustAuthenticated, function(req, res){
+    res.send(200, {status: 'OK'});
+})
+
+
+app.get('/api/posts', function (req, res) {
 
     var postsQueryParams = {};
 
@@ -153,7 +158,7 @@ app.get('/api/posts/:urlTitle*', function (req, res) {
     });
 })
 
-app.post('/api/posts', function (req, res) {
+app.post('/api/posts', mustAuthenticated, function (req, res) {
 
     var newPost = req.body;
     newPost.date = new Date();
@@ -169,7 +174,7 @@ app.post('/api/posts', function (req, res) {
 
 })
 
-app.put('/api/posts', function (req, res) {
+app.put('/api/posts', mustAuthenticated, function (req, res) {
     var id = req.body._id;
     delete req.body._id;
 
@@ -188,7 +193,7 @@ app.put('/api/posts', function (req, res) {
     })
 })
 
-app.delete('/api/posts/:id*', function (req, res) {
+app.delete('/api/posts/:id*', mustAuthenticated, function (req, res) {
     Post.findByIdAndRemove(req.param('id'), function (err, post) {
         if (!post) {
             res.send(404, {error: 'Not found'});
