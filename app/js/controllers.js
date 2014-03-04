@@ -23,6 +23,7 @@ blg.controller('ConfigCtrl', function ($scope, Lang, Config, Tags, $location, $h
             url: Config.apiRoot + "/logout/",
         })
             .success(function () {
+                $scope.loggedin = false;
                 $location.path('/');
             });
 
@@ -56,6 +57,7 @@ blg.controller("AdminCtrl", function ($scope, PostResource, Lang, $http, $locati
         url: "api/session/",
     })
         .error(function () {
+            $scope.loggedin = false;
             $location.path('/admin/auth');
         });
 
@@ -145,6 +147,7 @@ blg.controller('AddEditPostCtrl', function ($scope, PostResource, $timeout, $rou
         url: "api/session/",
     })
         .error(function () {
+            $scope.loggedin = false;
             $location.path('/admin/auth');
         });
 
