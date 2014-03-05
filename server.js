@@ -69,10 +69,6 @@ mongoose.connect(config.mongoURL, function (err) {
     }
 });
 
-
-app.use('/parent', express.static(__dirname + '/public'));
-
-
 app.use(express.static(path.join(__dirname, "app"))); // запуск статического файлового сервера, который смотрит на папку public/ (в нашем случае отдает index.html)
 app.use(express.cookieParser());
 app.use(express.bodyParser()); // стандартный модуль, для парсинга JSON в запросах
@@ -84,7 +80,7 @@ app.use(passport.session());
 app.use(app.router); // модуль для простого задания обработчиков путей
 
 app.all('*', function (req, res, next) {
-    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Origin", "meangu.ru");
     res.header("Access-Control-Allow-Headers", "X-Requested-With");
     res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
     res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
@@ -103,7 +99,7 @@ app.get('/api/logout', function (req, res) {
     res.send(200, {status: 'OK'});
 });
 
-app.get('/api/session', mustAuthenticated, function(req, res){
+app.get('/api/session', mustAuthenticated, function (req, res) {
     res.send(200, {status: 'OK'});
 })
 
@@ -239,8 +235,7 @@ app.get('/api/tags', function (req, res) {
 })
 
 
-app.get('/**', function (req, res, next) {
-    console.log('server returns index.html to client');
+app.get('/*', function (req, res, next) {
     res.sendfile(__dirname + '/app/index.html');
 });
 
