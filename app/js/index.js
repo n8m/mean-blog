@@ -139,7 +139,8 @@ blg.constant('Lang', {
     addNewPost: "Добавить пост",
     sure: "Уверены?",
     login: "Логин",
-    password: "Пароль"
+    password: "Пароль",
+    authError: "Неправильно"
 
 
 });

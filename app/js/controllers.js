@@ -25,11 +25,14 @@ blg.controller("SideCtrl", function ($scope) {
 
 blg.controller("AuthCtrl", function ($scope, $location, Auth) {
     $scope.doAuth = function () {
+
+        $scope.authError=false;
+
         Auth.login($scope.user,
             //if auth fails
             function () {
                 $scope.user = {};
-                $scope.formInvalid = true;
+                $scope.authError=true;
             },
             //if auth success
             function () {

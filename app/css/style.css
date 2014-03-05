@@ -107,10 +107,6 @@ footer {
     display: inline-block;
 }
 
-.form-invalid input{
-    background-color: linen;
-}
-
 /*Ng-Animate Classes*/
 
 .at-repeat-macro-in.ng-enter, .at-repeat-macro-out.ng-leave {
