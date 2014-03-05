@@ -31,6 +31,7 @@ blg.config(function ($routeProvider, $locationProvider) {
 
     $routeProvider.when('/admin/auth', {
         templateUrl: 'partials/auth.html',
+        controller: 'AuthCtrl'
     })
 
     $routeProvider.when('/', {
@@ -70,23 +71,32 @@ blg.factory('Auth', ['$http', function ($http) {
                 method: 'GET',
                 url: "api/session/",
             })
-                .success(function(){
-                    if(successCallback){
+                .success(function () {
+                    if (successCallback) {
                         successCallback();
                     }
                 })
-                .error(function(){
-                    if(errorCallback){
+                .error(function () {
+                    if (errorCallback) {
                         errorCallback();
                     }
                 });
-        } ,
-        logout: function(callback){
+        },
+        logout: function (callback) {
             $http({
                 method: 'GET',
                 url: "api/logout/",
             })
                 .success(callback);
+        },
+        login: function (username, password, successCallback, errorCallback) {
+            $http({
+                method: 'POST',
+                url: "api/login",
+                data: {username: username, password: password}
+            })
+                .success(successCallback)
+                .error(errorCallback)
         }
 
     }
@@ -103,8 +113,6 @@ blg.factory('Tags', ['$http', function ($http) {
         }
     }
 }])
-
-
 
 
 blg.constant('Config', {

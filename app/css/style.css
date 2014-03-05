@@ -2,8 +2,11 @@
 
 body {
     padding-bottom: 40px;
-    font-family: "Open Sans", Helvetica, Arial, sans-serif;
     font-size: 18px;
+}
+
+body, h1, h2, h3, h4{
+    font-family: "Open Sans", Helvetica, Arial, sans-serif;
 }
 
 .center {

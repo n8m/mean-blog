@@ -5,12 +5,12 @@
 
         </div>
         <div class="panel-body">
-            <form role="form" class="form-horizontal" method="POST" action="/api/login/">
+            <form role="form" class="form-horizontal" ng-submit="doAuth()">
                 <div class="form-group">
                     <label class="col-sm-2 control-label">{{lang.login}}</label>
 
                     <div class="col-sm-10">
-                        <input required name="username" type="text" class="form-control"
+                        <input required name="username" type="text" ng-model="username" class="form-control"
                                placeholder="{{lang.login}}">
                     </div>
                 </div>
@@ -19,7 +19,7 @@
                     <label class="col-sm-2 control-label">{{lang.password}}</label>
 
                     <div class="col-sm-10">
-                        <input name="password" required type="text" class="form-control"
+                        <input name="password" required type="text" ng-model="password" class="form-control"
                                placeholder="{{lang.password}}">
                     </div>
                 </div>
