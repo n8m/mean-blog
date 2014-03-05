@@ -240,7 +240,7 @@ app.get('/api/tags', function (req, res) {
 
 
 app.get('/**', function (req, res, next) {
-    res.setHeader("Content-Type", mime.lookup(url));
+    console.log('server returns index.html to client');
     res.sendfile(__dirname + '/app/index.html');
 });
 
