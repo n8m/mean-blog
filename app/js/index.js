@@ -31,7 +31,6 @@ blg.config(function ($routeProvider, $locationProvider) {
 
     $routeProvider.when('/admin/auth', {
         templateUrl: 'partials/auth.html',
-        controller: 'AuthCtrl'
     })
 
     $routeProvider.when('/', {
@@ -39,9 +38,9 @@ blg.config(function ($routeProvider, $locationProvider) {
     });
 });
 
-blg.service("PostResource", function ($resource, Config) {
+blg.service("PostResource", function ($resource) {
     return $resource(
-        Config.apiRoot + "/posts/:id:urlTitle", {}, {
+        "api/posts/:id:urlTitle", {}, {
             get: {
                 method: 'GET',
                 params: {
@@ -64,12 +63,33 @@ blg.service("PostResource", function ($resource, Config) {
     );
 })
 
-blg.factory('Tags', ['$http', 'Config', function ($http, Config) {
+blg.factory('Auth', ['$http', function ($http) {
+    return{
+        checkSession: function (successCallback, errorCallback) {
+            $http({
+                method: 'GET',
+                url: "api/session/",
+            })
+                .success(successCallback)
+                .error(errorCallback);
+        } ,
+        logout: function(callback){
+            $http({
+                method: 'GET',
+                url: "api/logout/",
+            })
+                .success(callback);
+        }
+
+    }
+}])
+
+blg.factory('Tags', ['$http', 'Config', function ($http) {
     return{
         get: function (callback) {
             $http({
                 method: 'GET',
-                url: Config.apiRoot + "/tags/",
+                url: "api/tags/",
             })
                 .success(callback);
         }
@@ -77,11 +97,12 @@ blg.factory('Tags', ['$http', 'Config', function ($http, Config) {
 }])
 
 
+
+
 blg.constant('Config', {
     title: "MeAngu",
     root: "http://meangu.ru",
 //    root: "http://localhost/blog/app",
-    apiRoot: "/api",
     description: "Full Stack Javascript на русском",
     avatarLink: "img/avatar.png",
     postsOnPageByDefault: 5,

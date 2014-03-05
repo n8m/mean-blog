@@ -1,12 +1,8 @@
-blg.controller('ConfigCtrl', function ($scope, Lang, Config, Tags, $location, $http) {
+blg.controller('ConfigCtrl', function ($scope, Lang, Config, Tags, $location, Auth) {
 
-    $http({
-        method: 'GET',
-        url: "api/session/",
+    Auth.checkSession(function () {
+        $scope.loggedin = true;
     })
-        .success(function () {
-            $scope.loggedin = true;
-        });
 
     $scope.config = Config;
     $scope.lang = Lang;
@@ -15,52 +11,22 @@ blg.controller('ConfigCtrl', function ($scope, Lang, Config, Tags, $location, $h
         $scope.tags = data;
     })
 
-    $scope.logout = function () {
-
-
-        $http({
-            method: 'GET',
-            url: Config.apiRoot + "/logout/",
-        })
-            .success(function () {
-                $scope.loggedin = false;
-                $location.path('/');
-            });
-
-
-    }
+    $scope.logout = Auth.logout(function () {
+        $scope.loggedin = false;
+        $location.path('/');
+    })
 
 })
 
 blg.controller("SideCtrl", function ($scope) {
 })
 
-blg.controller("AuthCtrl", function ($scope, $http, Config) {
-    $scope.doAuth = function () {
+blg.controller("AdminCtrl", function ($scope, PostResource, Lang, $location, Auth) {
 
-
-        $http({
-            method: 'POST',
-            url: Config.apiRoot + "/login/",
-            data: $scope.admin
-        })
-            .success();
-
-
-    }
-})
-
-blg.controller("AdminCtrl", function ($scope, PostResource, Lang, $http, $location) {
-
-    $http({
-        method: 'GET',
-        url: "api/session/",
+    Auth.checkSession(null, function () {
+        $scope.loggedin = false;
+        $location.path('/admin/auth');
     })
-        .error(function () {
-            $scope.loggedin = false;
-            $location.path('/admin/auth');
-        });
-
 
     $scope.postsLoading = true;
 
@@ -85,7 +51,6 @@ blg.controller("AdminCtrl", function ($scope, PostResource, Lang, $http, $locati
 
 blg.controller("PostsCtrl", function ($scope, Config, PostResource, $routeParams, $location) {
     $scope.posts = [];
-
 
     $scope.readMore = function (urlTitle) {
         $location.path('/post/' + urlTitle);
@@ -140,16 +105,12 @@ blg.controller('SinglePostCtrl', function ($scope, $routeParams, PostResource, C
 
 })
 
-blg.controller('AddEditPostCtrl', function ($scope, PostResource, $timeout, $routeParams, $location, $filter, $http) {
+blg.controller('AddEditPostCtrl', function ($scope, PostResource, $timeout, $routeParams, $location, $filter) {
 
-    $http({
-        method: 'GET',
-        url: "api/session/",
+    Auth.checkSession(null, function () {
+        $scope.loggedin = false;
+        $location.path('/admin/auth');
     })
-        .error(function () {
-            $scope.loggedin = false;
-            $location.path('/admin/auth');
-        });
 
 
     if ($routeParams.urlTitle) {
