@@ -140,9 +140,8 @@ blg.constant('Lang', {
     sure: "Уверены?",
     login: "Логин",
     password: "Пароль",
-    authError: "Неправильно"
-
-
+    authError: "Неправильно",
+    footerText: "MeanGu - Javascript fullstack на русском: Node, Angular, Express, Mongo и другое"
 });
 
 blg.filter('date', function () {
