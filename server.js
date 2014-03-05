@@ -239,17 +239,8 @@ app.get('/api/tags', function (req, res) {
 })
 
 
-app.get('/css/style.css', function (req, res, next) {
-    res.setHeader('content-type', 'text/css');
-    res.sendfile(__dirname + '/app/index.html');
-});
-
-app.get('/lib/css/hljs.css', function (req, res, next) {
-    res.setHeader('content-type', 'test/css');
-    res.sendfile(__dirname + '/app/index.html');
-});
-
 app.get('/**', function (req, res, next) {
+    res.setHeader("Content-Type", mime.lookup(url));
     res.sendfile(__dirname + '/app/index.html');
 });
 
