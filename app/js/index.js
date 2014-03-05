@@ -70,8 +70,16 @@ blg.factory('Auth', ['$http', function ($http) {
                 method: 'GET',
                 url: "api/session/",
             })
-                .success(successCallback)
-                .error(errorCallback);
+                .success(function(){
+                    if(successCallback){
+                        successCallback();
+                    }
+                })
+                .error(function(){
+                    if(errorCallback){
+                        errorCallback();
+                    }
+                });
         } ,
         logout: function(callback){
             $http({
@@ -84,7 +92,7 @@ blg.factory('Auth', ['$http', function ($http) {
     }
 }])
 
-blg.factory('Tags', ['$http', 'Config', function ($http) {
+blg.factory('Tags', ['$http', function ($http) {
     return{
         get: function (callback) {
             $http({
