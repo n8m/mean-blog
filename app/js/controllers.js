@@ -25,7 +25,7 @@ blg.controller("SideCtrl", function ($scope) {
 
 blg.controller("AuthCtrl", function ($scope, $location, Auth) {
     $scope.doAuth = function(){
-                    Auth.login($scope.login, $scope.password, function(){
+                    Auth.login($scope.username, $scope.password, function(){
                            $location.path('/admin')
                     }, function(){
                         alert('wrong');

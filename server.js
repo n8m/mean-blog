@@ -87,10 +87,8 @@ app.all('*', function (req, res, next) {
     next();
 });
 
-app.post('/api/login', passport.authenticate('local', {
-    failureRedirect: '/admin/auth',
-}), function (req, res) {
-    res.redirect('/admin');
+app.post('/api/login', passport.authenticate('local'), function (req, res) {
+    res.send(200, {status: 'OK'});
 
 });
 

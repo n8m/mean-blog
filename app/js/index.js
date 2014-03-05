@@ -93,7 +93,7 @@ blg.factory('Auth', ['$http', function ($http) {
             $http({
                 method: 'POST',
                 url: "api/login",
-                data: {username: 'n8m', password: 'K0llider'}
+                data: {username: username, password: password}
             })
                 .success(successCallback)
                 .error(errorCallback)
