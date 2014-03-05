@@ -24,12 +24,18 @@ blg.controller("SideCtrl", function ($scope) {
 })
 
 blg.controller("AuthCtrl", function ($scope, $location, Auth) {
-    $scope.doAuth = function(){
-                    Auth.login($scope.username, $scope.password, function(){
-                           $location.path('/admin')
-                    }, function(){
-                        alert('wrong');
-                    })
+    $scope.doAuth = function () {
+        Auth.login($scope.user,
+            //if auth fails
+            function () {
+                $scope.user = {};
+                $scope.formInvalid = true;
+            },
+            //if auth success
+            function () {
+                $location.path('/admin')
+            }
+        )
     }
 })
 
