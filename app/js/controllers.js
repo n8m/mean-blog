@@ -11,10 +11,12 @@ blg.controller('ConfigCtrl', function ($scope, Lang, Config, Tags, $location, Au
         $scope.tags = data;
     })
 
-    $scope.logout = Auth.logout(function () {
-        $scope.loggedin = false;
-        $location.path('/');
-    })
+    $scope.logout = function () {
+        Auth.logout(function () {
+            $scope.loggedin = false;
+            $location.path('/');
+        })
+    }
 
 })
 
