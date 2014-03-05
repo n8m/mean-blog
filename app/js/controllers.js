@@ -23,7 +23,7 @@ blg.controller('ConfigCtrl', function ($scope, Lang, Config, Tags, $location, Au
 blg.controller("SideCtrl", function ($scope) {
 })
 
-blg.controller("AuthCtrl", function ($scope, $location) {
+blg.controller("AuthCtrl", function ($scope, $location, Auth) {
     $scope.doAuth = function(){
                     Auth.login($scope.login, $scope.password, function(){
                            $location.path('/admin')
