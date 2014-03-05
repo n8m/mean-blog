@@ -107,7 +107,7 @@ blg.controller('SinglePostCtrl', function ($scope, $routeParams, PostResource, C
 
 })
 
-blg.controller('AddEditPostCtrl', function ($scope, PostResource, $timeout, $routeParams, $location, $filter) {
+blg.controller('AddEditPostCtrl', function ($scope, PostResource, $timeout, $routeParams, $location, $filter, Auth) {
 
     Auth.checkSession(null, function () {
         $scope.loggedin = false;
