@@ -102,7 +102,9 @@ blg.directive('compilebb', function ($compile) {
         restrict: 'A',
         replace: true,
         link: function (scope, ele, attrs) {
-            scope.$watch(attrs.dynamic, function (html) {
+            scope.$watch(attrs.compilebb, function (html) {
+
+                console.log(html);
 
                 html.replace("[b]", "<strong>");
                 html.replace("[/b]", "</strong>");
