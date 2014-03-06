@@ -29,13 +29,13 @@
                 </span>
             </div>
 
-            <div disqus="'{{post.urlTitle}}'"></div>
-            <dir-disqus disqus-shortname="Meangu"
-            disqus-identifier="{{ post.urlTitle }}"
-            ready-to-bind="{{ contentLoaded }}">
-            </dir-disqus>
-
+            <!--<div disqus="'{{post.urlTitle}}'"></div>-->
         </div>
+
+        <dir-disqus disqus-shortname="Meangu"
+                    disqus-identifier="{{ post.urlTitle }}"
+                    ready-to-bind="{{ contentLoaded }}">
+        </dir-disqus>
 
 
     </div>

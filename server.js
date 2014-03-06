@@ -7,7 +7,7 @@ var LocalStrategy = require('passport-local').Strategy;
 
 passport.use(new LocalStrategy(
     function (username, password, done) {
-        if (username === 'n8m' && password === "K0llider") {
+        if (username === config.adminLogin && password === config.adminPassword) {
             done(null, true);
         }
         else {
