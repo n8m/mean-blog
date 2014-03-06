@@ -157,8 +157,8 @@ blg.filter('date', function () {
     }
 })
 
-blg.filter('addBreaklinesToHtml', function () {
-    return function (input) {
-        return input.replace(/\n/g, '\n<br />');
-    }
-})
+//blg.filter('addBreaklinesToHtml', function () {
+//    return function (input) {
+//        return input.replace(/\n/g, '\n<br />');
+//    }
+//})

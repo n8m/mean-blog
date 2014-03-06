@@ -97,12 +97,21 @@ blg.directive('spinner', function (Config) {
     }
 })
 
-blg.directive('dynamic', function ($compile) {
+blg.directive('compilebb', function ($compile) {
     return {
         restrict: 'A',
         replace: true,
         link: function (scope, ele, attrs) {
             scope.$watch(attrs.dynamic, function (html) {
+
+                html.replace("[b]", "<strong>");
+                html.replace("[/b]", "</strong>");
+                html.replace("[em]", "<em>");
+                html.replace("[/em]", "</em>");
+                html.replace("[code]", "<pre hljs>");
+                html.replace("[/code]", "</pre>");
+                html.replace("\n", "<br>");
+
                 ele.html(html);
                 $compile(ele.contents())(scope);
             });

@@ -14,7 +14,7 @@
             <h3 class="panel-title">{{post.title}}</h3>
         </div>
         <div class="panel-body">
-            <div dynamic="post.content"></div>
+            <div compilebb="post.content"></div>
             <div class="tumblr-tags">
                 <span class="glyphicon glyphicon-tags"></span>
                 <a ng-repeat="tag in post.tags track by $index" href="{{config.root}}/posts?tags={{tag}}"
@@ -29,13 +29,12 @@
                 </span>
             </div>
 
-        </div>
+            <dir-disqus disqus-shortname="Meangu"
+            disqus-identifier="{{ post.urlTitle }}"
+            ready-to-bind="{{ contentLoaded }}">
+            </dir-disqus>
 
-        <dir-disqus class="panel-footer"
-                    disqus-shortname="Meangu"
-                    disqus-identifier="{{ post.urlTitle }}"
-                    ready-to-bind="{{ contentLoaded }}">
-        </dir-disqus>
+        </div>
 
 
     </div>
