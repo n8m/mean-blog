@@ -104,15 +104,13 @@ blg.directive('compilebb', function ($compile) {
         link: function (scope, ele, attrs) {
             scope.$watch(attrs.compilebb, function (html) {
 
-                console.log(html);
-
-                html.replace("[b]", "<strong>");
-                html.replace("[/b]", "</strong>");
-                html.replace("[em]", "<em>");
-                html.replace("[/em]", "</em>");
-                html.replace("[code]", "<pre hljs>");
-                html.replace("[/code]", "</pre>");
-                html.replace("\n", "<br>");
+                html = html.replace(/[b]/g, "<strong>");
+                html = html.replace(/[\/b]/g, "</strong>");
+                html = html.replace(/[em]/g, "<em>");
+                html = html.replace(/[\/em]/g, "</em>");
+                html = html.replace(/[code]/g, "<pre hljs>");
+                html = html.replace(/[\/code]/g, "</pre>");
+                html = html.replace(/\\n/g, "<br>");
 
                 ele.html(html);
                 $compile(ele.contents())(scope);
