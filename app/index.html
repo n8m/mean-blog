@@ -5,12 +5,14 @@
     <link href="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet">
     <link href="/css/style.css" rel="stylesheet" type="text/css">
     <link href="/lib/css/hljs.css" rel="stylesheet" type="text/css">
-    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
+    <link href="/lib/css/angular-flip.css" rel="stylesheet" type="text/css">
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400&subset=latin,cyrillic' rel='stylesheet'
+          type='text/css'>
 
     <meta charset="UTF-8">
 
     <!-- otherwise html5mode routing will not work -->
-    <base href="/" />
+    <base href="/"/>
 
 
 </head>
@@ -19,10 +21,10 @@
 
 <div class="navbar navbar-default">
     <div class="container">
-        <a class="navbar-brand" href="{{config.root}}">{{config.title}}</a>
+        <h1><a class="navbar-brand" href="{{config.root}}">{{config.title}}</a></h1>
         <ul ng-show="loggedin" class="list-inline navbar-brand pull-right no-margin-bottom">
-            <li><a href="#" ng-click="logout()">LogOut</a></li>
             <li><a href="{{config.root}}/admin">Admin</a></li>
+            <li><a href="#" ng-click="logout()">LogOut</a></li>
         </ul>
     </div>
 </div>
@@ -35,12 +37,19 @@
         <div class="col-md-4 css-class" ng-controller="SideCtrl">
             <div class="well well-lg">
                 <div class="media">
-                    <a href="{{config.root}}">
-                        <img ng-src="{{config.avatarLink}}" class="media-object center img-thumbnail">
-                    </a>
+                    <!--<a href="{{config.root}}">-->
+                        <flip flip-toggle>
+                            <flip-front>
+                                <img ng-src="{{config.avatarLink}}" class="media-object center img-thumbnail">
+                            </flip-front>
+                            <flip-back>
+                                <img src="http://www.stone-is.com/images/thumbmedium/nodejs-1280x1024.png" class="media-object center img-thumbnail">
+                            </flip-back>
+                        </flip>
+                    <!--</a>-->
 
                     <div class="media-body">
-                        <p class="lead text-center">{{config.description}}</p>
+                        <h2 class="lead text-center">{{config.description}}</h2>
                     </div>
                 </div>
                 <form action="{{config.root + '/posts?search=' + search}}" class="form-horizontal sidebar-item">
@@ -82,6 +91,8 @@
 <script src="lib/js/angular-disqus.js"></script>
 <script src="lib/js/hljs.js"></script>
 <script src="lib/js/hljs-angular.js"></script>
+<script src="lib/js/angular-flip.js"></script>
+
 
 </body>
 </html>

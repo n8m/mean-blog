@@ -1,4 +1,4 @@
-var blg = angular.module('blog', ['ngRoute', 'ngResource', 'ngAnimate', 'ngSanitize', 'hljs']);
+var blg = angular.module('blog', ['ngRoute', 'ngResource', 'ngAnimate', 'ngSanitize', 'hljs', 'angular-flip']);
 
 blg.config(function ($routeProvider, $locationProvider) {
 
