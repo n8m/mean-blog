@@ -10,7 +10,7 @@ angular.module('angular-flip', [])
             template: '<div class="flip">' +
                 '<div class="card" ng-transclude></div>' +
                 '</div>',
-            controller: ['$scope', '$element', '$timeout', function ($scope, $element, $interval) {
+            controller: ['$scope', '$element', '$interval', function ($scope, $element, $interval) {
 
                 $interval(function () {
                     $scope.flipped = !$scope.flipped;
