@@ -1,4 +1,5 @@
 .flip {
+    height: 135px;
     position: relative;
     -webkit-perspective: 800;
     perspective: 800px; }
