@@ -11,7 +11,8 @@
             <div class="date pull-right">
                 {{post.date | date}}
             </div>
-            <h3 class="panel-title">{{post.title}}</h3>
+
+            <h3 class="no-margin-bottom">{{post.title}}</h3>
         </div>
         <div class="panel-body">
             <div compilebb="post.content"></div>
@@ -30,8 +31,8 @@
             </div>
 
             <dir-disqus disqus-shortname="Meangu"
-            disqus-identifier="{{ post.urlTitle }}"
-            ready-to-bind="{{ contentLoaded }}">
+                        disqus-identifier="{{ post.urlTitle }}"
+                        ready-to-bind="{{ contentLoaded }}">
             </dir-disqus>
 
         </div>
