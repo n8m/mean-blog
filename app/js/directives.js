@@ -104,6 +104,10 @@ blg.directive('compilebb', function ($compile) {
         link: function (scope, ele, attrs) {
             scope.$watch(attrs.compilebb, function (html) {
 
+                    if(html === undefined){
+                        return;
+                    }
+
                     //regExp finding [b],[/b],[em],[/em],[code],[/code] and \n
                     var bbCodesRegExp = /\[b\]|\[\/b\]|\[em\]|\[\/em\]|\[code\]|\[\/code\]|\\n/g;
 
