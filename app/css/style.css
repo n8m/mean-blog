@@ -38,6 +38,10 @@ footer {
     margin-top: 10px;
 }
 
+.navbar-brand{
+    font-size: inherit;
+}
+
 .tumblr-tags {
     margin-top: 10px;
     margin-bottom: -5px;
@@ -132,10 +136,6 @@ footer {
 
 .no-margin-bottom {
     margin-bottom: 0;
-}
-
-.panel-title {
-    font-size: 22px;
 }
 
 .css-class-add, .css-class-remove {
