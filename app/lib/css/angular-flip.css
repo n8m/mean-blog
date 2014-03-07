@@ -4,8 +4,8 @@
     -webkit-perspective: 800;
     perspective: 800px; }
 .flip.flipped .card {
-    -webkit-transform: rotatex(-180deg);
-    transform: rotatex(-180deg); }
+    -webkit-transform: rotatey(-180deg);
+    transform: rotatey(-180deg); }
 .flip.flipped[horizontal] .card {
     -webkit-transform: rotatey(-180deg);
     transform: rotatey(-180deg); }
@@ -27,8 +27,8 @@
     position: absolute;
     z-index: 1; }
 .flip .card .back {
-    -webkit-transform: rotatex(-180deg);
-    transform: rotatex(-180deg); }
+    -webkit-transform: rotatey(-180deg);
+    transform: rotatey(-180deg); }
 .flip[horizontal] .card .back {
     -webkit-transform: rotatey(-180deg);
     transform: rotatey(-180deg); }
