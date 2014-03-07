@@ -102,36 +102,34 @@ blg.directive('compilebb', function ($compile) {
         restrict: 'A',
         replace: true,
         link: function (scope, ele, attrs) {
-            scope.$watch(attrs.compilebb, function (html) {
 
-                    //regExp finding [b],[/b],[em],[/em],[code],[/code] and \n
-                    var bbCodesRegExp = /\[b\]|\[\/b\]|\[em\]|\[\/em\]|\[code\]|\[\/code\]|\\n/g;
+            var html = attrs.compilebb;
 
-                    var map = {
-                        "[b]": "<strong>",
-                        "[/b]": "</strong>",
-                        "[em]": "<em>",
-                        "[/em]": "</em>",
-                        "[code]": "<span hljs>",
-                        "[/code]": "</span>",
-                        "\n": "<br>"
-                    }
+            //regExp finding [b],[/b],[em],[/em],[code],[/code] and \n
+            var bbCodesRegExp = /\[b\]|\[\/b\]|\[em\]|\[\/em\]|\[code\]|\[\/code\]|\\n/g;
 
-                    html = html.replace(bbCodesRegExp, function (match) {
-                        var tag = map[match];
-                        if(tag){
-                            return tag;
-                        }
-                        else return match;
-                    })
+            var map = {
+                "[b]": "<strong>",
+                "[/b]": "</strong>",
+                "[em]": "<em>",
+                "[/em]": "</em>",
+                "[code]": "<span hljs>",
+                "[/code]": "</span>",
+                "\n": "<br>"
+            }
 
-                    ele.html(html);
-                    $compile(ele.contents())(scope);
+            html = html.replace(bbCodesRegExp, function (match) {
+                var tag = map[match];
+                if (tag) {
+                    return tag;
                 }
-            )
-            ;
+                else return match;
+            })
+
+            ele.html(html);
+            $compile(ele.contents())(scope);
+
         }
     }
-        ;
+
 })
-;
