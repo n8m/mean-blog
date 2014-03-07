@@ -25,6 +25,14 @@ h3 {
     font-size: 18px;
 }
 
+a{
+    color: inherit;
+}
+
+a:hover{
+    text-decoration: none;
+}
+
 .center {
     text-align: center;
 }
