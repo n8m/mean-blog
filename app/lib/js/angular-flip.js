@@ -14,7 +14,7 @@ angular.module('angular-flip', [])
 
                 $interval(function () {
                     $scope.flipped = !$scope.flipped;
-                }, 5000)
+                }, 5000);
 
                 this.toggle = function () {
                     var flipped = !$element.hasClass('flipped');

@@ -108,8 +108,8 @@ blg.directive('compilebb', function ($compile) {
                         return;
                     }
 
-                    //regExp finding [b],[/b],[em],[/em],[code],[/code] and \n
-                    var bbCodesRegExp = /\[b\]|\[\/b\]|\[em\]|\[\/em\]|\[code\]|\[\/code\]|\\n/g;
+                    //regExp finding [b],[/b],[em],[/em],[code],[/code],[title],[/title] and \n
+                    var bbCodesRegExp = /\[b\]|\[\/b\]|\[em\]|\[\/em\]|\[code\]|\[\/code\]|\[title\]|\[\/title\]|\\n/g;
 
                     var map = {
                         "[b]": "<strong>",
@@ -118,6 +118,8 @@ blg.directive('compilebb', function ($compile) {
                         "[/em]": "</em>",
                         "[code]": "<span hljs>",
                         "[/code]": "</span>",
+                        "[title]": "<h2>",
+                        "[/title]": "</h2>",
                         "\n": "<br>"
                     }
 
