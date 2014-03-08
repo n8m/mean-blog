@@ -162,7 +162,7 @@ footer {
 }
 
 .highlighted {
-    background-color: gainsboro;
+    background-color: #f8f8f8;
     padding: 0px 3px;
     border: 1px dotted grey;
 }
