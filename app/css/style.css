@@ -17,7 +17,7 @@ body, h1, h2, h3, h4 {
     margin: 25px inherit;
 }
 
-pre{
+pre {
     margin: 10px 0;
 }
 
@@ -159,6 +159,12 @@ footer {
 
 .margin-top {
     margin-top: 30px;
+}
+
+.highlighted {
+    background-color: gainsboro;
+    padding: 0px 3px;
+    border: 1px dotted grey;
 }
 
 .css-class-add, .css-class-remove {

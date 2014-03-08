@@ -104,12 +104,12 @@ blg.directive('compilebb', function ($compile) {
         link: function (scope, ele, attrs) {
             scope.$watch(attrs.compilebb, function (html) {
 
-                    if(html === undefined){
+                    if (html === undefined) {
                         return;
                     }
 
-                    //regExp finding [b],[/b],[em],[/em],[code],[/code],[title],[/title] and \n
-                    var bbCodesRegExp = /\[b\]|\[\/b\]|\[em\]|\[\/em\]|\[code\]|\[\/code\]|\[title\]|\[\/title\]|\\n/g;
+                    //regExp finding [b],[/b],[em],[/em],[code],[/code],[hl],[/hl],[title],[/title] and \n
+                    var bbCodesRegExp = /\[b\]|\[\/b\]|\[em\]|\[\/em\]|\[code\]|\[\/code\]|\[hl\]|\[\/hl\]|\[title\]|\[\/title\]|\\n/g;
 
                     var map = {
                         "[b]": "<strong>",
@@ -118,6 +118,8 @@ blg.directive('compilebb', function ($compile) {
                         "[/em]": "</em>",
                         "[code]": "<span hljs>",
                         "[/code]": "</span>",
+                        "[hl]": "<span class=\'highlighted\'>",
+                        "[/hl]": "</span>",
                         "[title]": "<h2>",
                         "[/title]": "</h2>",
                         "\n": "<br>"
