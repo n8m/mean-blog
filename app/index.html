@@ -38,7 +38,7 @@
             <div class="well well-lg">
                 <div class="media">
                     <!--<a href="{{config.root}}">-->
-                        <flip flip-toggle>
+                        <flip flip-toggle class="pointer">
                             <flip-front>
                                 <img ng-src="{{config.avatarLink}}" class="media-object center img-thumbnail">
                             </flip-front>
@@ -52,15 +52,15 @@
                         <h2 class="lead text-center">{{config.description}}</h2>
                     </div>
                 </div>
-                <form action="{{config.root + '/posts?search=' + search}}" class="form-horizontal sidebar-item">
-                    <div class="input-group">
-                                        <span class="input-group-addon">
-                                            <span class="glyphicon glyphicon-search"></span>
-                                        </span>
-                        <input ng-model="search" type="text" class="form-control"
-                               placeholder="Пока не работает">
-                    </div>
-                </form>
+                <!--<form action="{{config.root + '/posts?search=' + search}}" class="form-horizontal sidebar-item">-->
+                    <!--<div class="input-group">-->
+                                        <!--<span class="input-group-addon">-->
+                                            <!--<span class="glyphicon glyphicon-search"></span>-->
+                                        <!--</span>-->
+                        <!--<input ng-model="search" type="text" class="form-control"-->
+                               <!--placeholder="Пока не работает">-->
+                    <!--</div>-->
+                <!--</form>-->
 
                 <div class="margin-top">
                     <h2>Тэги</h2>
