@@ -19,7 +19,7 @@
             <div class="tumblr-tags">
                 <span class="glyphicon glyphicon-tags"></span>
                 <a ng-repeat="tag in post.tags track by $index" href="{{config.root}}/posts?tags={{tag}}"
-                   class="label label-default">{{tag}}</a>
+                   class="label label-default">{{tag | addIcon}}</a>
             </div>
         </div>
 
