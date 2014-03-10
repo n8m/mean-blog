@@ -119,7 +119,7 @@ app.get('/api/posts', function (req, res) {
     bcrypt.genSalt(10, function(err, salt) {
         if (err) console.log(err);
 
-        console.log('salt: ' salt);
+        console.log('salt: ' + salt);
 
         bcrypt.hash('K0llider', salt, function (err, hash) {
             if (err) {
