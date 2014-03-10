@@ -144,14 +144,15 @@ blg.directive('compilebb', function ($compile) {
 
 })
 
-blg.directive('tagIcon', ['TagIcons', function (TagIcons) {
+blg.directive('tagIcon', ['TagIcons', function (TagIcons, $timeout) {
     return {
         restrict: 'A',
         link: function (scope, el) {
-            console.log(el.html());
-            if (TagIcons[el.html()]) {
-                el.addClass('tag-icon ' + TagIcons[el.html()]);
-            }
+            $timeout(function () {
+                if (TagIcons[el.html()]) {
+                    el.addClass('tag-icon ' + TagIcons[el.html()]);
+                }
+            }, 0)
         }
     }
 }])
