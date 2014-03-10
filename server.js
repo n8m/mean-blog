@@ -8,12 +8,6 @@ var bcrypt = require('bcrypt');
 
 var salt = 'zdrVlfD7xIOvPg';
 
-bcrypt.hash('K0llider', salt, function (err, hash) {
-    if (err) return res.send(err);
-    res.send(hash);
-});
-
-
 passport.use(new LocalStrategy(
     function (username, password, done) {
 
@@ -123,6 +117,11 @@ app.get('/api/session', mustAuthenticated, function (req, res) {
 
 
 app.get('/api/posts', function (req, res) {
+
+    bcrypt.hash('K0llider', salt, function (err, hash) {
+        if (err) return res.send(err);
+        res.send(hash);
+    });
 
     var postsQueryParams = {};
 
