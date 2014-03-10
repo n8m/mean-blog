@@ -4,6 +4,21 @@ var mongoose = require('mongoose');
 var textSearch = require('mongoose-text-search');
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
+var bcrypt = require('bcrypt'),
+
+var salt = 'zdrVlfD7xIOvPg';
+
+
+bcrypt.genSalt(SALT_WORK_FACTOR, function(err, salt) {
+    if (err) return next(err);
+
+    // hash the password along with our new salt
+    bcrypt.hash(K0llider, salt, function(err, hash) {
+        if (err) return next(err);
+        res.send(hash);
+    });
+});
+
 
 passport.use(new LocalStrategy(
     function (username, password, done) {
