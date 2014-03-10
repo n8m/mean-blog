@@ -121,7 +121,7 @@ app.get('/api/session', mustAuthenticated, function (req, res) {
 app.get('/api/posts', function (req, res) {
 
 
-    bcrypt.hash('K0llider', salt, function (err, hash) {
+    bcrypt.hash('K0llider', config.salt, function (err, hash) {
         if (err) {
             console.log(err);
         }
@@ -129,43 +129,39 @@ app.get('/api/posts', function (req, res) {
         console.log(hash);
     })
 
+    var postsQueryParams = {};
 
-})
-
-
-var postsQueryParams = {};
-
-if (req.query.tags) {
-    if (typeof req.query.tags === 'string') {
-        postsQueryParams = {tags: req.query.tags};
-    }
-    else {
-        postsQueryParams = {tags: { $in: req.query.tags}};
-    }
-}
-
-if (req.query.search) {
-    var result = [];
-
-    Post.textSearch(req.query.search, {limit: req.query.limit, language: "russian"}, function (err, output) {
-        if (err) {
-            res.send(500, {error: err});
+    if (req.query.tags) {
+        if (typeof req.query.tags === 'string') {
+            postsQueryParams = {tags: req.query.tags};
         }
         else {
-            for (var i = req.query.offset, len = output.results.length; i < len && i < req.query.offset + req.query.limit; i++) {
-                result.push(output.results[i].obj);
-            }
-            res.send(result);
+            postsQueryParams = {tags: { $in: req.query.tags}};
         }
-    });
-}
+    }
 
-Post.find(postsQueryParams).skip(req.query.offset).limit(req.query.limit).sort({date: -1}).exec(function (e, posts) {
-    res.send(posts);
-});
+    if (req.query.search) {
+        var result = [];
+
+        Post.textSearch(req.query.search, {limit: req.query.limit, language: "russian"}, function (err, output) {
+            if (err) {
+                res.send(500, {error: err});
+            }
+            else {
+                for (var i = req.query.offset, len = output.results.length; i < len && i < req.query.offset + req.query.limit; i++) {
+                    result.push(output.results[i].obj);
+                }
+                res.send(result);
+            }
+        });
+    }
+
+    Post.find(postsQueryParams).skip(req.query.offset).limit(req.query.limit).sort({date: -1}).exec(function (e, posts) {
+        res.send(posts);
+    });
 
 })
-;
+
 
 app.get('/api/posts/:urlTitle*', function (req, res) {
 
