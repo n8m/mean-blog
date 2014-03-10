@@ -171,7 +171,6 @@ blg.filter('date', function () {
 
 blg.filter('addIcon', ['TagIcons', function (TagIcons) {
     return function (tag) {
-        console.log(TagIcons[tag]);
         if (TagIcons[tag]) {
             return TagIcons[tag] + tag;
         }
