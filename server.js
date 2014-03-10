@@ -15,10 +15,16 @@ passport.use(new LocalStrategy(
                 if (err) {
                     console.log(err);
                     done(null, false);
+                } else {
+                    console.log(isMatch);
+                    done(null, true);
+
                 }
-                done(null, true);
             });
 
+        }
+        else {
+            done(null, false);
         }
 
 
