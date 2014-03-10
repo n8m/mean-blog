@@ -167,13 +167,3 @@ blg.filter('date', function () {
         }
     }
 })
-
-
-blg.filter('addIcon', ['TagIcons', function (TagIcons) {
-    return function (tag) {
-        if (TagIcons[tag]) {
-            return TagIcons[tag] + tag;
-        }
-        else return tag;
-    }
-}])

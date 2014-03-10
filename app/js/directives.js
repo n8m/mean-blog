@@ -148,10 +148,10 @@ blg.directive('tagIcon', ['TagIcons', function (TagIcons) {
     return {
         restrict: 'A',
         link: function (scope, el) {
+            console.log(el.html());
             if (TagIcons[el.html()]) {
                 el.addClass('tag-icon ' + TagIcons[el.html()]);
             }
         }
-
     }
 }])
