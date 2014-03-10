@@ -122,7 +122,8 @@ blg.directive('compilebb', function ($compile) {
                         "[/hl]": "</span>",
                         "[title]": "<h2>",
                         "[/title]": "</h2>",
-                        "\n": "<br>"
+                        "\n": "<br>",
+                        "\r": "<br>"
                     }
 
                     html = html.replace(bbCodesRegExp, function (match) {
