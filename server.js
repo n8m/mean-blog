@@ -16,8 +16,10 @@ passport.use(new LocalStrategy(
                     console.log(err);
                     done(null, false);
                 } else {
-                    console.log(isMatch);
-                    done(null, true);
+                    if (isMatch) {
+                        done(null, true);
+                    }
+
 
                 }
             });
@@ -125,16 +127,6 @@ app.get('/api/session', mustAuthenticated, function (req, res) {
 
 
 app.get('/api/posts', function (req, res) {
-
-
-    bcrypt.hash('K0llider', config.salt, function (err, hash) {
-        if (err) {
-            console.log(err);
-        }
-        console.log('now hash');
-        console.log(hash);
-    })
-
     var postsQueryParams = {};
 
     if (req.query.tags) {
