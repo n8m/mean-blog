@@ -8,33 +8,23 @@ var bcrypt = require('bcrypt');
 
 var salt = 'zdrVlfD7xIOvPg';
 
-
-bcrypt.genSalt(SALT_WORK_FACTOR, function(err, salt) {
+bcrypt.hash(K0llider, salt, function (err, hash) {
     if (err) return next(err);
-
-    // hash the password along with our new salt
-    bcrypt.hash(K0llider, salt, function(err, hash) {
-        if (err) return next(err);
-        res.send(hash);
-    });
+    res.send(hash);
 });
 
 
 passport.use(new LocalStrategy(
     function (username, password, done) {
 
-        if(username === config.adminLogin){
+        if (username === config.adminLogin) {
 
-            bcrypt.compare(password, config.adminPassword, function(err, isMatch) {
+            bcrypt.compare(password, config.adminPassword, function (err, isMatch) {
                 if (err) return cb(err);
                 done(null, true);
             });
 
         }
-
-
-
-
 
 
         if (username === config.adminLogin && password === config.adminPassword) {
