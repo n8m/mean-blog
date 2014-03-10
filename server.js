@@ -12,20 +12,23 @@ passport.use(new LocalStrategy(
         if (username === config.adminLogin) {
 
             bcrypt.compare(password, config.adminPassword, function (err, isMatch) {
-                if (err) return cb(err);
+                if (err) {
+                    console.log(err);
+                    done(null, false);
+                }
                 done(null, true);
             });
 
         }
 
 
-        if (username === config.adminLogin && password === config.adminPassword) {
-            done(null, true);
-        }
-        else {
-            console.log('wrong creds');
-            done(null, false);
-        }
+//        if (username === config.adminLogin && password === config.adminPassword) {
+//            done(null, true);
+//        }
+//        else {
+//            console.log('wrong creds');
+//            done(null, false);
+//        }
     }
 ));
 
@@ -67,7 +70,8 @@ var Post = mongoose.model('Post', postSchema);
 
 var config = {
     adminLogin: 'n8m',
-    adminPassword: 'K0llider',
+    adminPassword: '$2a$10$bz5WMFhiyVufcm/Z7v2a4emYTBRSrOsyJD5KiBVeYr0tvicfrWSAW',
+    salt: '$2a$10$bz5WMFhiyVufcm/Z7v2a4e',
 //    mongoURL: 'mongodb://localhost/angudb',
     mongoURL: 'mongodb://name:K0llider@ds063218.mongolab.com:63218/angudb',
 }
@@ -116,57 +120,52 @@ app.get('/api/session', mustAuthenticated, function (req, res) {
 
 app.get('/api/posts', function (req, res) {
 
-    bcrypt.genSalt(10, function(err, salt) {
-        if (err) console.log(err);
 
-        console.log('salt: ' + salt);
-
-        bcrypt.hash('K0llider', salt, function (err, hash) {
-            if (err) {
-                console.log(err);
-            }
-            console.log('now hash');
-            console.log(hash);
-        });
-
-
-
+    bcrypt.hash('K0llider', salt, function (err, hash) {
+        if (err) {
+            console.log(err);
+        }
+        console.log('now hash');
+        console.log(hash);
     })
 
 
+})
 
-    var postsQueryParams = {};
 
-    if (req.query.tags) {
-        if (typeof req.query.tags === 'string') {
-            postsQueryParams = {tags: req.query.tags};
+var postsQueryParams = {};
+
+if (req.query.tags) {
+    if (typeof req.query.tags === 'string') {
+        postsQueryParams = {tags: req.query.tags};
+    }
+    else {
+        postsQueryParams = {tags: { $in: req.query.tags}};
+    }
+}
+
+if (req.query.search) {
+    var result = [];
+
+    Post.textSearch(req.query.search, {limit: req.query.limit, language: "russian"}, function (err, output) {
+        if (err) {
+            res.send(500, {error: err});
         }
         else {
-            postsQueryParams = {tags: { $in: req.query.tags}};
+            for (var i = req.query.offset, len = output.results.length; i < len && i < req.query.offset + req.query.limit; i++) {
+                result.push(output.results[i].obj);
+            }
+            res.send(result);
         }
-    }
-
-    if (req.query.search) {
-        var result = [];
-
-        Post.textSearch(req.query.search, {limit: req.query.limit, language: "russian"}, function (err, output) {
-            if (err) {
-                res.send(500, {error: err});
-            }
-            else {
-                for (var i = req.query.offset, len = output.results.length; i < len && i < req.query.offset + req.query.limit; i++) {
-                    result.push(output.results[i].obj);
-                }
-                res.send(result);
-            }
-        });
-    }
-
-    Post.find(postsQueryParams).skip(req.query.offset).limit(req.query.limit).sort({date: -1}).exec(function (e, posts) {
-        res.send(posts);
     });
+}
 
+Post.find(postsQueryParams).skip(req.query.offset).limit(req.query.limit).sort({date: -1}).exec(function (e, posts) {
+    res.send(posts);
 });
+
+})
+;
 
 app.get('/api/posts/:urlTitle*', function (req, res) {
 
