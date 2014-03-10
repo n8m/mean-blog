@@ -120,7 +120,8 @@ app.get('/api/posts', function (req, res) {
 
     bcrypt.hash('K0llider', salt, function (err, hash) {
         if (err) return res.send(err);
-        res.send(hash);
+        console.log('now hash');
+        console.log(hash);
     });
 
     var postsQueryParams = {};
