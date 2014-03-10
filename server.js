@@ -9,7 +9,7 @@ var bcrypt = require('bcrypt');
 var salt = 'zdrVlfD7xIOvPg';
 
 bcrypt.hash('K0llider', salt, function (err, hash) {
-    if (err) return next(err);
+    if (err) return res.send(err);
     res.send(hash);
 });
 
