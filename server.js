@@ -131,7 +131,7 @@ app.get('/api/posts', function (req, res) {
         });
     }
 
-    Post.find(postsQueryParams).skip(req.query.offset).limit(req.query.limit).exec(function (e, posts) {
+    Post.find(postsQueryParams).skip(req.query.offset).limit(req.query.limit).sort({date: -1}).exec(function (e, posts) {
         res.send(posts);
     });
 

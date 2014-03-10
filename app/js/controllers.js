@@ -173,10 +173,6 @@ blg.controller('AddEditPostCtrl', function ($scope, PostResource, $timeout, $rou
     $scope.savePost = function () {
         $scope.postSaving = true;
 
-
-//        $scope.post.content = $filter('addBreaklinesToHtml')($scope.post.content);
-
-        console.log($scope.post);
         //if post already exist and we have edited it. We use POST
         if ($routeParams.urlTitle) {
             PostResource.update($scope.post, successSavingHandler);
