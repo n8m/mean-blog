@@ -115,7 +115,7 @@ blg.factory('Tags', ['$http', function ($http) {
 }])
 
 blg.service('TagIcons', function () {
-    var tagIcons =
+    return tagIcons =
     {
         'AngularJS': 'A',
         'NodeJS': 'N',
@@ -125,9 +125,6 @@ blg.service('TagIcons', function () {
         'MongooseJS': 'M',
         'Bootstrap': 'B'
     }
-
-    return tagIcons;
-
 })
 
 blg.constant('Config', {
@@ -171,12 +168,16 @@ blg.filter('date', function () {
     }
 })
 
-blg.filter('addIcons', function (TagIcons) {
+
+blg.filter('addIcons', ['TagIcons', function (TagIcons) {
     return function (tag) {
-                      console.log(TagIcons[tag]);
+
+        console.log(tag);
+        console.log(TagIcons);
+
         if (TagIcons[tag]) {
             return TagIcons[tag] + tag;
         }
         else return tag;
     }
-})
+}])
