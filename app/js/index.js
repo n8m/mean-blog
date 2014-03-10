@@ -120,7 +120,6 @@ blg.constant('Config', {
     root: "http://meangu.ru",
 //    root: "http://localhost/blog/app",
     description: "Full Stack Javascript на русском",
-    avatarLink: "img/avatar.png",
     postsOnPageByDefault: 5,
 });
 
@@ -156,9 +155,3 @@ blg.filter('date', function () {
         }
     }
 })
-
-//blg.filter('addBreaklinesToHtml', function () {
-//    return function (input) {
-//        return input.replace(/\n/g, '\n<br />');
-//    }
-//})
