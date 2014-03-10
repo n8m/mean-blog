@@ -19,24 +19,15 @@ passport.use(new LocalStrategy(
                     if (isMatch) {
                         done(null, true);
                     }
-
-
+                    else{
+                        done(null, false);
+                    }
                 }
             });
-
         }
         else {
             done(null, false);
         }
-
-
-//        if (username === config.adminLogin && password === config.adminPassword) {
-//            done(null, true);
-//        }
-//        else {
-//            console.log('wrong creds');
-//            done(null, false);
-//        }
     }
 ));
 
