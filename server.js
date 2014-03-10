@@ -4,7 +4,7 @@ var mongoose = require('mongoose');
 var textSearch = require('mongoose-text-search');
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
-var bcrypt = require('bcrypt'),
+var bcrypt = require('bcrypt');
 
 var salt = 'zdrVlfD7xIOvPg';
 
@@ -22,6 +22,21 @@ bcrypt.genSalt(SALT_WORK_FACTOR, function(err, salt) {
 
 passport.use(new LocalStrategy(
     function (username, password, done) {
+
+        if(username === config.adminLogin){
+
+            bcrypt.compare(password, config.adminPassword, function(err, isMatch) {
+                if (err) return cb(err);
+                done(null, true);
+            });
+
+        }
+
+
+
+
+
+
         if (username === config.adminLogin && password === config.adminPassword) {
             done(null, true);
         }
