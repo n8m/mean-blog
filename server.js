@@ -6,8 +6,6 @@ var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 var bcrypt = require('bcrypt');
 
-var salt = 'zdrVlfD7xIOvPg';
-
 passport.use(new LocalStrategy(
     function (username, password, done) {
 
@@ -118,13 +116,24 @@ app.get('/api/session', mustAuthenticated, function (req, res) {
 
 app.get('/api/posts', function (req, res) {
 
-    bcrypt.hash('K0llider', salt, function (err, hash) {
-        if (err) {
-            console.log(err);
-        }
-        console.log('now hash');
-        console.log(hash);
-    });
+    bcrypt.genSalt(10, function(err, salt) {
+        if (err) console.log(err);
+
+        console.log('salt: ' salt);
+
+        bcrypt.hash('K0llider', salt, function (err, hash) {
+            if (err) {
+                console.log(err);
+            }
+            console.log('now hash');
+            console.log(hash);
+        });
+
+
+
+    })
+
+
 
     var postsQueryParams = {};
 
