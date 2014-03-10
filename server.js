@@ -119,7 +119,9 @@ app.get('/api/session', mustAuthenticated, function (req, res) {
 app.get('/api/posts', function (req, res) {
 
     bcrypt.hash('K0llider', salt, function (err, hash) {
-        if (err) return res.send(err);
+        if (err) {
+            console.log(err);
+        }
         console.log('now hash');
         console.log(hash);
     });
