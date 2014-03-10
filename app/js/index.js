@@ -177,5 +177,6 @@ blg.filter('addIcons', function (TagIcons) {
         if (TagIcons[tag]) {
             return TagIcons[tag] + tag;
         }
+        else return tag;
     }
 })
