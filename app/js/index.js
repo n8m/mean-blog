@@ -114,7 +114,7 @@ blg.factory('Tags', ['$http', function ($http) {
     }
 }])
 
-blg.factory('TagIcons', function () {
+blg.service('TagIcons', function () {
     var tagIcons =
     {
         'AngularJS': 'A',
@@ -173,7 +173,6 @@ blg.filter('date', function () {
 
 blg.filter('addIcons', function (TagIcons) {
     return function (tag) {
-        console.log(tag);
         if (TagIcons[tag]) {
             return TagIcons[tag] + tag;
         }
