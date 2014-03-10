@@ -99,6 +99,34 @@ footer {
     display: inline-block;
 }
 
+.tag-icon {
+    padding-left: 18px;
+    width: 16px;
+    height: 16px;
+    background-repeat: no-repeat;
+    background-image: url('img/tags-sprite.png');
+}
+
+.icon-node {
+    background-position: 0 0;
+}
+
+.icon-angular {
+    background-position: -26px 0;
+}
+
+.icon-passport {
+    background-position: -52px 0;
+}
+
+.icon-mongo {
+    background-position: -78px 0;
+}
+
+.icon-bootstrap {
+    background-position: -104px 0;
+}
+
 /*Ng-Animate Classes*/
 
 .at-repeat-macro-in.ng-enter, .at-repeat-macro-out.ng-leave {

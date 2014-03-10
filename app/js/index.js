@@ -117,13 +117,12 @@ blg.factory('Tags', ['$http', function ($http) {
 blg.service('TagIcons', function () {
     return tagIcons =
     {
-        'AngularJS': 'A',
-        'NodeJS': 'N',
-        'MongoDB': 'M',
-        'ExpressJS': 'E',
-        'PassportJS': 'P',
-        'MongooseJS': 'M',
-        'Bootstrap': 'B'
+        'AngularJS': 'icon-angular',
+        'NodeJS': 'icon-node',
+        'MongoDB': 'icon-mongo',
+        'PassportJS': 'icon-passport',
+//        'MongooseJS': 'M',
+        'Bootstrap': 'icon-bootstrap'
     }
 })
 
