@@ -114,6 +114,21 @@ blg.factory('Tags', ['$http', function ($http) {
     }
 }])
 
+blg.factory('TagIcons', function () {
+    var tagIcons =
+    {
+        'AngularJS': 'A',
+        'NodeJS': 'N',
+        'MongoDB': 'M',
+        'ExpressJS': 'E',
+        'PassportJS': 'P',
+        'MongooseJS': 'M',
+        'Bootstrap': 'B'
+    }
+
+    return tagIcons;
+
+})
 
 blg.constant('Config', {
     title: "MeAngu",
@@ -152,6 +167,14 @@ blg.filter('date', function () {
             var index = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'].indexOf(dateArr[1]);
             var month = ['января', 'февраля', 'марта', 'апреля', 'мая', 'июня', 'июля', 'августа', 'сентября', 'октября', 'ноября', 'декабря'][index];
             return day + ' ' + month + ' ' + year;
+        }
+    }
+})
+
+blg.filter('addIcons', function (TagIcons) {
+    return function (tag) {
+        if (TagIcons[tag]) {
+            return TagIcons[tag] + tag;
         }
     }
 })

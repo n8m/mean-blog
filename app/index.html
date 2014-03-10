@@ -65,7 +65,7 @@
                 <div class="margin-top">
                     <h2>Тэги</h2>
                     <ul class="list-inline">
-                        <li ng-repeat="tag in tags">
+                        <li ng-repeat="tag in tags | addIcons">
                             <a href="{{config.root}}/posts?tags={{tag}}" class="label label-default">{{tag}}</a>
                         </li>
                     </ul>
