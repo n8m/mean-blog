@@ -125,8 +125,19 @@ blg.directive('compilebb', function ($compile) {
                         "\n": "<br>",
                     }
 
+                    //variable for current tag (to not convert \n -> <br> inside the [code][/code])
+                    var currentTag;
+
                     html = html.replace(bbCodesRegExp, function (match) {
+
+                        //not replace \n with <br> inside [/code]
+                        if(currentTag == '[code]' && match == "\n"){
+                            return;
+                        }
+
                         var tag = map[match];
+                        currentTag = match;
+
                         if (tag) {
                             return tag;
                         }
