@@ -109,7 +109,7 @@ blg.directive('compilebb', function ($compile) {
                     }
 
                     //regExp finding [b],[/b],[em],[/em],[code],[/code],[hl],[/hl],[title],[/title] and \n
-                    var bbCodesRegExp = /\[b\]|\[\/b\]|\[em\]|\[\/em\]|\[code\]|\[\/code\]|\[hl\]|\[\/hl\]|\[title\]|\[\/title\]|\\n/g;
+                    var bbCodesRegExp = /\[b\]|\[\/b\]|\[em\]|\[\/em\]|\[code\]|\[\/code\]|\[hl\]|\[\/hl\]|\[title\]|\[\/title\]|\n/g;
 
                     var map = {
                         "[b]": "<strong>",
@@ -123,7 +123,6 @@ blg.directive('compilebb', function ($compile) {
                         "[title]": "<h2>",
                         "[/title]": "</h2>",
                         "\n": "<br>",
-                        "\r": "<br>"
                     }
 
                     html = html.replace(bbCodesRegExp, function (match) {
