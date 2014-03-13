@@ -131,7 +131,7 @@ blg.directive('compilebb', function ($compile) {
                     html = html.replace(bbCodesRegExp, function (match) {
 
                         //not replace \n with <br> inside [/code]
-                        if(currentTag == '[code]' && match == "\n"){
+                        if (currentTag == '[code]' && match == "\n") {
                             return match;
                         }
 
@@ -166,3 +166,17 @@ blg.directive('tagIcon', ['TagIcons', '$timeout', function (TagIcons, $timeout) 
         }
     }
 }])
+
+blg.directive('pressEnterKey', function () {
+    return function (scope, el, attrs) {
+        el.bind("keydown keypress", function (event) {
+            event.preventDefault();
+
+            if (event.which === 13) {
+                scope.$apply(function () {
+                    scope.$eval(attrs.pressKeyEnter;
+                });
+            }
+        });
+    }
+})
