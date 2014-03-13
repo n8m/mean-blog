@@ -95,11 +95,16 @@ footer {
 }
 
 .label {
-    margin: 1px;
+    margin: 2px;
     display: inline-block;
+    line-height: 1.1;
+    font-weight: 200;
+    color: #787878;
+    border-radius: 7px;
+    border: 2px solid #787878;
 }
 
-.label-default{
+.label-default {
     background-color: darkgrey;
 }
 
