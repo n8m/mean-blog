@@ -133,18 +133,18 @@ blg.directive('compilebb', function ($compile) {
                         //not replace inside [code][/code] and [html][/html]
                         if (
                                 (currentTag === '[code]' && match !== '[/code]') ||
-                                (currentTag === '[html]' && match !== '[/code]')
+                                (currentTag === '[html]' && match !== '[/html]')
                             ) {
                             return match;
                         }
 
-                        var tag = map[match];
                         currentTag = match;
+                        var tag = map[match];
 
                         if (tag) {
                             return tag;
                         }
-                        else return match;
+                        else return '';
                     })
 
                     ele.html(html);
