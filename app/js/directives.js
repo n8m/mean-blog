@@ -132,7 +132,7 @@ blg.directive('compilebb', function ($compile) {
 
                         //not replace inside [code][/code] and [html][/html]
                         if (
-                                (currentTag === '[code]' && match !== '[/code]') ||
+                            (currentTag === '[code]' && match !== '[/code]') ||
                                 (currentTag === '[html]' && match !== '[/html]')
                             ) {
                             return match;
@@ -175,11 +175,7 @@ blg.directive('pressEnterKey', function () {
         el.bind("keydown keypress", function (event) {
             if (event.which === 13) {
                 event.preventDefault();
-
-                console.log('enter pressed');
-                scope.$apply(function () {
-                    scope.$eval(attrs.pressKeyEnter);
-                });
+                attrs.pressKeyEnter();
             }
         });
     }
