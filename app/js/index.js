@@ -122,7 +122,8 @@ blg.service('TagIcons', function () {
         'MongoDB': 'icon-mongo',
         'PassportJS': 'icon-passport',
 //        'MongooseJS': 'M',
-        'Bootstrap': 'icon-bootstrap'
+        'Bootstrap': 'icon-bootstrap',
+        'JQuery' : 'icon-jquery'
     }
 })
 

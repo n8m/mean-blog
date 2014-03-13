@@ -134,6 +134,10 @@ footer {
     background-position: 0 -197px;
 }
 
+.icon-jquery {
+    background-position: 0 -330px;
+}
+
 /*Ng-Animate Classes*/
 
 .at-repeat-macro-in.ng-enter, .at-repeat-macro-out.ng-leave {
