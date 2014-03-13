@@ -109,33 +109,33 @@ footer {
 }
 
 .tag-icon {
-    padding-left: 18px;
+    padding-left: 24px;
     background-repeat: no-repeat;
     background-image: url('../img/tags-sprite.png');
 }
 
 .icon-node {
-    background-position: 0 0;
+    background-position: 5px 0;
 }
 
 .icon-angular {
-    background-position: 0 -263px;
+    background-position: 5px -263px;
 }
 
 .icon-passport {
-    background-position: 0 -65px;
+    background-position: 5px -65px;
 }
 
 .icon-mongo {
-    background-position: 0 -131px;
+    background-position: 5px -131px;
 }
 
 .icon-bootstrap {
-    background-position: 0 -197px;
+    background-position: 5px -197px;
 }
 
 .icon-jquery {
-    background-position: 0 -330px;
+    background-position: 5px -330px;
 }
 
 /*Ng-Animate Classes*/
