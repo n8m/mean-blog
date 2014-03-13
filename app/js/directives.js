@@ -170,9 +170,10 @@ blg.directive('tagIcon', ['TagIcons', '$timeout', function (TagIcons, $timeout) 
 blg.directive('pressEnterKey', function () {
     return function (scope, el, attrs) {
         el.bind("keydown keypress", function (event) {
-            event.preventDefault();
-
             if (event.which === 13) {
+                event.preventDefault();
+
+                console.log('enter pressed');
                 scope.$apply(function () {
                     scope.$eval(attrs.pressKeyEnter;
                 });
