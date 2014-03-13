@@ -108,8 +108,8 @@ blg.directive('compilebb', function ($compile) {
                         return;
                     }
 
-                    //regExp finding [b],[/b],[em],[/em],[code],[/code],[hl],[/hl],[title],[/title] and \n
-                    var bbCodesRegExp = /\[b\]|\[\/b\]|\[em\]|\[\/em\]|\[code\]|\[\/code\]|\[hl\]|\[\/hl\]|\[title\]|\[\/title\]|\n/g;
+                    //regExp finding [b],[/b],[em],[/em],[code],[/code],[hl],[/hl],[title],[/title],[html],[/html] and \n
+                    var bbCodesRegExp = /\[b\]|\[\/b\]|\[em\]|\[\/em\]|\[code\]|\[\/code\]|\[hl\]|\[\/hl\]|\[title\]|\[\/title\]|\[html\]|\[\/html\]|\n/g;
 
                     var map = {
                         "[b]": "<strong>",
@@ -125,13 +125,16 @@ blg.directive('compilebb', function ($compile) {
                         "\n": "<br>",
                     }
 
-                    //variable for current tag (to not convert \n -> <br> inside the [code][/code])
+                    //variable for current tag (to not convert symbols inside special tags)
                     var currentTag;
 
                     html = html.replace(bbCodesRegExp, function (match) {
 
-                        //not replace \n with <br> inside [/code]
-                        if (currentTag == '[code]' && match == "\n") {
+                        //not replace inside [code][/code] and [html][/html]
+                        if (
+                                (currentTag === '[code]' && match !== '[/code]') ||
+                                (currentTag === '[html]' && match !== '[/code]')
+                            ) {
                             return match;
                         }
 
