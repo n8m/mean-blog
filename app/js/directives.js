@@ -176,8 +176,6 @@ blg.directive('pressEnterKey', function () {
             if (event.which === 13) {
                 event.preventDefault();
 
-                    console.log(attrs);
-
                 scope.$apply(function () {
                     scope.$eval(attrs.pressEnterKey);
                 });
