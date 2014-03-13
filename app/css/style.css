@@ -10,13 +10,6 @@ body, h1, h2, h3, h4 {
     margin-top: 0;
 }
 
-.panel-body h1,
-.panel-body h2,
-.panel-body h3,
-.panel-body h4 {
-    margin: 25px inherit;
-}
-
 pre {
     margin: 10px 0;
 }
