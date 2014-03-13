@@ -132,7 +132,7 @@ blg.directive('compilebb', function ($compile) {
 
                         //not replace \n with <br> inside [/code]
                         if(currentTag == '[code]' && match == "\n"){
-                            return;
+                            return match;
                         }
 
                         var tag = map[match];
