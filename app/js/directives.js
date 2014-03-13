@@ -175,7 +175,7 @@ blg.directive('pressEnterKey', function () {
 
                 console.log('enter pressed');
                 scope.$apply(function () {
-                    scope.$eval(attrs.pressKeyEnter;
+                    scope.$eval(attrs.pressKeyEnter);
                 });
             }
         });
