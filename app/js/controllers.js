@@ -1,4 +1,4 @@
-blg.controller('ConfigCtrl', function ($scope, Lang, Config, Tags, $location, Auth) {
+blg.controller('ConfigCtrl', function ($scope, Lang, Config, Tags, $location, Auth, Meta) {
 
     Auth.checkSession(function () {
         $scope.loggedin = true;
@@ -6,6 +6,7 @@ blg.controller('ConfigCtrl', function ($scope, Lang, Config, Tags, $location, Au
 
     $scope.config = Config;
     $scope.lang = Lang;
+    $scope.meta = Meta;
 
     Tags.get(function (data) {
         $scope.tags = data;
@@ -110,7 +111,7 @@ blg.controller("PostsCtrl", function ($scope, Config, PostResource, $routeParams
 
 })
 
-blg.controller('SinglePostCtrl', function ($scope, $routeParams, PostResource, Config) {
+blg.controller('SinglePostCtrl', function ($scope, $routeParams, PostResource, Config, Meta) {
 
     $scope.contentLoaded = false;
 
@@ -118,6 +119,8 @@ blg.controller('SinglePostCtrl', function ($scope, $routeParams, PostResource, C
         var urlTitle = $routeParams.urlTitle;
         $scope.post = PostResource.get({urlTitle: urlTitle}, function () {
             $scope.contentLoaded = true;
+            Meta.description = $scope.post.shortContent;
+            Meta.keywords = $scope.tags.join(', ');
         });
     }
     else {

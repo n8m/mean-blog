@@ -114,6 +114,14 @@ blg.factory('Tags', ['$http', function ($http) {
     }
 }])
 
+blg.service('MetaTags', function(){
+    return metaTags = {
+        description: "Full Stack Javascript на русском. Туториалы, статьи, переводы",
+        keywords: "Mean stack, Javascript, Angular, AngularJS, Node, NodeJS, Mongo, MongoDB, ExpressJS"
+    }
+})
+
+
 blg.service('TagIcons', function () {
     return tagIcons =
     {
