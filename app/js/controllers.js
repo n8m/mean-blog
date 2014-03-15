@@ -126,7 +126,7 @@ blg.controller('SinglePostCtrl', function ($scope, $routeParams, PostResource, C
         $scope.post = PostResource.get({urlTitle: urlTitle}, function () {
             $scope.contentLoaded = true;
             MetaTags.description = $scope.post.shortContent;
-            MetaTags.keywords = $scope.tags.join(', ');
+            MetaTags.keywords = $scope.post.tags.join(', ');
         });
     }
     else {
