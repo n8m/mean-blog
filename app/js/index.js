@@ -37,6 +37,12 @@ blg.config(function ($routeProvider, $locationProvider) {
     $routeProvider.when('/', {
         redirectTo: '/posts'
     });
+
+    $routeProvider.otherwise({
+        templateUrl: 'partials/404.html',
+    });
+
+
 });
 
 blg.service("PostResource", function ($resource) {
