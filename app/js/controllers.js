@@ -10,7 +10,6 @@ blg.controller('ConfigCtrl', function ($scope, Lang, Config, Tags, $location, Au
     MetaTags.default();
 
 
-
     Tags.get(function (data) {
         $scope.tags = data;
     })
@@ -30,13 +29,13 @@ blg.controller("SideCtrl", function ($scope) {
 blg.controller("AuthCtrl", function ($scope, $location, Auth) {
     $scope.doAuth = function () {
 
-        $scope.authError=false;
+        $scope.authError = false;
 
         Auth.login($scope.user,
             //if auth fails
             function () {
                 $scope.user = {};
-                $scope.authError=true;
+                $scope.authError = true;
             },
             //if auth success
             function () {
@@ -125,17 +124,17 @@ blg.controller('SinglePostCtrl', function ($scope, $routeParams, PostResource, C
         var urlTitle = $routeParams.urlTitle;
         $scope.post = PostResource.get({urlTitle: urlTitle}, function () {
 
-            console.log(arguments);
+            if ($scope.post.title) {
+                $scope.contentLoaded = true;
+                MetaTags.description = $scope.post.shortContent;
+                MetaTags.keywords = $scope.post.tags.join(', ');
+            }
+            else {
+                $scope.is404 = true;
 
-            $scope.contentLoaded = true;
-            MetaTags.description = $scope.post.shortContent;
-            MetaTags.keywords = $scope.post.tags.join(', ');
+            }
         });
     }
-    else {
-        $scope.is404 = true;
-    }
-
 })
 
 blg.controller('AddEditPostCtrl', function ($scope, PostResource, $timeout, $routeParams, $location, $filter, Auth) {
