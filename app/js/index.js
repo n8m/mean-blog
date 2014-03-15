@@ -114,10 +114,14 @@ blg.factory('Tags', ['$http', function ($http) {
     }
 }])
 
-blg.service('MetaTags', function(){
+blg.service('MetaTags', function () {
     return metaTags = {
-        description: "Full Stack Javascript на русском. Туториалы, статьи, переводы",
-        keywords: "Mean stack, Javascript, Angular, AngularJS, Node, NodeJS, Mongo, MongoDB, ExpressJS"
+        default: function () {
+            metaTags.description = "Full Stack Javascript на русском. Туториалы, статьи, переводы";
+            metaTags.keywords = "Mean stack, Javascript, Angular, AngularJS, Node, NodeJS, Mongo, MongoDB, ExpressJS";
+        },
+        description: "",
+        keywords: ""
     }
 })
 
@@ -131,7 +135,7 @@ blg.service('TagIcons', function () {
         'PassportJS': 'icon-passport',
 //        'MongooseJS': 'M',
         'Bootstrap': 'icon-bootstrap',
-        'JQuery' : 'icon-jquery'
+        'JQuery': 'icon-jquery'
     }
 })
 

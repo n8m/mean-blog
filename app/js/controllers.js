@@ -7,6 +7,9 @@ blg.controller('ConfigCtrl', function ($scope, Lang, Config, Tags, $location, Au
     $scope.config = Config;
     $scope.lang = Lang;
     $scope.metaTags = MetaTags;
+    MetaTags.default();
+
+
 
     Tags.get(function (data) {
         $scope.tags = data;
@@ -71,7 +74,10 @@ blg.controller("AdminCtrl", function ($scope, PostResource, Lang, $location, Aut
     }
 })
 
-blg.controller("PostsCtrl", function ($scope, Config, PostResource, $routeParams, $location) {
+blg.controller("PostsCtrl", function ($scope, Config, PostResource, $routeParams, $location, MetaTags) {
+
+    MetaTags = MetaTags.default();
+
     $scope.posts = [];
 
     $scope.readMore = function (urlTitle) {
