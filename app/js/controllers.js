@@ -1,9 +1,11 @@
 blg.controller('ConfigCtrl', function ($scope, Lang, Config, Tags, $location, Auth, MetaTags) {
 
-    $scope.loggedin = Auth.isLoggedIn;
+    $scope.loggedin = Auth;
 
     Auth.checkSession(function () {
-        Auth.isLoggedIn = true;
+        Auth.isLoggedIn = function(){
+            return true;
+        };
     })
 
     $scope.config = Config;

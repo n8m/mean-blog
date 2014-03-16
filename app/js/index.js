@@ -72,7 +72,9 @@ blg.service("PostResource", function ($resource) {
 
 blg.factory('Auth', ['$http', function ($http) {
     return{
-        isLoggedIn: false,
+        isLoggedIn: function () {
+            return false;
+        },
         checkSession: function (successCallback, errorCallback) {
             $http({
                 method: 'GET',
