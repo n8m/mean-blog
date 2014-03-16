@@ -26,7 +26,7 @@ blg.controller('ConfigCtrl', function ($scope, Lang, Config, Tags, $location, Au
 blg.controller("SideCtrl", function ($scope) {
 })
 
-blg.controller("AuthCtrl", function ($scope, $location, Auth) {
+blg.controller("AuthCtrl", function ($scope, $location, Auth, $window) {
     $scope.doAuth = function () {
 
         $scope.authError = false;
@@ -37,9 +37,9 @@ blg.controller("AuthCtrl", function ($scope, $location, Auth) {
                 $scope.user = {};
                 $scope.authError = true;
             },
-            //if auth success
+            //if auth success -> navigate to Admin with reloading page (to update stuff from other controllers)
             function () {
-                $location.path('/admin')
+                $window.location.href('/admin');
             }
         )
     }
