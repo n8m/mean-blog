@@ -119,7 +119,7 @@ blg.controller("PostsCtrl", function ($scope, Config, PostResource, $routeParams
 
 })
 
-blg.controller('SinglePostCtrl', function ($scope, $routeParams, PostResource, Config, MetaTags) {
+blg.controller('SinglePostCtrl', function ($scope, $routeParams, PostResource, Config, MetaTags, $location) {
 
     $scope.contentLoaded = false;
 
@@ -129,18 +129,14 @@ blg.controller('SinglePostCtrl', function ($scope, $routeParams, PostResource, C
 
             $scope.post = data;
 
-            if ($scope.post.title) {
-                $scope.contentLoaded = true;
-                MetaTags.description = $scope.post.shortContent;
-                MetaTags.keywords = $scope.post.tags.join(', ');
-            }
-            else {
+            $scope.contentLoaded = true;
+            MetaTags.description = $scope.post.shortContent;
+            MetaTags.keywords = $scope.post.tags.join(', ');
 
-                $scope.is404 = true;
-
+        }, function (data) {
+            if (data.status === 404) {
+                $location.path('/404')
             }
-        }, function () {
-            console.log(arguments);
         });
     }
 })
