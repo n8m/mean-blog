@@ -127,8 +127,6 @@ blg.controller('SinglePostCtrl', function ($scope, $routeParams, PostResource, C
         var urlTitle = $routeParams.urlTitle;
         PostResource.get({urlTitle: urlTitle}, function (data) {
 
-            console.log(!!data);
-
             $scope.post = data;
 
             if ($scope.post.title) {
@@ -141,6 +139,8 @@ blg.controller('SinglePostCtrl', function ($scope, $routeParams, PostResource, C
                 $scope.is404 = true;
 
             }
+        }, function () {
+            console.log(arguments);
         });
     }
 })
