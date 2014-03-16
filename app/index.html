@@ -39,36 +39,35 @@
         <div class="col-md-4 css-class" ng-controller="SideCtrl">
             <div class="well well-lg">
                 <div class="media">
-                    <!--<a href="{{config.root}}">-->
-                        <flip flip-toggle class="pointer">
-                            <flip-front>
-                                <img src="img/flip-front.png" class="media-object center img-thumbnail">
-                            </flip-front>
-                            <flip-back>
-                                <img src="img/flip-back.png" class="media-object center img-thumbnail">
-                            </flip-back>
-                        </flip>
-                    <!--</a>-->
+                    <flip flip-toggle class="pointer">
+                        <flip-front>
+                            <img src="img/flip-front.png" class="media-object center img-thumbnail">
+                        </flip-front>
+                        <flip-back>
+                            <img src="img/flip-back.png" class="media-object center img-thumbnail">
+                        </flip-back>
+                    </flip>
 
                     <div class="media-body">
                         <h2 class="lead text-center">{{config.description}}</h2>
                     </div>
                 </div>
                 <!--<form action="{{config.root + '/posts?search=' + search}}" class="form-horizontal sidebar-item">-->
-                    <!--<div class="input-group">-->
-                                        <!--<span class="input-group-addon">-->
-                                            <!--<span class="glyphicon glyphicon-search"></span>-->
-                                        <!--</span>-->
-                        <!--<input ng-model="search" type="text" class="form-control"-->
-                               <!--placeholder="Пока не работает">-->
-                    <!--</div>-->
+                <!--<div class="input-group">-->
+                <!--<span class="input-group-addon">-->
+                <!--<span class="glyphicon glyphicon-search"></span>-->
+                <!--</span>-->
+                <!--<input ng-model="search" type="text" class="form-control"-->
+                <!--placeholder="Пока не работает">-->
+                <!--</div>-->
                 <!--</form>-->
 
                 <div class="margin-top">
                     <h2>Тэги</h2>
                     <ul class="list-inline">
                         <li ng-repeat="tag in tags">
-                            <a href="{{config.root}}/posts?tags={{tag}}" class="label label-default" tag-icon>{{tag}}</a>
+                            <a href="{{config.root}}/posts?tags={{tag}}" class="label label-default"
+                               tag-icon>{{tag}}</a>
                         </li>
                     </ul>
                 </div>
@@ -81,6 +80,7 @@
 
 <footer>
     <h3>{{lang.footerText}}</h3>
+
     <p>Для связи: meangu.ru@gmail.com</p>
 </footer>
 
@@ -100,17 +100,22 @@
 
 
 <script>
-    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    (function (i, s, o, g, r, a, m) {
+        i['GoogleAnalyticsObject'] = r;
+        i[r] = i[r] || function () {
+            (i[r].q = i[r].q || []).push(arguments)
+        }, i[r].l = 1 * new Date();
+        a = s.createElement(o),
+                m = s.getElementsByTagName(o)[0];
+        a.async = 1;
+        a.src = g;
+        m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
 
     ga('create', 'UA-48791537-1', 'meangu.ru');
     ga('send', 'pageview');
 
 </script>
-
-
 
 
 </body>

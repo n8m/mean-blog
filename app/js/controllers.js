@@ -1,7 +1,9 @@
 blg.controller('ConfigCtrl', function ($scope, Lang, Config, Tags, $location, Auth, MetaTags) {
 
+    $scope.loggedin = Auth.isLoggedIn;
+
     Auth.checkSession(function () {
-        $scope.loggedin = true;
+        Auth.isLoggedIn = true;
     })
 
     $scope.config = Config;
@@ -26,7 +28,7 @@ blg.controller('ConfigCtrl', function ($scope, Lang, Config, Tags, $location, Au
 blg.controller("SideCtrl", function ($scope) {
 })
 
-blg.controller("AuthCtrl", function ($scope, $location, Auth, $window) {
+blg.controller("AuthCtrl", function ($scope, $location, Auth) {
     $scope.doAuth = function () {
 
         $scope.authError = false;
@@ -37,9 +39,11 @@ blg.controller("AuthCtrl", function ($scope, $location, Auth, $window) {
                 $scope.user = {};
                 $scope.authError = true;
             },
-            //if auth success -> navigate to Admin with reloading page (to update stuff from other controllers)
+            //if auth success
             function () {
-                $window.location.href('/admin');
+                Auth.isLoggedIn = true;
+                $location.path('/admin');
+
             }
         )
     }
