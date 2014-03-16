@@ -128,9 +128,11 @@ blg.factory('Tags', ['$http', function ($http) {
 blg.service('MetaTags', function () {
     return metaTags = {
         default: function () {
+            metaTags.title = "Meangu - FullStack Javascript на русском";
             metaTags.description = "Full Stack Javascript на русском. Туториалы, статьи, переводы";
             metaTags.keywords = "Mean stack, Javascript, Angular, AngularJS, Node, NodeJS, Mongo, MongoDB, ExpressJS";
         },
+        title: "",
         description: "",
         keywords: ""
     }

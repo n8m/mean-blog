@@ -130,6 +130,7 @@ blg.controller('SinglePostCtrl', function ($scope, $routeParams, PostResource, C
             $scope.post = data;
 
             $scope.contentLoaded = true;
+            MetaTags.title = $scope.post.title;
             MetaTags.description = $scope.post.shortContent;
             MetaTags.keywords = $scope.post.tags.join(', ');
 
