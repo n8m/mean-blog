@@ -1,11 +1,9 @@
 blg.controller('ConfigCtrl', function ($scope, Lang, Config, Tags, $location, Auth, MetaTags) {
 
-    $scope.loggedin = Auth.isLoggedIn();
+    $scope.auth = Auth;
 
     Auth.checkSession(function () {
-        Auth.isLoggedIn = function () {
-            return true;
-        };
+        Auth.isLoggedIn = true;
     })
 
     $scope.config = Config;
@@ -20,7 +18,7 @@ blg.controller('ConfigCtrl', function ($scope, Lang, Config, Tags, $location, Au
 
     $scope.logout = function () {
         Auth.logout(function () {
-            $scope.loggedin = false;
+            Auth.isLoggedIn = false;
             $location.path('/');
         })
     }
@@ -43,9 +41,7 @@ blg.controller("AuthCtrl", function ($scope, $location, Auth) {
             },
             //if auth success
             function () {
-                Auth.isLoggedIn = function () {
-                    return true;
-                };
+                Auth.isLoggedIn = true;
                 $location.path('/admin');
             }
         )
