@@ -122,15 +122,16 @@ blg.controller('SinglePostCtrl', function ($scope, $routeParams, PostResource, C
 
     if ($routeParams.urlTitle) {
         var urlTitle = $routeParams.urlTitle;
-        $scope.post = PostResource.get({urlTitle: urlTitle}, function () {
+        PostResource.get({urlTitle: urlTitle}, function (data) {
+
+            $scope.post = data;
+
             if ($scope.post.title) {
-                console.log('true');
                 $scope.contentLoaded = true;
                 MetaTags.description = $scope.post.shortContent;
                 MetaTags.keywords = $scope.post.tags.join(', ');
             }
             else {
-                console.log('false');
 
                 $scope.is404 = true;
 

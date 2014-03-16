@@ -194,9 +194,8 @@ footer {
 }
 
 .highlighted {
-    background-color: #f8f8f8;
+    background-color: #f1f1f1;
     padding: 0px 3px;
-    border: 1px dotted grey;
 }
 
 .css-class-add, .css-class-remove {
