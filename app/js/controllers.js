@@ -135,7 +135,7 @@ blg.controller('SinglePostCtrl', function ($scope, $routeParams, PostResource, C
 
         }, function (data) {
             if (data.status === 404) {
-                $location.path('/404')
+                $location.path('/404');
             }
         });
     }
