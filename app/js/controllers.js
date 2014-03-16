@@ -127,7 +127,7 @@ blg.controller('SinglePostCtrl', function ($scope, $routeParams, PostResource, C
         var urlTitle = $routeParams.urlTitle;
         PostResource.get({urlTitle: urlTitle}, function (data) {
 
-            console.log(data);
+            console.log(!!data);
 
             $scope.post = data;
 
