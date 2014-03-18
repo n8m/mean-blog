@@ -198,7 +198,7 @@ footer {
     padding: 0px 3px;
 }
 
-.panel-body a:hover{
+.panel-body a{
     text-decoration: underline;
 }
 
