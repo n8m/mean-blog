@@ -198,6 +198,10 @@ footer {
     padding: 0px 3px;
 }
 
+.panel-body a:hover{
+    text-decoration: underline;
+}
+
 .css-class-add, .css-class-remove {
     -webkit-transition: all cubic-bezier(0.250, 0.460, 0.450, 0.940) 2.5s;
     -moz-transition: all cubic-bezier(0.250, 0.460, 0.450, 0.940) 2.5s;
