@@ -28,11 +28,10 @@ h3 {
 
 a {
     color: inherit;
-}
-
-a.label{
     text-decoration: none;
 }
+
+
 
 .center {
     text-align: center;
@@ -196,14 +195,6 @@ footer {
 .highlighted {
     background-color: #f1f1f1;
     padding: 0px 3px;
-}
-
-.panel-body a {
-    text-decoration: underline;
-}
-
-.label a {
-    text-decoration: none;
 }
 
 .css-class-add, .css-class-remove {
