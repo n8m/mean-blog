@@ -108,8 +108,16 @@ blg.directive('compilebb', function ($compile) {
                         return;
                     }
 
-                    //regExp finding [b],[/b],[em],[/em],[code],[/code],[hl],[/hl],[title],[/title],[html],[/html] and \n
-                    var bbCodesRegExp = /\[b\]|\[\/b\]|\[em\]|\[\/em\]|\[code\]|\[\/code\]|\[hl\]|\[\/hl\]|\[title\]|\[\/title\]|\[html\]|\[\/html\]|\n/g;
+                    var paragraphs = html.split('\n');
+
+                    for(var i = 0; i<paragraphs.length; i++){
+                        paragraphs[i] = "<p>" + paragraphs[i] + "</p>";
+                    }
+
+                    html = paragraphs.join('\n');
+
+                    //regExp finding [b],[/b],[em],[/em],[code],[/code],[hl],[/hl],[title],[/title],[html],[/html]
+                    var bbCodesRegExp = /\[b\]|\[\/b\]|\[em\]|\[\/em\]|\[code\]|\[\/code\]|\[hl\]|\[\/hl\]|\[title\]|\[\/title\]|\[html\]|\[\/html\]/g;
 
                     var map = {
                         "[b]": "<strong>",
@@ -122,7 +130,6 @@ blg.directive('compilebb', function ($compile) {
                         "[/hl]": "</span>",
                         "[title]": "<h2>",
                         "[/title]": "</h2>",
-                        "\n": "<br>",
                     }
 
                     //variable for current tag (to not convert symbols inside special tags)

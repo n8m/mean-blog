@@ -35,6 +35,10 @@ a {
     text-decoration: underline;
 }
 
+.post-content p{
+    text-indent: 20px;
+}
+
 .center {
     text-align: center;
 }
