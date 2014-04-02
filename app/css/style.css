@@ -30,7 +30,7 @@ a {
     color: inherit;
 }
 
-a:hover {
+a.label{
     text-decoration: none;
 }
 
@@ -198,8 +198,12 @@ footer {
     padding: 0px 3px;
 }
 
-.panel-body a{
+.panel-body a {
     text-decoration: underline;
+}
+
+.label a {
+    text-decoration: none;
 }
 
 .css-class-add, .css-class-remove {

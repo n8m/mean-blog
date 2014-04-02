@@ -189,11 +189,11 @@ blg.controller('AddEditPostCtrl', function ($scope, PostResource, $timeout, $rou
     $scope.savePost = function () {
         $scope.postSaving = true;
 
-        //if post already exist and we have edited it. We use POST
+        //if post already exist and we have edited it. We use PUT
         if ($routeParams.urlTitle) {
             PostResource.update($scope.post, successSavingHandler);
         }
-        //if we saving new post. We use PUT
+        //if we saving new post. We use POST
         else {
             PostResource.save($scope.post, successSavingHandler);
         }
