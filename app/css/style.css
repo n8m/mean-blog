@@ -39,6 +39,11 @@ a {
     text-indent: 20px;
 }
 
+ .post-content h2{
+     padding: 10px 0;
+     font-size: 25px;
+ }
+
 .center {
     text-align: center;
 }
