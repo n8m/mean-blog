@@ -8,7 +8,7 @@
             <h3 class="no-margin-bottom">{{post.title}}</h3>
         </div>
         <div class="panel-body">
-            <div compilebb="post.content"></div>
+            <div class="post-content" compilebb="post.content"></div>
             <div class="tumblr-tags">
                 <span class="glyphicon glyphicon-tags"></span>
                 <a ng-repeat="tag in post.tags track by $index" href="{{config.root}}/posts?tags={{tag}}"

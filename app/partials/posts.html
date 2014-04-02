@@ -17,7 +17,7 @@
 
                 <p><button ng-click="readMore(post.urlTitle)" class="btn btn-default">{{lang.readMore}}</button></p>
             </div>
-            <div ng-hide="post.shortContent" ng-bind-html="post.content">
+            <div ng-hide="post.shortContent" class="post-content" ng-bind-html="post.content">
             </div>
             <div class="tumblr-tags">
                 <span class="glyphicon glyphicon-tags"></span>
