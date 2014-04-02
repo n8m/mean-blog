@@ -110,8 +110,23 @@ blg.directive('compilebb', function ($compile) {
 
                     var paragraphs = html.split('\n');
 
-                    for(var i = 0; i<paragraphs.length; i++){
-                        paragraphs[i] = "<p>" + paragraphs[i] + "</p>";
+                    var codeFlag = false;
+
+                    for (var i = 0; i < paragraphs.length; i++) {
+                        if (codeFlag) {
+                            if (paragraphs[i].indexOf('[/code]') !== -1) {
+                                codeFlag = false;
+                                continue;
+                            }
+                        } else {
+                            if (paragraphs[i].indexOf('[code]') !== -1) {
+                                codeFlag = true;
+                                continue;
+                            }
+                            paragraphs[i] = "<p>" + paragraphs[i] + "</p>";
+                        }
+
+
                     }
 
                     html = paragraphs.join('\n');
@@ -140,7 +155,7 @@ blg.directive('compilebb', function ($compile) {
                         //not replace inside [code][/code] and [html][/html]
                         if (
                             (currentTag === '[code]' && match !== '[/code]') ||
-                                (currentTag === '[html]' && match !== '[/html]')
+                            (currentTag === '[html]' && match !== '[/html]')
                             ) {
                             return match;
                         }
