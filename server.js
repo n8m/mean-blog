@@ -257,15 +257,14 @@ app.get('/*', function (req, res, next) {
     if (!fragment) {
         res.sendfile(__dirname + '/app/index.html');
     }
-
-    // Serve the static html snapshot
-    try {
-        var file = 'https://s3.amazonaws.com/prerender/812/http://meangu.ru/' + fragment;
-        res.sendfile(file);
-    } catch (err) {
-        res.send(404);
+    else {
+        try {
+            var file = 'https://s3.amazonaws.com/prerender/812/http://meangu.ru/' + fragment;
+            res.sendfile(file);
+        } catch (err) {
+            res.send(404);
+        }
     }
-
 });
 
 
