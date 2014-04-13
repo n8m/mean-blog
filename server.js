@@ -19,7 +19,7 @@ passport.use(new LocalStrategy(
                     if (isMatch) {
                         done(null, true);
                     }
-                    else{
+                    else {
                         done(null, false);
                     }
                 }
@@ -92,7 +92,6 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(app.router); // модуль для простого задания обработчиков путей
 app.use(require('prerender-node').set('prerenderToken', 'Tve6yMKDsJE20UEo8ANx'));//для prerender -> для SEO
-
 
 
 app.all('*', function (req, res, next) {
@@ -250,7 +249,23 @@ app.get('/api/tags', function (req, res) {
 
 
 app.get('/*', function (req, res, next) {
-    res.sendfile(__dirname + '/app/index.html');
+
+    var fragment = req.query._escaped_fragment_;
+
+    console.log(fragment);
+
+    if (!fragment) {
+        res.sendfile(__dirname + '/app/index.html');
+    }
+
+    // Serve the static html snapshot
+    try {
+        var file = 'https://s3.amazonaws.com/prerender/812/http://meangu.ru/' + fragment;
+        res.sendfile(file);
+    } catch (err) {
+        res.send(404);
+    }
+
 });
 
 
