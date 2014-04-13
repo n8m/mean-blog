@@ -1,6 +1,6 @@
 var blg = angular.module('blog', ['ngRoute', 'ngResource', 'ngAnimate', 'ngSanitize', 'hljs', 'angular-flip']);
 
-blg.config(function ($routeProvider, $locationProvider, $routeParams) {
+blg.config(function ($routeProvider, $locationProvider) {
 
     $locationProvider.html5Mode(true);
 
@@ -32,23 +32,19 @@ blg.config(function ($routeProvider, $locationProvider, $routeParams) {
     $routeProvider.when('/admin/auth', {
         templateUrl: 'partials/auth.html',
         controller: 'AuthCtrl'
-    })
+    });
 
-    if (!$routeParams._escaped_fragment_) {
-        $routeProvider.when('/', {
-            redirectTo: '/posts'
-        });
-    }
+    $routeProvider.when('/', {
+        redirectTo: '/posts'
+    });
 
     $routeProvider.when('/404', {
         templateUrl: 'partials/404.html',
     });
 
-    if (!$routeParams._escaped_fragment_) {
-        $routeProvider.otherwise({
-            redirectTo: '/404',
-        });
-    }
+    $routeProvider.otherwise({
+        redirectTo: '/404',
+    });
 
 
 });
