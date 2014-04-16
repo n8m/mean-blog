@@ -250,6 +250,7 @@ app.all('*', function (req, res, next) {
     var fragment = req.query._escaped_fragment_;
     console.log('fragment');
     console.log(fragment);
+    next();
 });
 
 app.get('/*', function (req, res, next) {
