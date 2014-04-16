@@ -259,8 +259,9 @@ app.get('/*', function (req, res, next) {
     }
     else {
         try {
-            var file = 'https://s3.amazonaws.com/prerender/812/http://meangu.ru/' + fragment;
-            res.sendfile(file);
+            var file = 'https://s3.amazonaws.com/prerender/812/http://meangu.ru' + fragment;
+            res.redirect(file);
+//            res.sendfile(file);
         } catch (err) {
             res.send(404);
         }
