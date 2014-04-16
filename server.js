@@ -246,17 +246,15 @@ app.get('/api/tags', function (req, res) {
     })
 })
 
-
-app.get('/*', function (req, res, next) {
-
+app.all('/*', function (req, res, next) {
     var fragment = req.query._escaped_fragment_;
-
     console.log('static');
     console.log(fragment);
-
-    res.sendfile(__dirname + '/app/index.html');
 });
 
+app.get('/*', function (req, res, next) {
+    res.sendfile(__dirname + '/app/index.html');
+});
 
 app.listen(process.env.PORT || 1337, function () {
     console.log('Express server listening on port' + process.env.PORT);
