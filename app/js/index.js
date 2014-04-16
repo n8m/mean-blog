@@ -42,9 +42,9 @@ blg.config(function ($routeProvider, $locationProvider) {
         templateUrl: 'partials/404.html',
     });
 
-    $routeProvider.otherwise({
-        redirectTo: '/404',
-    });
+//    $routeProvider.otherwise({
+//        redirectTo: '/404',
+//    });
 
 
 });
