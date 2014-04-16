@@ -22,7 +22,6 @@
     "node-static": "~0.7.3",
     "passport-local": "~0.1.6",
     "passport-http": "~0.2.2",
-    "bcrypt": "~0.7.7",
-    "prerender-node": "~1.0.1"
+    "bcrypt": "~0.7.7"
   }
 }
