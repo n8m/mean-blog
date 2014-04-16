@@ -91,7 +91,6 @@ app.use(express.session({ secret: 'keyboard cat' }));
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(app.router); // модуль для простого задания обработчиков путей
-app.use(require('prerender-node').set('prerenderToken', 'Tve6yMKDsJE20UEo8ANx'));//для prerender -> для SEO
 
 app.all('*', function (req, res, next) {
     res.header("Access-Control-Allow-Origin", "meangu.ru");
