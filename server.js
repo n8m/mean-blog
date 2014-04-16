@@ -93,27 +93,6 @@ app.use(passport.session());
 app.use(app.router); // модуль для простого задания обработчиков путей
 app.use(require('prerender-node').set('prerenderToken', 'Tve6yMKDsJE20UEo8ANx'));//для prerender -> для SEO
 
-
-app.use(function (req, res, next) {
-    var fragment = req.query._escaped_fragment_;
-
-    if (!fragment) return next();
-
-    if (fragment === "" || fragment === "/")
-        fragment = "/index.html";
-
-    console.log('static');
-    console.log(fragment);
-
-    try {
-        var file = __dirname + "/snapshots" + fragment;
-        res.redirect(file);
-    } catch (err) {
-        res.send(404);
-    }
-});
-
-
 app.all('*', function (req, res, next) {
     res.header("Access-Control-Allow-Origin", "meangu.ru");
     res.header("Access-Control-Allow-Headers", "X-Requested-With");
@@ -269,6 +248,12 @@ app.get('/api/tags', function (req, res) {
 
 
 app.get('/*', function (req, res, next) {
+
+    var fragment = req.query._escaped_fragment_;
+
+    console.log('static');
+    console.log(fragment);
+
     res.sendfile(__dirname + '/app/index.html');
 });
 
