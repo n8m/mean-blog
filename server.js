@@ -248,11 +248,12 @@ app.get('/api/tags', function (req, res) {
 
 app.all('*', function (req, res, next) {
     var fragment = req.query._escaped_fragment_;
-    console.log('static');
+    console.log('fragment');
     console.log(fragment);
 });
 
 app.get('/*', function (req, res, next) {
+    console.log('static');
     res.sendfile(__dirname + '/app/index.html');
 });
 
