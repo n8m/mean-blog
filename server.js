@@ -94,6 +94,23 @@ app.use(app.router); // модуль для простого задания об
 app.use(require('prerender-node').set('prerenderToken', 'Tve6yMKDsJE20UEo8ANx'));//для prerender -> для SEO
 
 
+app.use(function (req, res, next) {
+    var fragment = req.query._escaped_fragment_;
+
+    if (!fragment) return next();
+
+    if (fragment === "" || fragment === "/")
+        fragment = "/index.html";
+
+    try {
+        var file = __dirname + "/snapshots" + fragment;
+        res.sendfile(file);
+    } catch (err) {
+        res.send(404);
+    }
+});
+
+
 app.all('*', function (req, res, next) {
     res.header("Access-Control-Allow-Origin", "meangu.ru");
     res.header("Access-Control-Allow-Headers", "X-Requested-With");
@@ -249,22 +266,7 @@ app.get('/api/tags', function (req, res) {
 
 
 app.get('/*', function (req, res, next) {
-
-    var fragment = req.query._escaped_fragment_;
-
-    res.send(fragment);
-
-//    if (!fragment) {
-//        res.sendfile(__dirname + '/app/index.html');
-//    }
-//    else {
-//        try {
-//            var file = 'https://s3.amazonaws.com/prerender/812/http://meangu.ru' + fragment;
-//            res.redirect(file);
-//        } catch (err) {
-//            res.send(404);
-//        }
-//    }
+    res.sendfile(__dirname + '/app/index.html');
 });
 
 
