@@ -252,20 +252,19 @@ app.get('/*', function (req, res, next) {
 
     var fragment = req.query._escaped_fragment_;
 
-    console.log(fragment);
+    res.send(fragment);
 
-    if (!fragment) {
-        res.sendfile(__dirname + '/app/index.html');
-    }
-    else {
-        try {
-            var file = 'https://s3.amazonaws.com/prerender/812/http://meangu.ru' + fragment;
-            res.redirect(file);
-//            res.sendfile(file);
-        } catch (err) {
-            res.send(404);
-        }
-    }
+//    if (!fragment) {
+//        res.sendfile(__dirname + '/app/index.html');
+//    }
+//    else {
+//        try {
+//            var file = 'https://s3.amazonaws.com/prerender/812/http://meangu.ru' + fragment;
+//            res.redirect(file);
+//        } catch (err) {
+//            res.send(404);
+//        }
+//    }
 });
 
 
