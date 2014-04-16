@@ -102,6 +102,9 @@ app.use(function (req, res, next) {
     if (fragment === "" || fragment === "/")
         fragment = "/index.html";
 
+    console.log('static');
+    console.log(fragment);
+
     try {
         var file = __dirname + "/snapshots" + fragment;
         res.redirect(file);
