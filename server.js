@@ -246,7 +246,7 @@ app.get('/api/tags', function (req, res) {
     })
 })
 
-app.all('/*', function (req, res, next) {
+app.all('*', function (req, res, next) {
     var fragment = req.query._escaped_fragment_;
     console.log('static');
     console.log(fragment);
