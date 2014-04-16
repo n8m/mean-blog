@@ -104,7 +104,7 @@ app.use(function (req, res, next) {
 
     try {
         var file = __dirname + "/snapshots" + fragment;
-        res.sendfile(file);
+        res.redirect(file);
     } catch (err) {
         res.send(404);
     }
