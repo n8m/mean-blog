@@ -251,7 +251,10 @@ app.get('/api/tags', function (req, res) {
 })
 
 app.get('/*', function (req, res, next) {
-    console.log('static');
+
+    res.send('хуила!');
+
+
     res.sendfile(__dirname + '/app/index.html');
 });
 
