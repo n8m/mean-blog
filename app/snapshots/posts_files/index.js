@@ -34,17 +34,17 @@ blg.config(function ($routeProvider, $locationProvider) {
         controller: 'AuthCtrl'
     });
 
-    $routeProvider.when('/', {
-        redirectTo: '/posts'
-    });
+//    $routeProvider.when('/', {
+//        redirectTo: '/posts'
+//    });
 
     $routeProvider.when('/404', {
         templateUrl: 'partials/404.html',
     });
 
-    $routeProvider.otherwise({
-        redirectTo: '/404',
-    });
+//    $routeProvider.otherwise({
+//        redirectTo: '/404',
+//    });
 
 
 });

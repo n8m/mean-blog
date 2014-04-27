@@ -1,0 +1,6 @@
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Open Sans'), local('OpenSans'), url(http://themes.googleusercontent.com/static/fonts/opensans/v8/RjgO7rYTmqiVp7vzi-Q5UbO3LdcAZYWl9Si6vvxL-qU.woff) format('woff');
+}

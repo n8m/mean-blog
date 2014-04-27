@@ -255,8 +255,27 @@ app.get('/api/tags', function (req, res) {
 })
 
 app.get('*', function (req, res, next) {
-    console.log(req.query._escaped_fragment_);
-    res.sendfile(__dirname + '/app/main.html');
+
+
+    var fragment = req.query._escaped_fragment_;
+
+    if (!fragment) {
+        res.sendfile(__dirname + '/app/main.html');
+    }
+
+    if (fragment === "" || fragment === "/")
+        fragment = "index.html";
+
+    if (fragment.indexOf('.html') == -1)
+        fragment += ".html";
+
+    try {
+        var file = __dirname + "app/snapshots/" + fragment;
+        res.sendfile(file);
+    } catch (err) {
+        res.send(404);
+    }
+
 });
 
 app.listen(process.env.PORT || 1337, function () {

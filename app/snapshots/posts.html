@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<!-- saved from url=(0022)http://meangu.ru/posts -->
+<html ng-app="blog" ng-controller="ConfigCtrl" class="ng-scope"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><style type="text/css">@charset "UTF-8";[ng\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak,.ng-hide{display:none !important;}ng\:form{display:block;}</style>
+    <title class="ng-binding">Meangu - FullStack Javascript на русском</title>
+    <link href="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet">
+    <link href="./posts_files/style.css" rel="stylesheet" type="text/css">
+    <link href="./posts_files/hljs.css" rel="stylesheet" type="text/css">
+    <link href="./posts_files/angular-flip.css" rel="stylesheet" type="text/css">
+    <link href="./posts_files/css" rel="stylesheet" type="text/css">
+    <link rel="shortcut icon" href="http://meangu.ru/img/favicon.ico">
+
+    <meta charset="UTF-8">
+
+    <!-- For google indexing -->
+    <meta name="fragment" content="!">
+
+    <meta name="keywords" content="Mean stack, Javascript, Angular, AngularJS, Node, NodeJS, Mongo, MongoDB, ExpressJS">
+    <meta name="description" content="Full Stack Javascript на русском. Туториалы, статьи, переводы">
+
+    <meta name="yandex-verification" content="4755cfeff658098c">
+
+    <!-- otherwise html5mode routing will not work -->
+    <!--<base href="/">--><base href=".">
+
+
+</head>
+<body>
+
+<div class="navbar navbar-default">
+    <div class="container">
+        <h1><a class="navbar-brand ng-binding" href="http://meangu.ru/">MeAngu</a></h1>
+        <ul ng-show="auth.isLoggedIn" class="list-inline pull-right ng-hide">
+            <li><a href="http://meangu.ru/admin">Admin</a></li>
+            <li><a href="http://meangu.ru/#" ng-click="logout()">LogOut</a></li>
+        </ul>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row">
+
+        <div class="col-md-4 css-class ng-scope" ng-controller="SideCtrl">
+            <div class="well well-lg">
+                <div class="media">
+                    <div class="pointer flip ng-isolate-scope flipped" flip-toggle=""><div class="card" ng-transclude="">
+                        <div class="face front ng-scope" ng-transclude="">
+                            <img src="./posts_files/flip-front.png" class="media-object center img-thumbnail ng-scope">
+                        </div>
+                        <div class="face back ng-scope" ng-transclude="">
+                            <img src="./posts_files/flip-back.png" class="media-object center img-thumbnail ng-scope">
+                        </div>
+                    </div></div>
+
+                    <div class="media-body">
+                        <h2 class="lead text-center ng-binding">Full Stack Javascript на русском</h2>
+                    </div>
+                </div>
+                <!--<form action="{{config.root + '/posts?search=' + search}}" class="form-horizontal sidebar-item">-->
+                <!--<div class="input-group">-->
+                <!--<span class="input-group-addon">-->
+                <!--<span class="glyphicon glyphicon-search"></span>-->
+                <!--</span>-->
+                <!--<input ng-model="search" type="text" class="form-control"-->
+                <!--placeholder="Пока не работает">-->
+                <!--</div>-->
+                <!--</form>-->
+
+                <div class="margin-top">
+                    <h2>Тэги</h2>
+                    <ul class="list-inline">
+                        <!-- ngRepeat: tag in tags --><li ng-repeat="tag in tags" class="ng-scope">
+                            <a href="http://meangu.ru/posts?tags=AngularJS" class="label label-default ng-binding tag-icon icon-angular" tag-icon="">AngularJS</a>
+                        </li><!-- end ngRepeat: tag in tags --><li ng-repeat="tag in tags" class="ng-scope">
+                            <a href="http://meangu.ru/posts?tags=DOM" class="label label-default ng-binding" tag-icon="">DOM</a>
+                        </li><!-- end ngRepeat: tag in tags --><li ng-repeat="tag in tags" class="ng-scope">
+                            <a href="http://meangu.ru/posts?tags=Heroku" class="label label-default ng-binding" tag-icon="">Heroku</a>
+                        </li><!-- end ngRepeat: tag in tags --><li ng-repeat="tag in tags" class="ng-scope">
+                            <a href="http://meangu.ru/posts?tags=JQuery" class="label label-default ng-binding tag-icon icon-jquery" tag-icon="">JQuery</a>
+                        </li><!-- end ngRepeat: tag in tags --><li ng-repeat="tag in tags" class="ng-scope">
+                            <a href="http://meangu.ru/posts?tags=SendGrid" class="label label-default ng-binding" tag-icon="">SendGrid</a>
+                        </li><!-- end ngRepeat: tag in tags --><li ng-repeat="tag in tags" class="ng-scope">
+                            <a href="http://meangu.ru/posts?tags=%D0%BE%D0%B1%D0%B7%D0%BE%D1%80" class="label label-default ng-binding" tag-icon="">обзор</a>
+                        </li><!-- end ngRepeat: tag in tags -->
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- ngView: undefined --><ng-view class="ng-scope"><div class="col-md-8 ng-scope" when-scrolled="loadPosts()">
+    <!-- ngRepeat: post in posts | filter:search track by $index --><div ng-repeat="post in posts | filter:search track by $index" class="panel panel-default at-repeat-macro-in          at-repeat-macro-out ng-scope" style="">
+        <div class="panel-heading">
+            <div class="date pull-right ng-binding">
+                02 апреля 2014
+            </div>
+            <h3 class="no-margin-bottom">
+                <a ng-href="http://meangu.ru/post/angularjs-expressions-tips" class="ng-binding" href="http://meangu.ru/post/angularjs-expressions-tips">Шпаргалка по AngularJS выражениям</a>
+                <a href="http://meangu.ru/admin/edit/angularjs-expressions-tips" ng-show="auth.isLoggedIn" class="glyphicon glyphicon-edit ng-hide"></a>
+
+            </h3>
+        </div>
+        <div class="panel-body">
+            <p compilebb="post.shortContent"><p class="ng-scope">Очень удобная шпаргалка по синтаксису выражений (которые в двойных фигурных скобках) в AngularJS...</p></p>
+
+            <p>
+                <button ng-click="readMore(post.urlTitle)" class="btn btn-default ng-binding">Читать далее</button>
+            </p>
+
+            <div class="tumblr-tags">
+                <span class="glyphicon glyphicon-tags"></span>
+                <!-- ngRepeat: tag in post.tags track by $index --><a ng-repeat="tag in post.tags track by $index" href="http://meangu.ru/posts?tags=AngularJS" class="label label-default ng-scope ng-binding tag-icon icon-angular" tag-icon="">AngularJS</a><!-- end ngRepeat: tag in post.tags track by $index -->
+            </div>
+        </div>
+
+        <div class="panel-footer">
+            <div class="notes">
+                <span class="ng-binding">
+                    Автор: Tero Parviainen<span ng-show="post.translation" class="ng-binding ng-hide"> (перевод)</span>
+                </span>
+            </div>
+        </div>
+    </div><!-- end ngRepeat: post in posts | filter:search track by $index --><div ng-repeat="post in posts | filter:search track by $index" class="panel panel-default at-repeat-macro-in          at-repeat-macro-out ng-scope" style="">
+        <div class="panel-heading">
+            <div class="date pull-right ng-binding">
+                18 марта 2014
+            </div>
+            <h3 class="no-margin-bottom">
+                <a ng-href="http://meangu.ru/post/otpravka-mail-heroku-nodejs-sendgrid" class="ng-binding" href="http://meangu.ru/post/otpravka-mail-heroku-nodejs-sendgrid">Отправка E-mail на Heroku (Node.js + SendGrid)</a>
+                <a href="http://meangu.ru/admin/edit/otpravka-mail-heroku-nodejs-sendgrid" ng-show="auth.isLoggedIn" class="glyphicon glyphicon-edit ng-hide"></a>
+
+            </h3>
+        </div>
+        <div class="panel-body">
+            <p compilebb="post.shortContent"><p class="ng-scope">Большое количество сайтов использует форму обратной связи с отправкой сообщения на электронную почту. Чтобы сделать такую форму на сайте, который расположен на Heroku необходимо подключать сторонний сервис, который возьмет на себя отправку сообщений. Среди множества таких сервисов, предлагаемых Heroku, остановимся на SendGrid. Он простой в установке и настройке и позволяет бесплатно отправлять до 200 писем в день. Начнем.</p></p>
+
+            <p>
+                <button ng-click="readMore(post.urlTitle)" class="btn btn-default ng-binding">Читать далее</button>
+            </p>
+
+            <div class="tumblr-tags">
+                <span class="glyphicon glyphicon-tags"></span>
+                <!-- ngRepeat: tag in post.tags track by $index --><a ng-repeat="tag in post.tags track by $index" href="http://meangu.ru/posts?tags=Heroku" class="label label-default ng-scope ng-binding" tag-icon="">Heroku</a><!-- end ngRepeat: tag in post.tags track by $index --><a ng-repeat="tag in post.tags track by $index" href="http://meangu.ru/posts?tags=SendGrid" class="label label-default ng-scope ng-binding" tag-icon="">SendGrid</a><!-- end ngRepeat: tag in post.tags track by $index -->
+            </div>
+        </div>
+
+        <div class="panel-footer">
+            <div class="notes">
+                <span class="ng-binding">
+                    Автор: meangu<span ng-show="post.translation" class="ng-binding ng-hide"> (перевод)</span>
+                </span>
+            </div>
+        </div>
+    </div><!-- end ngRepeat: post in posts | filter:search track by $index --><div ng-repeat="post in posts | filter:search track by $index" class="panel panel-default at-repeat-macro-in          at-repeat-macro-out ng-scope" style="">
+        <div class="panel-heading">
+            <div class="date pull-right ng-binding">
+                09 марта 2014
+            </div>
+            <h3 class="no-margin-bottom">
+                <a ng-href="http://meangu.ru/post/obzor-angularJS-dlya-menedzherov" class="ng-binding" href="http://meangu.ru/post/obzor-angularJS-dlya-menedzherov">Обзор AngularJS для менеджеров проектов</a>
+                <a href="http://meangu.ru/admin/edit/obzor-angularJS-dlya-menedzherov" ng-show="auth.isLoggedIn" class="glyphicon glyphicon-edit ng-hide"></a>
+
+            </h3>
+        </div>
+        <div class="panel-body">
+            <p compilebb="post.shortContent"><p class="ng-scope">Несколько месяцев тому назад я начал экспериментировать с AngularJS в свободное время и это был очень полезный и интересный опыт для меня. В своей повседневной работе я провожу большую часть времени, работая над одностраничным приложением на Dojo или JQuery. Эта статья - попытка привести доказательства того, что AngularJS - зрелый фреймворк, который можно использовать при построении enterprise приложений.</p></p>
+
+            <p>
+                <button ng-click="readMore(post.urlTitle)" class="btn btn-default ng-binding">Читать далее</button>
+            </p>
+
+            <div class="tumblr-tags">
+                <span class="glyphicon glyphicon-tags"></span>
+                <!-- ngRepeat: tag in post.tags track by $index --><a ng-repeat="tag in post.tags track by $index" href="http://meangu.ru/posts?tags=AngularJS" class="label label-default ng-scope ng-binding tag-icon icon-angular" tag-icon="">AngularJS</a><!-- end ngRepeat: tag in post.tags track by $index --><a ng-repeat="tag in post.tags track by $index" href="http://meangu.ru/posts?tags=%D0%BE%D0%B1%D0%B7%D0%BE%D1%80" class="label label-default ng-scope ng-binding" tag-icon="">обзор</a><!-- end ngRepeat: tag in post.tags track by $index -->
+            </div>
+        </div>
+
+        <div class="panel-footer">
+            <div class="notes">
+                <span class="ng-binding">
+                    Автор: FIFOd<span ng-show="post.translation" class="ng-binding"> (перевод)</span>
+                </span>
+            </div>
+        </div>
+    </div><!-- end ngRepeat: post in posts | filter:search track by $index --><div ng-repeat="post in posts | filter:search track by $index" class="panel panel-default at-repeat-macro-in          at-repeat-macro-out ng-scope" style="">
+        <div class="panel-heading">
+            <div class="date pull-right ng-binding">
+                07 марта 2014
+            </div>
+            <h3 class="no-margin-bottom">
+                <a ng-href="http://meangu.ru/post/angularJS-Jquery-DOM-manipulations" class="ng-binding" href="http://meangu.ru/post/angularJS-Jquery-DOM-manipulations">Различные подходы к DOM в AngularJS и JQuery</a>
+                <a href="http://meangu.ru/admin/edit/angularJS-Jquery-DOM-manipulations" ng-show="auth.isLoggedIn" class="glyphicon glyphicon-edit ng-hide"></a>
+
+            </h3>
+        </div>
+        <div class="panel-body">
+            <p compilebb="post.shortContent"><p class="ng-scope">Множество разработчиков, пришедших в AngularJS разработку после JQuery, ошибочно пытаются применить императивный подход к разработке на Angular. Вот несколько советов...</p></p>
+
+            <p>
+                <button ng-click="readMore(post.urlTitle)" class="btn btn-default ng-binding">Читать далее</button>
+            </p>
+
+            <div class="tumblr-tags">
+                <span class="glyphicon glyphicon-tags"></span>
+                <!-- ngRepeat: tag in post.tags track by $index --><a ng-repeat="tag in post.tags track by $index" href="http://meangu.ru/posts?tags=JQuery" class="label label-default ng-scope ng-binding tag-icon icon-jquery" tag-icon="">JQuery</a><!-- end ngRepeat: tag in post.tags track by $index --><a ng-repeat="tag in post.tags track by $index" href="http://meangu.ru/posts?tags=DOM" class="label label-default ng-scope ng-binding" tag-icon="">DOM</a><!-- end ngRepeat: tag in post.tags track by $index --><a ng-repeat="tag in post.tags track by $index" href="http://meangu.ru/posts?tags=AngularJS" class="label label-default ng-scope ng-binding tag-icon icon-angular" tag-icon="">AngularJS</a><!-- end ngRepeat: tag in post.tags track by $index -->
+            </div>
+        </div>
+
+        <div class="panel-footer">
+            <div class="notes">
+                <span class="ng-binding">
+                    Автор: Josh David Miller<span ng-show="post.translation" class="ng-binding"> (перевод)</span>
+                </span>
+            </div>
+        </div>
+    </div><!-- end ngRepeat: post in posts | filter:search track by $index -->
+
+    <div ng-show="postsLoading" class="text-center ng-hide">
+        <img src="./posts_files/spinner.gif">
+    </div>
+
+</div>
+
+</ng-view>
+
+    </div>
+</div>
+
+<footer>
+    <h3 class="ng-binding">MeanGu - Javascript fullstack на русском: Node, Angular, Express, Mongo и другое</h3>
+
+    <p>Для связи: meangu.ru@gmail.com</p>
+</footer>
+
+<script async="" src="./posts_files/analytics.js"></script><script src="./posts_files/angular.min.js"></script>
+<script src="./posts_files/angular-route.js"></script>
+<script src="./posts_files/angular-resource.js"></script>
+<script src="./posts_files/angular-animate.js"></script>
+<script src="./posts_files/angular-sanitize.js"></script>
+
+<script src="./posts_files/index.js"></script>
+<script src="./posts_files/controllers.js"></script>
+<script src="./posts_files/directives.js"></script>
+<script src="./posts_files/angular-disqus.js"></script>
+<script src="./posts_files/hljs.js"></script>
+<script src="./posts_files/hljs-angular.js"></script>
+<script src="./posts_files/angular-flip.js"></script>
+
+
+<script>
+    (function (i, s, o, g, r, a, m) {
+        i['GoogleAnalyticsObject'] = r;
+        i[r] = i[r] || function () {
+            (i[r].q = i[r].q || []).push(arguments)
+        }, i[r].l = 1 * new Date();
+        a = s.createElement(o),
+                m = s.getElementsByTagName(o)[0];
+        a.async = 1;
+        a.src = g;
+        m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+    ga('create', 'UA-48791537-1', 'meangu.ru');
+    ga('send', 'pageview');
+
+</script>
+
+
+
+<script src="./posts_files/ecomerce-context-sovetnik-sf.js" type="text/javascript" async=""></script><iframe src="./posts_files/index.html" style="display: none;"></iframe></body></html>
