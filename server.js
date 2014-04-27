@@ -255,7 +255,7 @@ app.get('/api/tags', function (req, res) {
 
 app.get('*', function (req, res, next) {
 
-    if (req.query.hasOwnProperty(_escaped_fragment_)) {
+    if (req.query.hasOwnProperty('_escaped_fragment_')) {
         var fragment = req.query._escaped_fragment_;
 
         if (fragment === "" || fragment === "/")
