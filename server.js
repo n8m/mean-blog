@@ -105,7 +105,6 @@ app.all('*', function (req, res, next) {
     res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
 
 
-
     next();
 });
 
@@ -262,20 +261,20 @@ app.get('*', function (req, res, next) {
     if (!fragment) {
         res.sendfile(__dirname + '/app/main.html');
     }
+    else {
+        if (fragment === "" || fragment === "/")
+            fragment = "index.html";
 
-    if (fragment === "" || fragment === "/")
-        fragment = "index.html";
+        if (fragment.indexOf('.html') == -1)
+            fragment += ".html";
 
-    if (fragment.indexOf('.html') == -1)
-        fragment += ".html";
-
-    try {
-        var file = __dirname + "app/snapshots/" + fragment;
-        res.sendfile(file);
-    } catch (err) {
-        res.send(404);
+        try {
+            var file = __dirname + "app/snapshots/" + fragment;
+            res.sendfile(file);
+        } catch (err) {
+            res.send(404);
+        }
     }
-
 });
 
 app.listen(process.env.PORT || 1337, function () {
