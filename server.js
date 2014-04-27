@@ -97,11 +97,6 @@ app.all('*', function (req, res, next) {
     res.header("Access-Control-Allow-Headers", "X-Requested-With");
     res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
     res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
-
-    var fragment = req.query._escaped_fragment_;
-    console.log('fragment');
-    console.log(fragment);
-
     next();
 });
 
@@ -251,8 +246,6 @@ app.get('/api/tags', function (req, res) {
 })
 
 app.get('*', function (req, res, next) {
-
-    res.send('что-то');
     res.sendfile(__dirname + '/app/index.html');
 });
 
