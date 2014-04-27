@@ -250,11 +250,9 @@ app.get('/api/tags', function (req, res) {
     })
 })
 
-app.get('/*', function (req, res, next) {
+app.get('*', function (req, res, next) {
 
-    res.send('хуила!');
-
-
+    res.send('что-то');
     res.sendfile(__dirname + '/app/index.html');
 });
 
