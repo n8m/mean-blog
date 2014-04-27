@@ -95,7 +95,7 @@ app.use(app.router); // модуль для простого задания об
 app.all('*', function (req, res, next) {
 
     console.log('start');
-    console.log(req.query._escaped_fragment_);
+    console.log(req.query.param);
     console.log('end');
 
 
