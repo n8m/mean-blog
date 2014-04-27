@@ -93,14 +93,18 @@ app.use(passport.session());
 app.use(app.router); // модуль для простого задания обработчиков путей
 
 app.all('*', function (req, res, next) {
+
+    console.log('start');
+    console.log(req.query._escaped_fragment_);
+    console.log('end');
+
+
     res.header("Access-Control-Allow-Origin", "meangu.ru");
     res.header("Access-Control-Allow-Headers", "X-Requested-With");
     res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
     res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
 
-    console.log('start');
-    console.log(req.query._escaped_fragment_);
-    console.log('end');
+
 
     next();
 });
