@@ -60,7 +60,7 @@ var postSchema = mongoose.Schema({
     date: String,
     author: String,
     translation: Boolean
-})
+});
 
 postSchema.plugin(textSearch);
 postSchema.index({ title: 'text', content: 'text', author: 'text', tags: "text" });
@@ -72,7 +72,7 @@ var config = {
     adminPassword: '$2a$10$bz5WMFhiyVufcm/Z7v2a4emYTBRSrOsyJD5KiBVeYr0tvicfrWSAW',
     salt: '$2a$10$bz5WMFhiyVufcm/Z7v2a4e',
     mongoURL: 'mongodb://name:K0llider@ds063218.mongolab.com:63218/angudb',
-}
+};
 
 
 mongoose.connect(config.mongoURL, function (err) {
@@ -93,18 +93,10 @@ app.use(passport.session());
 app.use(app.router); // модуль для простого задания обработчиков путей
 
 app.all('*', function (req, res, next) {
-
-//    console.log('start');
-//    console.log(req.query.param);
-//    console.log('end');
-
-
     res.header("Access-Control-Allow-Origin", "meangu.ru");
     res.header("Access-Control-Allow-Headers", "X-Requested-With");
     res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
     res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
-
-
     next();
 });
 
@@ -120,7 +112,7 @@ app.get('/api/logout', function (req, res) {
 
 app.get('/api/session', mustAuthenticated, function (req, res) {
     res.send(200, {status: 'OK'});
-})
+});
 
 
 app.get('/api/posts', function (req, res) {
@@ -155,7 +147,7 @@ app.get('/api/posts', function (req, res) {
         res.send(posts);
     });
 
-})
+});
 
 
 app.get('/api/posts/:urlTitle*', function (req, res) {
@@ -175,7 +167,7 @@ app.get('/api/posts/:urlTitle*', function (req, res) {
             }
         }
     });
-})
+});
 
 app.post('/api/posts', mustAuthenticated, function (req, res) {
 
@@ -191,7 +183,7 @@ app.post('/api/posts', mustAuthenticated, function (req, res) {
         }
     })
 
-})
+});
 
 app.put('/api/posts', mustAuthenticated, function (req, res) {
     var id = req.body._id;
@@ -210,7 +202,7 @@ app.put('/api/posts', mustAuthenticated, function (req, res) {
             }
         }
     })
-})
+});
 
 app.delete('/api/posts/:id*', mustAuthenticated, function (req, res) {
     Post.findByIdAndRemove(req.param('id'), function (err, post) {
@@ -226,7 +218,7 @@ app.delete('/api/posts/:id*', mustAuthenticated, function (req, res) {
             }
         }
     });
-})
+});
 
 app.get('/api/tags', function (req, res) {
 
@@ -251,7 +243,7 @@ app.get('/api/tags', function (req, res) {
         removeDuplicates(allTags);
         res.send(allTags);
     })
-})
+});
 
 app.get('*', function (req, res, next) {
 
@@ -277,5 +269,3 @@ app.get('*', function (req, res, next) {
 app.listen(process.env.PORT || 1337, function () {
     console.log('Express server listening on port' + process.env.PORT);
 });
-
-
