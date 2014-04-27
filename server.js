@@ -263,16 +263,13 @@ app.get('*', function (req, res, next) {
     }
     else {
         if (fragment === "" || fragment === "/")
-            fragment = "index.html";
-
-        if (fragment.indexOf('.html') == -1)
-            fragment += ".html";
-
-        try {
-            var file = __dirname + "app/snapshots/" + fragment;
-            res.sendfile(file);
-        } catch (err) {
-            res.send(404);
+            res.redirect('https://s3.amazonaws.com/prerender/812/http://meangu.ru');
+        else {
+            try {
+                res.redirect('https://s3.amazonaws.com/prerender/812/http://meangu.ru' + fragment);
+            } catch (err) {
+                res.send(404);
+            }
         }
     }
 });
