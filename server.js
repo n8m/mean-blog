@@ -255,13 +255,9 @@ app.get('/api/tags', function (req, res) {
 
 app.get('*', function (req, res, next) {
 
+    if (req.query.hasOwnProperty(_escaped_fragment_)) {
+        var fragment = req.query._escaped_fragment_;
 
-    var fragment = req.query._escaped_fragment_;
-
-    if (!fragment) {
-        res.sendfile(__dirname + '/app/main.html');
-    }
-    else {
         if (fragment === "" || fragment === "/")
             res.redirect('https://s3.amazonaws.com/prerender/812/http://meangu.ru');
         else {
@@ -272,6 +268,10 @@ app.get('*', function (req, res, next) {
             }
         }
     }
+    else {
+        res.sendfile(__dirname + '/app/main.html');
+    }
+
 });
 
 app.listen(process.env.PORT || 1337, function () {
