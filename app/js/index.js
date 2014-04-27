@@ -155,7 +155,6 @@ blg.service('TagIcons', function () {
 blg.constant('Config', {
     title: "MeAngu",
     root: "http://meangu.ru",
-//    root: "http://localhost/blog/app",
     description: "Full Stack Javascript на русском",
     postsOnPageByDefault: 5,
 });
