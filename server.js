@@ -94,9 +94,9 @@ app.use(app.router); // модуль для простого задания об
 
 app.all('*', function (req, res, next) {
 
-    console.log('start');
-    console.log(req.query.param);
-    console.log('end');
+//    console.log('start');
+//    console.log(req.query.param);
+//    console.log('end');
 
 
     res.header("Access-Control-Allow-Origin", "meangu.ru");
@@ -255,6 +255,7 @@ app.get('/api/tags', function (req, res) {
 })
 
 app.get('*', function (req, res, next) {
+    console.log('static main');
     res.sendfile(__dirname + '/app/main.html');
 });
 
