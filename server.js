@@ -255,7 +255,7 @@ app.get('/api/tags', function (req, res) {
 })
 
 app.get('*', function (req, res, next) {
-    console.log('static main');
+    console.log(req.query._escaped_fragment_);
     res.sendfile(__dirname + '/app/main.html');
 });
 
